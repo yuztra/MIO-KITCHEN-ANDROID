@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import com.omarea.common.R
 
 
@@ -30,7 +29,7 @@ class DialogAppChooser(private val darkMode: Boolean): DialogFullScreen(R.layout
 }
 */
 
-open class DialogFullScreen(private val layout: Int, private val darkMode: Boolean) : androidx.fragment.app.DialogFragment() {
+open class DialogFullScreen(private val layout: Int, darkMode: Boolean) : androidx.fragment.app.DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         currentView = inflater.inflate(layout, container)
         return currentView
@@ -59,17 +58,6 @@ open class DialogFullScreen(private val layout: Int, private val darkMode: Boole
 
                 DialogHelper.setWindowBlurBg(this, activity)
             }
-        }
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
-
-    public fun closeView() {
-        try {
-            dismiss()
-        } catch (ex: java.lang.Exception) {
         }
     }
 

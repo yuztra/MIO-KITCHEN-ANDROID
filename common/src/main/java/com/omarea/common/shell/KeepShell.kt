@@ -14,28 +14,28 @@ import java.util.concurrent.locks.ReentrantLock
 /**
  * Created by Hello on 2018/01/23.
  */
-public class KeepShell(private var rootMode: Boolean = true) {
+class KeepShell(private var rootMode: Boolean = true) {
     private var p: Process? = null
     private var out: OutputStream? = null
     private var reader: BufferedReader? = null
     private var currentIsIdle = true // 是否处于闲置状态
-    public val isIdle: Boolean
+    val isIdle: Boolean
         get() {
             return currentIsIdle
         }
 
     //尝试退出命令行程序
-    public fun tryExit() {
+    fun tryExit() {
         try {
             if (out != null)
                 out!!.close()
             if (reader != null)
                 reader!!.close()
-        } catch (ex: Exception) {
+        } catch (_: Exception) {
         }
         try {
             p!!.destroy()
-        } catch (ex: Exception) {
+        } catch (_: Exception) {
         }
         enterLockTime = 0L
         out = null
@@ -44,8 +44,6 @@ public class KeepShell(private var rootMode: Boolean = true) {
         currentIsIdle = true
     }
 
-    //获取ROOT超时时间
-    private val GET_ROOT_TIMEOUT = 20000L
     private val mLock = ReentrantLock()
     private val LOCK_TIMEOUT = 10000L
     private var enterLockTime = 0L
@@ -69,7 +67,7 @@ public class KeepShell(private var rootMode: Boolean = true) {
 
     fun checkRoot(): Boolean {
         val r = doCmdSync(checkRootState).toLowerCase(Locale.getDefault())
-        return if (r == "error" || r.contains("permission denied") || r.contains("not allowed") || r.equals("not found")) {
+        return if (r == "error" || r.contains("permission denied") || r.contains("not allowed") || r == "not found") {
             if (rootMode) {
                 tryExit()
             }
@@ -125,8 +123,6 @@ public class KeepShell(private var rootMode: Boolean = true) {
         }
     }
 
-    private var br = "\n\n".toByteArray(Charset.defaultCharset())
-
     private val shellOutputCache = StringBuilder()
     private val startTag = "|SH>>|"
     private val endTag = "|<<SH|"
@@ -134,7 +130,7 @@ public class KeepShell(private var rootMode: Boolean = true) {
     private val endTagBytes = "\necho '$endTag'\n".toByteArray(Charset.defaultCharset())
 
     //执行脚本
-    public fun doCmdSync(cmd: String): String {
+    fun doCmdSync(cmd: String): String {
         if (mLock.isLocked && enterLockTime > 0 && System.currentTimeMillis() - enterLockTime > LOCK_TIMEOUT) {
             tryExit()
             Log.e("doCmdSync-Lock", "线程等待超时${System.currentTimeMillis()} - $enterLockTime > $LOCK_TIMEOUT")
@@ -156,7 +152,7 @@ public class KeepShell(private var rootMode: Boolean = true) {
             }
 
             var unstart = true
-            while (true && reader != null) {
+            while (reader != null) {
                 val line = reader!!.readLine()
                 if (line == null) {
                     break
@@ -189,7 +185,7 @@ public class KeepShell(private var rootMode: Boolean = true) {
     }
 
     // 执行脚本，并对结果进行ResourceID翻译
-    public fun doCmdSync(shellCommand: String, shellTranslation: ShellTranslation): String {
+    fun doCmdSync(shellCommand: String, shellTranslation: ShellTranslation): String {
         val rows = doCmdSync(shellCommand).split("\n")
         if (rows.isNotEmpty()) {
             return shellTranslation.resolveRows(rows)

@@ -22,7 +22,7 @@ class BgTaskThread(private var process: Process) : Thread() {
     override fun run() {
         try {
             process.waitFor()
-        } catch (ex: java.lang.Exception) {
+        } catch (_: java.lang.Exception) {
         }
     }
 
@@ -58,8 +58,8 @@ class BgTaskThread(private var process: Process) : Thread() {
                 }
             }
 
-            val expandView = RemoteViews(context.getPackageName(), R.layout.kr_task_notification)
-            expandView.setTextViewText(R.id.kr_task_title, notificationTitle + "(" + notificationID + ")")
+            val expandView = RemoteViews(context.packageName, R.layout.kr_task_notification)
+            expandView.setTextViewText(R.id.kr_task_title, "$notificationTitle($notificationID)")
             expandView.setTextViewText(R.id.kr_task_log, notificationMessageRows.joinToString("", if (someIgnored) "……\n" else "").trim())
             expandView.setProgressBar(R.id.kr_task_progress, progressTotal, progressCurrent, progressTotal < 0)
             expandView.setViewVisibility(R.id.kr_task_progress, if (progressTotal == progressCurrent) View.GONE else View.VISIBLE)
@@ -69,7 +69,7 @@ class BgTaskThread(private var process: Process) : Thread() {
             }
 
             val notificationBuilder = Notification.Builder(context)
-                    .setContentTitle("" + notificationTitle + "(" + notificationID + ")")
+                    .setContentTitle("$notificationTitle($notificationID)")
                     .setContentText("" + notificationMShortMsg + " >> " + notificationMessageRows.lastOrNull())
                     .setSmallIcon(R.drawable.kr_run)
                     .setAutoCancel(true)
@@ -107,7 +107,7 @@ class BgTaskThread(private var process: Process) : Thread() {
                 notification!!.flags = Notification.FLAG_NO_CLEAR or Notification.FLAG_ONGOING_EVENT
             }
 
-            notificationManager.notify(notificationID, notification); // 发送通知
+            notificationManager.notify(notificationID, notification) // 发送通知
         }
 
         override fun updateLog(msg: SpannableString?) {
@@ -134,7 +134,7 @@ class BgTaskThread(private var process: Process) : Thread() {
         override fun onExit(msg: Any?) {
             try {
                 // context.unregisterReceiver(receiver)
-            } catch (ex: java.lang.Exception) {
+            } catch (_: java.lang.Exception) {
             }
             isFinished = true
             notificationMShortMsg = context.getString(R.string.kr_script_task_finished)
@@ -190,7 +190,7 @@ class BgTaskThread(private var process: Process) : Thread() {
                         try {
                             onExit.run()
                             onDismiss.run()
-                        } catch (ex: Exception) {
+                        } catch (_: Exception) {
                         }
                     },
                     params,

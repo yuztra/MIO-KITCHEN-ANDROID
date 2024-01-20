@@ -1,6 +1,5 @@
 package com.omarea.common.ui
 
-import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
@@ -9,12 +8,9 @@ import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
-import android.view.animation.DecelerateInterpolator
 import com.omarea.common.R
 
 class ProgressCircle : View {
-    //-------------必须给的数据相关-------------
-    private val str = arrayOf("已用", "可用")
     private var ratio = 0
     private var ratioState = 0
 
@@ -37,10 +33,6 @@ class ProgressCircle : View {
     //标注的画笔
     private var labelPaint: Paint? = null
 
-    //-------------颜色相关-------------
-    //边框颜色和标注颜色
-    private val mColor = intArrayOf(-0xec712a, 0x55888888, -0x1a8c8d, -0xb03c09, -0xe8a, -0x7e387c)
-
     // private int[] mColor = new int[]{0xFFF06292, 0xFF9575CD, 0xFFE57373, 0xFF4FC3F7, 0xFFFFF176, 0xFF81C784};
     //文字颜色
     private val textColor = -0x777778
@@ -50,7 +42,7 @@ class ProgressCircle : View {
     private var mHeight: Int = 0
     private var mWidth: Int = 0
 
-    constructor(context: Context) : super(context) {}
+    constructor(context: Context) : super(context)
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
         @SuppressLint("CustomViewStyleable")
@@ -105,20 +97,6 @@ class ProgressCircle : View {
     }
 
     private var temperature = 35F
-    fun setData(total: Float, fee: Float, temperature: Float) {
-        if (fee == total && total == 0F) {
-            ratio = 0
-        } else {
-            val feeRatio = (fee * 100.0 / total).toInt()
-            ratio = 100 - feeRatio
-        }
-        this.temperature = temperature
-        // 动画更新
-        // cgangePer(ratio)
-        // 无动画更新
-        ratioState = ratio
-        invalidate()
-    }
 
     /**
      * 初始化画笔
@@ -141,19 +119,6 @@ class ProgressCircle : View {
         labelPaint!!.isAntiAlias = true
         labelPaint!!.style = Paint.Style.FILL
         labelPaint!!.strokeWidth = 20f
-    }
-
-    fun cgangePer(per: Int) {
-        val perOld = this.ratioState
-        val va = ValueAnimator.ofInt(perOld, per)
-        va.duration = 200
-        va.interpolator = DecelerateInterpolator()
-        va.addUpdateListener { animation ->
-            ratioState = animation.animatedValue as Int
-            invalidate()
-        }
-        va.start()
-
     }
 
     /**
@@ -200,7 +165,7 @@ class ProgressCircle : View {
         cyclePaint!!.setPathEffect(dashPathEffect);
         */
 
-        cyclePaint!!.setStrokeCap(Paint.Cap.ROUND)
+        cyclePaint!!.strokeCap = Paint.Cap.ROUND
         if (ratio < 1 && (ratioState <= 2)) {
             return
         } else if (ratioState >= 98) {

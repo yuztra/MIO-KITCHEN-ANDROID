@@ -32,8 +32,8 @@ class AdapterItemChooser2(
         }
 
         override fun performFiltering(constraint: CharSequence?): FilterResults {
-            val results = Filter.FilterResults()
-            val prefix: String = if (constraint == null) "" else constraint.toString()
+            val results = FilterResults()
+            val prefix: String = constraint?.toString() ?: ""
 
             if (prefix.isEmpty()) {
                 val list: ArrayList<SelectItem>
@@ -132,7 +132,7 @@ class AdapterItemChooser2(
         }
     }
 
-    fun updateRow(position: Int, convertView: View) {
+    private fun updateRow(position: Int, convertView: View) {
         val item = getItem(position)
         val viewHolder = ViewHolder()
         viewHolder.itemTitle = convertView.findViewById(R.id.ItemTitle)

@@ -1,10 +1,8 @@
 package com.omarea.krscript.downloader
 
-import android.app.Activity
 import android.app.DownloadManager
 import android.content.Context
 import android.content.Context.DOWNLOAD_SERVICE
-import android.content.Intent
 import android.net.Uri
 import android.os.Environment
 import android.webkit.URLUtil
@@ -16,16 +14,9 @@ import org.json.JSONObject
 import java.io.File
 import java.nio.charset.Charset
 
-class Downloader(private var context: Context, private var activity: Activity? = null) {
+class Downloader(private var context: Context) {
     companion object {
         private val HISTORY_CONFIG = "kr_downloader"
-    }
-
-    fun downloadByBrowser(url: String) {
-        val intent = Intent(Intent.ACTION_VIEW);
-        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse(url));
-        activity?.startActivity(intent);
     }
 
     fun downloadBySystem(
@@ -78,42 +69,45 @@ class Downloader(private var context: Context, private var activity: Activity? =
 
     // 保存下载记录
     private fun addTaskHisotry(downloadId: Long, taskAliasId: String, url: String) {
-        val historyList = context.getSharedPreferences(HISTORY_CONFIG, Context.MODE_PRIVATE);
+        val historyList = context.getSharedPreferences(HISTORY_CONFIG, Context.MODE_PRIVATE)
 
-        val history = JSONObject();
-        history.put("url", url);
-        history.put("taskAliasId", taskAliasId);
+        val history = JSONObject()
+        history.put("url", url)
+        history.put("taskAliasId", taskAliasId)
 
-        historyList.edit().putString(downloadId.toString(), history.toString(2)).apply();
+        historyList.edit().putString(downloadId.toString(), history.toString(2)).apply()
         // FileWrite.writePrivateFile("".toByteArray(Charset.defaultCharset()), "downloader/", context)
     }
 
     // 保存任务状态、进度
     fun saveTaskStatus(taskAliasId: String, ratio: Int) {
-        FileWrite.writePrivateFile(ratio.toString().toByteArray(Charset.defaultCharset()), "downloader/status/" + taskAliasId, context)
+        FileWrite.writePrivateFile(ratio.toString().toByteArray(Charset.defaultCharset()),
+            "downloader/status/$taskAliasId", context)
     }
 
     // 保存下载成功后的路径
     fun saveTaskCompleted(downloadId: Long, absPath: String) {
-        val historyList = context.getSharedPreferences(HISTORY_CONFIG, Context.MODE_PRIVATE);
+        val historyList = context.getSharedPreferences(HISTORY_CONFIG, Context.MODE_PRIVATE)
         val historyStr = historyList.getString(downloadId.toString(), null)
         var taskAliasId: String? = ""
         if (historyStr != null) {
             val hisotry = JSONObject(historyStr)
             hisotry.put("absPath", absPath)
-            historyList.edit().putString(downloadId.toString(), hisotry.toString(2)).apply();
+            historyList.edit().putString(downloadId.toString(), hisotry.toString(2)).apply()
             taskAliasId = hisotry.getString("taskAliasId")
         }
         try {
             val file = File(absPath)
             if (file.exists() && file.canRead()) {
                 val md5 = FileMD5().getFileMD5(file).toLowerCase()
-                FileWrite.writePrivateFile(absPath.toByteArray(Charset.defaultCharset()), "downloader/path/" + md5, context)
+                FileWrite.writePrivateFile(absPath.toByteArray(Charset.defaultCharset()),
+                    "downloader/path/$md5", context)
                 taskAliasId?.run {
-                    FileWrite.writePrivateFile(absPath.toByteArray(Charset.defaultCharset()), "downloader/result/" + taskAliasId, context)
+                    FileWrite.writePrivateFile(absPath.toByteArray(Charset.defaultCharset()),
+                        "downloader/result/$taskAliasId", context)
                 }
             }
-        } catch (ex: java.lang.Exception) {
+        } catch (_: java.lang.Exception) {
 
         }
     }

@@ -6,36 +6,32 @@ import java.io.*
 
 open class ObjectStorage<T : Serializable>(private val context: Context) {
     private val objectStorageDir = "objects/"
-    protected fun getSaveDir(configFile: String): String {
+    private fun getSaveDir(configFile: String): String {
         return FileWrite.getPrivateFilePath(context, objectStorageDir + configFile)
     }
 
-    public open fun load(configFile: String): T? {
+    open fun load(configFile: String): T? {
         val file = File(getSaveDir(configFile))
         if (file.exists()) {
-            var fileInputStream: FileInputStream? = null;
-            var objectInputStream: ObjectInputStream? = null;
+            var fileInputStream: FileInputStream? = null
+            var objectInputStream: ObjectInputStream? = null
             try {
                 fileInputStream = FileInputStream(file)
                 objectInputStream = ObjectInputStream(fileInputStream)
                 return objectInputStream.readObject() as T?
-            } catch (ex: Exception) {
+            } catch (_: Exception) {
             } finally {
                 try {
-                    if (objectInputStream != null) {
-                        objectInputStream.close()
-                    }
-                    if (fileInputStream != null) {
-                        fileInputStream.close()
-                    }
-                } catch (ex: Exception) {
+                    objectInputStream?.close()
+                    fileInputStream?.close()
+                } catch (_: Exception) {
                 }
             }
         }
         return null
     }
 
-    public open fun save(obj: T?, configFile: String): Boolean {
+    open fun save(obj: T?, configFile: String): Boolean {
         val file = File(getSaveDir(configFile))
         val parentFile = file.parentFile
         if (!parentFile.exists()) {
@@ -54,13 +50,9 @@ open class ObjectStorage<T : Serializable>(private val context: Context) {
                 return false
             } finally {
                 try {
-                    if (objectOutputStream != null) {
-                        objectOutputStream.close()
-                    }
-                    if (fileOutputStream != null) {
-                        fileOutputStream.close()
-                    }
-                } catch (ex: Exception) {
+                    objectOutputStream?.close()
+                    fileOutputStream?.close()
+                } catch (_: Exception) {
                 }
             }
         } else {
@@ -71,14 +63,7 @@ open class ObjectStorage<T : Serializable>(private val context: Context) {
         return true
     }
 
-    public open fun remove(configFile: String) {
-        val file = File(getSaveDir(configFile))
-        if (file.exists()) {
-            file.delete()
-        }
-    }
-
-    public open fun exists(configFile: String): Boolean {
+    open fun exists(configFile: String): Boolean {
         return File(getSaveDir(configFile)).exists()
     }
 }

@@ -12,7 +12,7 @@ class HiddenTaskThread(private var process: Process) : Thread() {
     override fun run() {
         try {
             process.waitFor()
-        } catch (ex: java.lang.Exception) {
+        } catch (_: java.lang.Exception) {
         }
     }
 
@@ -80,7 +80,7 @@ class HiddenTaskThread(private var process: Process) : Thread() {
                         try {
                             onExit.run()
                             onDismiss.run()
-                        } catch (ex: Exception) {
+                        } catch (_: Exception) {
                         }
                     },
                     params,

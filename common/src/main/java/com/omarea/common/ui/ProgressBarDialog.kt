@@ -10,7 +10,6 @@ import android.widget.TextView
 import android.widget.Toast
 import com.omarea.common.R
 import com.omarea.common.shell.AsynSuShellUnit
-import java.util.LinkedHashSet
 
 open class ProgressBarDialog(private var context: Activity, private var uniqueId: String? = null) {
     private var alert: DialogHelper.DialogWrap? = null
@@ -47,13 +46,13 @@ open class ProgressBarDialog(private var context: Activity, private var uniqueId
                     alertDialog!!.hide()
                     Toast.makeText(alertDialog!!.context, R.string.execute_fail, Toast.LENGTH_LONG).show()
                 }
-            } catch (ex: Exception) {
+            } catch (_: Exception) {
             }
         }
     }
 
     @SuppressLint("InflateParams")
-    public fun execShell(cmd: String, handler: Handler? = null) {
+    fun execShell(cmd: String, handler: Handler? = null) {
         hideDialog()
 
         val layoutInflater = LayoutInflater.from(context)
@@ -69,22 +68,14 @@ open class ProgressBarDialog(private var context: Activity, private var uniqueId
         }
     }
 
-    public fun execShell(sb: StringBuilder, handler: Handler? = null) {
-        execShell(sb.toString(), handler)
-    }
-
-    public fun isDialogShow(): Boolean {
-        return this.alert != null
-    }
-
-    public fun hideDialog() {
+    fun hideDialog() {
         try {
             if (alert != null) {
                 alert!!.dismiss()
                 alert!!.hide()
                 alert = null
             }
-        } catch (ex: Exception) {
+        } catch (_: Exception) {
         }
 
         uniqueId?.run {
@@ -95,7 +86,7 @@ open class ProgressBarDialog(private var context: Activity, private var uniqueId
     }
 
     @SuppressLint("InflateParams")
-    public fun showDialog(text: String = "正在加载，请稍等..."): ProgressBarDialog {
+    fun showDialog(text: String = "正在加载，请稍等..."): ProgressBarDialog {
         if (textView != null && alert != null) {
             textView!!.text = text
         } else {

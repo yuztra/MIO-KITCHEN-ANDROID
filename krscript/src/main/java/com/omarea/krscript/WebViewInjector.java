@@ -35,6 +35,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.UUID;
@@ -78,11 +79,11 @@ public class WebViewInjector {
                     } else {
                         DialogHelper.Companion.animDialog(new AlertDialog.Builder(context)
                                 .setTitle(R.string.kr_download_confirm)
-                                .setMessage("" + url + "\n\n" + mimetype + "\n" + contentLength + "Bytes")
+                                .setMessage(url + "\n\n" + mimetype + "\n" + contentLength + "Bytes")
                                 .setPositiveButton(R.string.btn_confirm, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                    new Downloader(context, null).downloadBySystem(url, contentDisposition, mimetype, UUID.randomUUID().toString(), null);
+                                    new Downloader(context).downloadBySystem(url, contentDisposition, mimetype, UUID.randomUUID().toString(), null);
                                     }
                                 })
                                 .setNegativeButton(R.string.btn_cancel, new DialogInterface.OnClickListener() {
@@ -107,7 +108,6 @@ public class WebViewInjector {
         /**
          * 检查是否具有ROOT权限
          *
-         * @return
          */
         @JavascriptInterface
         public boolean rootCheck() {
@@ -129,8 +129,6 @@ public class WebViewInjector {
         }
 
         /**
-         * @param script
-         * @param callbackFunction
          */
         @JavascriptInterface
         public boolean executeShellAsync(String script, String callbackFunction, String env) {
@@ -210,7 +208,7 @@ public class WebViewInjector {
                             webView.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    webView.evaluateJavascript(callbackFunction + "(" + message.toString() + ")", new ValueCallback<String>() {
+                                    webView.evaluateJavascript(callbackFunction + "(" + message + ")", new ValueCallback<String>() {
                                         @Override
                                         public void onReceiveValue(String value) {
                                         }
@@ -233,7 +231,7 @@ public class WebViewInjector {
                 public void run() {
                     String line;
                     try {
-                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
                         while ((line = bufferedReader.readLine()) != null) {
                             try {
                                 final JSONObject message = new JSONObject();
@@ -242,7 +240,7 @@ public class WebViewInjector {
                                 webView.post(new Runnable() {
                                     @Override
                                     public void run() {
-                                        webView.evaluateJavascript(callbackFunction + "(" + message.toString() + ")", new ValueCallback<String>() {
+                                        webView.evaluateJavascript(callbackFunction + "(" + message + ")", new ValueCallback<String>() {
                                             @Override
                                             public void onReceiveValue(String value) {
 
@@ -263,7 +261,7 @@ public class WebViewInjector {
                 public void run() {
                     String line;
                     try {
-                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, "UTF-8"));
+                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, StandardCharsets.UTF_8));
                         while ((line = bufferedReader.readLine()) != null) {
                             try {
                                 final JSONObject message = new JSONObject();
@@ -272,7 +270,7 @@ public class WebViewInjector {
                                 webView.post(new Runnable() {
                                     @Override
                                     public void run() {
-                                        webView.evaluateJavascript(callbackFunction + "(" + message.toString() + ")", new ValueCallback<String>() {
+                                        webView.evaluateJavascript(callbackFunction + "(" + message + ")", new ValueCallback<String>() {
                                             @Override
                                             public void onReceiveValue(String value) {
 
@@ -301,11 +299,11 @@ public class WebViewInjector {
                         try {
                             final JSONObject message = new JSONObject();
                             message.put("type", ShellHandlerBase.EVENT_EXIT);
-                            message.put("message", "" + status);
+                            message.put("message", String.valueOf(status));
                             webView.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    webView.evaluateJavascript(callbackFunction + "(" + message.toString() + ")", new ValueCallback<String>() {
+                                    webView.evaluateJavascript(callbackFunction + "(" + message + ")", new ValueCallback<String>() {
                                         @Override
                                         public void onReceiveValue(String value) {
 
