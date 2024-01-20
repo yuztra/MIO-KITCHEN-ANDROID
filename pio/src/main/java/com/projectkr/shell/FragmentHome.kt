@@ -3,11 +3,8 @@ package com.projectkr.shell
 import android.annotation.SuppressLint
 import android.app.ActivityManager
 import android.content.Context.ACTIVITY_SERVICE
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
-import com.google.android.material.snackbar.Snackbar
-import androidx.fragment.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +18,6 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.util.*
-import kotlin.collections.HashMap
 
 
 class FragmentHome : androidx.fragment.app.Fragment() {
@@ -30,13 +26,8 @@ class FragmentHome : androidx.fragment.app.Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
-    private lateinit var globalSPF: SharedPreferences
     private var timer: Timer? = null
-    private fun showMsg(msg: String) {
-        this.view?.let { Snackbar.make(it, msg, Snackbar.LENGTH_LONG).show() }
-    }
 
-    private lateinit var spf: SharedPreferences
     private var myHandler = Handler()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,7 +41,7 @@ class FragmentHome : androidx.fragment.app.Fragment() {
                     try {
                         updateRamInfo()
                         Toast.makeText(context, getString(R.string.monitor_cache_cleared), Toast.LENGTH_SHORT).show()
-                    } catch (ex: java.lang.Exception) {
+                    } catch (_: java.lang.Exception) {
                     }
                 }, 600)
             }).start()
@@ -63,7 +54,7 @@ class FragmentHome : androidx.fragment.app.Fragment() {
                     try {
                         updateRamInfo()
                         Toast.makeText(context, getString(R.string.monitor_ram_cleared), Toast.LENGTH_SHORT).show()
-                    } catch (ex: java.lang.Exception) {
+                    } catch (_: java.lang.Exception) {
                     }
                 }, 600)
             }).start()
@@ -93,7 +84,7 @@ class FragmentHome : androidx.fragment.app.Fragment() {
 
     private var minFreqs = HashMap<Int, String>()
     private var maxFreqs = HashMap<Int, String>()
-    fun format1(value: Double): String {
+    private fun format1(value: Double): String {
 
         var bd = BigDecimal(value)
         bd = bd.setScale(1, RoundingMode.HALF_UP)
@@ -127,12 +118,12 @@ class FragmentHome : androidx.fragment.app.Fragment() {
                             home_zramsize_text.text = "${(use * 100.0 / total).toInt()}% (${total}MB)"
                         }
                     }
-                } catch (ex: java.lang.Exception) {
+                } catch (_: java.lang.Exception) {
                 }
                 // home_swapstate.text = swapInfo.substring(swapInfo.indexOf(" "), swapInfo.lastIndexOf(" ")).trim()
             } else {
             }
-        } catch (ex: Exception) {
+        } catch (_: Exception) {
         }
     }
 
@@ -149,18 +140,18 @@ class FragmentHome : androidx.fragment.app.Fragment() {
             val core = CpuCoreInfo()
 
             core.currentFreq = CpuFrequencyUtils.getCurrentFrequency("cpu$coreIndex")
-            if (!maxFreqs.containsKey(coreIndex) || (core.currentFreq != "" && maxFreqs.get(coreIndex).isNullOrEmpty())) {
-                maxFreqs.put(coreIndex, CpuFrequencyUtils.getCurrentMaxFrequency("cpu" + coreIndex))
+            if (!maxFreqs.containsKey(coreIndex) || (core.currentFreq != "" && maxFreqs[coreIndex].isNullOrEmpty())) {
+                maxFreqs[coreIndex] = CpuFrequencyUtils.getCurrentMaxFrequency("cpu$coreIndex")
             }
-            core.maxFreq = maxFreqs.get(coreIndex)
+            core.maxFreq = maxFreqs[coreIndex]
 
-            if (!minFreqs.containsKey(coreIndex) || (core.currentFreq != "" && minFreqs.get(coreIndex).isNullOrEmpty())) {
-                minFreqs.put(coreIndex, CpuFrequencyUtils.getCurrentMinFrequency("cpu" + coreIndex))
+            if (!minFreqs.containsKey(coreIndex) || (core.currentFreq != "" && minFreqs[coreIndex].isNullOrEmpty())) {
+                minFreqs[coreIndex] = CpuFrequencyUtils.getCurrentMinFrequency("cpu$coreIndex")
             }
-            core.minFreq = minFreqs.get(coreIndex)
+            core.minFreq = minFreqs[coreIndex]
 
             if (loads.containsKey(coreIndex)) {
-                core.loadRatio = loads.get(coreIndex)!!
+                core.loadRatio = loads[coreIndex]!!
             }
             cores.add(core)
         }
@@ -176,8 +167,8 @@ class FragmentHome : androidx.fragment.app.Fragment() {
                     home_gpu_chat.setData(100.toFloat(), (100 - gpuLoad).toFloat())
                 }
                 if (loads.containsKey(-1)) {
-                    cpu_core_total_load.text = String.format(getString(R.string.monitor_laod), loads.get(-1)!!.toInt())
-                    home_cpu_chat.setData(100.toFloat(), (100 - loads.get(-1)!!.toInt()).toFloat())
+                    cpu_core_total_load.text = String.format(getString(R.string.monitor_laod), loads[-1]!!.toInt())
+                    home_cpu_chat.setData(100.toFloat(), (100 - loads[-1]!!.toInt()).toFloat())
                 }
                 if (cpu_core_list.adapter == null) {
                     if (cores.size < 6) {

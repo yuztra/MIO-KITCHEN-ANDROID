@@ -63,7 +63,7 @@ class AdapterCpuCores(private val context: Context, private val list: ArrayList<
         if (freqMhz == "0") {
             currentFreq.text = "offline"
         } else {
-            currentFreq.text = freqMhz + " Mhz"
+            currentFreq.text = "$freqMhz Mhz"
         }
 
         val freqRanage = convertView.findViewById<TextView>(R.id.cpu_core_freq_ranage)

@@ -2,7 +2,6 @@ package com.projectkr.shell.ui
 
 import android.app.Activity
 import android.graphics.drawable.Drawable
-import android.util.TypedValue
 import android.view.View
 import android.widget.ImageView
 import android.widget.TabHost
@@ -11,10 +10,6 @@ import com.projectkr.shell.R
 
 class TabIconHelper(private var tabHost: TabHost, private var activity: Activity) {
     private var views = ArrayList<View>()
-
-    fun newTabSpec(drawable: Drawable, content: Int): String {
-        return newTabSpec("", drawable, content)
-    }
 
     fun newTabSpec(text: String, drawable: Drawable, content: Int): String {
         val layout = View.inflate(activity, R.layout.list_item_tab, null)
@@ -39,12 +34,6 @@ class TabIconHelper(private var tabHost: TabHost, private var activity: Activity
         tabHost.addTab(tabHost.newTabSpec(tabId).setContent(content).setIndicator(layout))
 
         return tabId
-    }
-
-    fun getColorAccent(): Int {
-        val typedValue = TypedValue()
-        this.activity.theme.resolveAttribute(R.attr.colorAccent, typedValue, true)
-        return typedValue.data
     }
 
     fun updateHighlight() {

@@ -2,53 +2,28 @@ package com.projectkr.shell
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Handler
-import android.os.Looper
 import android.widget.Toast
-import com.omarea.common.ui.ProgressBarDialog
 import com.omarea.krscript.model.PageNode
 
 class OpenPageHelper(private var activity: Activity) {
-    private var progressBarDialog: ProgressBarDialog? = null
-    private var handler = Handler(Looper.getMainLooper())
-
-    private val dialog: ProgressBarDialog
-        get() {
-            if (progressBarDialog == null) {
-                progressBarDialog = ProgressBarDialog(activity)
-            }
-            return progressBarDialog!!
-        }
-
-    private fun showDialog(msg: String) {
-        handler.post {
-            dialog.showDialog(msg)
-        }
-    }
-
-    private fun hideDialog() {
-        handler.post {
-            dialog.hideDialog()
-        }
-    }
 
     fun openPage(pageNode: PageNode) {
         try {
             var intent: Intent? = null
-            if (!pageNode.onlineHtmlPage.isEmpty()) {
+            if (pageNode.onlineHtmlPage.isNotEmpty()) {
                 intent = Intent(activity, ActionPageOnline::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 intent.putExtra("config", pageNode.onlineHtmlPage)
             }
 
-            if (!pageNode.pageConfigSh.isEmpty()) {
+            if (pageNode.pageConfigSh.isNotEmpty()) {
                 if (intent == null) {
                     intent = Intent(activity, ActionPage::class.java)
                 }
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
 
-            if (!pageNode.pageConfigPath.isEmpty()) {
+            if (pageNode.pageConfigPath.isNotEmpty()) {
                 if (intent == null) {
                     intent = Intent(activity, ActionPage::class.java)
                 }

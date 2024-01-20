@@ -17,11 +17,11 @@ import kotlin.system.exitProcess
  * Created by helloklf on 2017/6/3.
  */
 
-public class CheckRootStatus(var context: Context, private var next: Runnable? = null) {
-    var myHandler: Handler = Handler(Looper.getMainLooper())
+class CheckRootStatus(var context: Context, private var next: Runnable? = null) {
+    private var myHandler: Handler = Handler(Looper.getMainLooper())
 
-    var therad: Thread? = null
-    public fun forceGetRoot() {
+    private var therad: Thread? = null
+    fun forceGetRoot() {
         if (lastCheckResult) {
             if (next != null) {
                 myHandler.post(next)
@@ -57,7 +57,7 @@ public class CheckRootStatus(var context: Context, private var next: Runnable? =
                                     exitProcess(0)
                                     //android.os.Process.killProcess(android.os.Process.myPid())
                                 }
-                        if (context.resources.getBoolean(R.bool.force_root) != true) {
+                        if (!context.resources.getBoolean(R.bool.force_root)) {
                             builder.setNeutralButton(R.string.btn_skip) { _, _ ->
                                 if (next != null) {
                                     myHandler.post(next)

@@ -134,12 +134,6 @@ public class AdapterFileSelector extends BaseAdapter {
         }
     }
 
-    public void refresh() {
-        if (this.currentDir != null) {
-            this.loadDir(currentDir);
-        }
-    }
-
     @Override
     public Object getItem(int position) {
         if (hasParent) {
@@ -170,7 +164,6 @@ public class AdapterFileSelector extends BaseAdapter {
                     goParent();
                 }
             });
-            return view;
         } else {
             final File file = (File) getItem(position);
             if (file.isDirectory()) {
@@ -253,8 +246,8 @@ public class AdapterFileSelector extends BaseAdapter {
                 });
             }
             ((TextView) (view.findViewById(R.id.ItemTitle))).setText(file.getName());
-            return view;
         }
+        return view;
     }
 
     public File getSelectedFile() {

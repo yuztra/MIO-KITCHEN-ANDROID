@@ -38,14 +38,6 @@ class CpuChartBarView : View {
         array.recycle()
     }
 
-    /**
-     * dp转换成px
-     */
-    private fun dp2px(context: Context, dpValue: Float): Int {
-        val scale = context.resources.displayMetrics.density
-        return (dpValue * scale + 0.5f).toInt()
-    }
-
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
         mWidth = w.toFloat()
@@ -63,10 +55,9 @@ class CpuChartBarView : View {
             mainPaint!!.color = resources.getColor(R.color.colorAccent)
         }
 
-        var index = 0
         val barWidth = strokeWidth
-        for (ratio in loadHisotry) {
-            mainPaint!!.alpha = (ratio * 255 / 100);
+        for ((index, ratio) in loadHisotry.withIndex()) {
+            mainPaint!!.alpha = (ratio * 255 / 100)
 
             var top = 0f
             if (ratio <= 2) {
@@ -79,7 +70,6 @@ class CpuChartBarView : View {
 
             canvas.drawRoundRect((barWidth) * index, top, (barWidth) * index + (barWidth * 0.9f), mHeight, 5f, 5f, mainPaint!!)
 
-            index++
         }
     }
 

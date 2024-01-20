@@ -12,12 +12,12 @@
             <title>reload 属性测试</title>
             <desc>我执行完了后就会刷新当前界面，不信你试试~</desc>
             <script>
-                setprop xx.cc.vv "现在是$(date)\n叽里呱啦，稀里哗啦~"
+                echo "现在是$(date)\n叽里呱啦，稀里哗啦~"
             </script>
         </action>
         <text>
             <title>xx.cc.vv 当前值：</title>
-            <desc sh="getprop xx.cc.vv" />
+            <desc sh="echo xx.cc.vv" />
         </text>
         <text>
             <slices>

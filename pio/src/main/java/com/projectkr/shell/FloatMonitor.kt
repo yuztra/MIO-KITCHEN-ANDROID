@@ -31,7 +31,7 @@ class FloatMonitor(context: Context) {
     /**
      * 显示弹出框
      * @param context
-     */
+     * **/
     fun showPopupWindow() {
         if (isShown!!) {
             return
@@ -76,7 +76,6 @@ class FloatMonitor(context: Context) {
             display.getRealSize(p)
             params.y = -navHeight
             params.x = 0
-        } else {
         }
         mWindowManager!!.addView(mView, params)
 
@@ -174,11 +173,7 @@ class FloatMonitor(context: Context) {
     private var activityManager: ActivityManager? = null
     private var myHandler = Handler()
     private var batteryUnit = BatteryUnit()
-    val info = ActivityManager.MemoryInfo()
-
-    var sum = -1
-    var totalMem = 0
-    var availMem = 0
+    private val info = ActivityManager.MemoryInfo()
 
     private fun updateInfo() {
         val cpuFreq = CpuFrequencyUtils.getCurrentFrequency()
@@ -300,7 +295,7 @@ class FloatMonitor(context: Context) {
         gpuFreqText = view!!.findViewById(R.id.fw_gpu_freq)
         ramUseText = view!!.findViewById(R.id.fw_ram_use)
         temperatureText = view!!.findViewById(R.id.fw_battery_temp)
-        batteryLevelText = view!!.findViewById<TextView>(R.id.fw_battery_level)
+        batteryLevelText = view!!.findViewById(R.id.fw_battery_level)
 
         activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         return view!!

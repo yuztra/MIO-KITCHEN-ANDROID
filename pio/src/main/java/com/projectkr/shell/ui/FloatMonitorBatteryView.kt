@@ -12,8 +12,6 @@ import android.view.animation.DecelerateInterpolator
 import com.projectkr.shell.R
 
 class FloatMonitorBatteryView : View {
-    //-------------必须给的数据相关-------------
-    private val str = arrayOf("已用", "可用")
     private var ratio = 0
     private var ratioState = 0
     //圆的直径
@@ -29,9 +27,7 @@ class FloatMonitorBatteryView : View {
     private var textPaint: Paint? = null
     //标注的画笔
     private var labelPaint: Paint? = null
-    //-------------颜色相关-------------
-    //边框颜色和标注颜色
-    private val mColor = intArrayOf(-0xec712a, 0x55888888, -0x1a8c8d, -0xb03c09, -0xe8a, -0x7e387c)
+
     // private int[] mColor = new int[]{0xFFF06292, 0xFF9575CD, 0xFFE57373, 0xFF4FC3F7, 0xFFFFF176, 0xFF81C784};
     //文字颜色
     private val textColor = -0x777778
@@ -129,7 +125,7 @@ class FloatMonitorBatteryView : View {
         labelPaint!!.strokeWidth = 2f
     }
 
-    fun cgangePer(per: Int) {
+    private fun cgangePer(per: Int) {
         val perOld = this.ratioState
         val va = ValueAnimator.ofInt(perOld, per)
         va.duration = 200

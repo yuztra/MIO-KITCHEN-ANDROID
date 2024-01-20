@@ -9,66 +9,68 @@ import android.graphics.Color
 import android.graphics.Rect
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
-import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import com.omarea.common.R
 
 class DialogHelper {
-    class DialogButton(public val text: String, public val onClick: Runnable? = null, public val dismiss: Boolean = true) {
-    }
+    class DialogButton(val text: String, val onClick: Runnable? = null, val dismiss: Boolean = true)
 
     class DialogWrap(private val d: AlertDialog) {
-        public val context = dialog.context
+        val context = dialog.context
         private var mCancelable = true
-        public val isCancelable: Boolean
+        val isCancelable: Boolean
             get () {
                 return mCancelable
             }
 
-        public fun setCancelable(cancelable: Boolean): DialogWrap {
+        fun setCancelable(cancelable: Boolean): DialogWrap {
             mCancelable = cancelable
             d.setCancelable(cancelable)
 
             return this
         }
 
-        public fun setOnDismissListener(onDismissListener: DialogInterface.OnDismissListener): DialogWrap {
+        fun setOnDismissListener(onDismissListener: DialogInterface.OnDismissListener): DialogWrap {
             d.setOnDismissListener(onDismissListener)
 
             return this
         }
 
-        public val dialog: AlertDialog
+        val dialog: AlertDialog
             get() {
                 return d
             }
 
-        public fun dismiss() {
+        fun dismiss() {
             try {
                 d.dismiss()
-            } catch (ex: Exception) {
+            } catch (_: Exception) {
             }
         }
 
-        public fun hide() {
+        fun hide() {
             try {
                 d.hide()
-            } catch (ex: Exception) {
+            } catch (_: Exception) {
             }
         }
 
-        public val isShowing: Boolean
+        val isShowing: Boolean
             get() {
-                return d.isShowing()
+                return d.isShowing
             }
     }
 
     companion object {
         // 是否禁用模糊背景
-        public var disableBlurBg = false
+        private var disableBlurBg = false
 
         fun animDialog(dialog: AlertDialog?): DialogWrap? {
             if (dialog != null && !dialog.isShowing) {
@@ -84,10 +86,6 @@ class DialogHelper {
             val dialog = builder.create()
             animDialog(dialog)
             return DialogWrap(dialog)
-        }
-
-        fun helpInfo(context: Context, message: String, onDismiss: Runnable? = null): DialogWrap {
-            return helpInfo(context, context.getString(R.string.help_title), message, onDismiss)
         }
 
         fun helpInfo(context: Context, title: String, message: String, onDismiss: Runnable? = null): DialogWrap {
@@ -127,22 +125,6 @@ class DialogHelper {
             return d
         }
 
-        fun helpInfo(context: Context,
-                  title: String = "",
-                  message: String = "",
-                  contentView: View,
-                  onConfirm: Runnable? = null): DialogWrap {
-            val view = getCustomDialogView(context, R.layout.dialog_help_info, title, message, contentView)
-
-            val dialog = customDialog(context, view)
-            view.findViewById<View>(R.id.btn_confirm).setOnClickListener {
-                dialog.dismiss()
-                onConfirm?.run()
-            }
-
-            return dialog
-        }
-
         fun confirm(context: Context,
                     title: String = "",
                     message: String = "",
@@ -170,7 +152,7 @@ class DialogHelper {
                 if (title.isEmpty()) {
                     visibility = View.GONE
                 } else {
-                    setText(title)
+                    text = title
                 }
             }
 
@@ -178,7 +160,7 @@ class DialogHelper {
                 if (message.isEmpty()) {
                     visibility = View.GONE
                 } else {
-                    setText(message)
+                    text = message
                 }
             }
 
@@ -302,15 +284,6 @@ class DialogHelper {
             return dialogWrap
         }
 
-        private fun getStatusBarColor(context: Context): Int {
-            val defaultColor = Color.WHITE
-            val attrsArray = intArrayOf(android.R.attr.statusBarColor)
-            val typedArray = context.obtainStyledAttributes(attrsArray)
-            val color = typedArray.getColor(0, defaultColor)
-            typedArray.recycle()
-            return color
-        }
-
         private fun openContinueAlert(context: Context,
                                       layout: Int,
                                       title: String = "",
@@ -332,35 +305,11 @@ class DialogHelper {
             return dialog
         }
 
-        fun confirmBlur(context: Activity,
-                        title: String = "",
-                        message: String = "",
-                        onConfirm: Runnable? = null,
-                        onCancel: Runnable? = null): DialogWrap {
-            return openContinueAlert(context, R.layout.dialog_confirm, title, message, onConfirm, onCancel)
-        }
-
         fun alert(context: Context,
                   title: String = "",
                   message: String = "",
                   onConfirm: Runnable? = null): DialogWrap {
             return openContinueAlert(context, R.layout.dialog_alert, title, message, onConfirm, null)
-        }
-
-        fun alert(context: Context,
-                  title: String = "",
-                  message: String = "",
-                  contentView: View,
-                  onConfirm: Runnable? = null): DialogWrap {
-            val view = getCustomDialogView(context, R.layout.dialog_alert, title, message, contentView)
-
-            val dialog = customDialog(context, view)
-            view.findViewById<View>(R.id.btn_confirm).setOnClickListener {
-                dialog.dismiss()
-                onConfirm?.run()
-            }
-
-            return dialog
         }
 
         fun customDialog(context: Context, view: View, cancelable: Boolean = true): DialogWrap {

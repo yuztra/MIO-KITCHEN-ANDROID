@@ -56,17 +56,6 @@ class ActionPageOnline : AppCompatActivity() {
         loadIntentData()
     }
 
-    private fun hideWindowTitle() {
-        if (Build.VERSION.SDK_INT >= 21) {
-            val decorView = window.decorView
-            val option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-            decorView.systemUiVisibility = option
-            window.statusBarColor = Color.TRANSPARENT
-        }
-        val actionBar = supportActionBar
-        actionBar!!.hide()
-    }
-
     private fun setWindowTitleBar() {
         val window = window
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
@@ -133,7 +122,7 @@ class ActionPageOnline : AppCompatActivity() {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                         downloader.saveTaskStatus(taskAliasId, 0)
 
-                        requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), 2);
+                        requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), 2)
                         DialogHelper.helpInfo(this, "", getString(R.string.kr_write_external_storage))
                     } else {
                         val downloadId = downloader.downloadBySystem(url, null, null, taskAliasId)
@@ -202,14 +191,14 @@ class ActionPageOnline : AppCompatActivity() {
                 try {
                     val requestUrl = request?.url
                     if (requestUrl != null && requestUrl.scheme?.startsWith("http") != true) {
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(requestUrl.toString()));
-                        startActivity(intent);
-                        return true;
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(requestUrl.toString()))
+                        startActivity(intent)
+                        return true
                     } else {
-                        return super.shouldOverrideUrlLoading(view, request);
+                        return super.shouldOverrideUrlLoading(view, request)
                     }
                 } catch (e: Exception) {
-                    return super.shouldOverrideUrlLoading(view, request);
+                    return super.shouldOverrideUrlLoading(view, request)
                 }
             }
         }
@@ -228,17 +217,17 @@ class ActionPageOnline : AppCompatActivity() {
     private val ACTION_FILE_PATH_CHOOSER = 65400
     private fun chooseFilePath(fileSelectedInterface: ParamsFileChooserRender.FileSelectedInterface): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), 2);
+            requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), 2)
             Toast.makeText(this, getString(R.string.kr_write_external_storage), Toast.LENGTH_LONG).show()
             return false
         } else {
             try {
-                val intent = Intent(Intent.ACTION_GET_CONTENT);
+                val intent = Intent(Intent.ACTION_GET_CONTENT)
                 intent.setType("*/*")
-                intent.addCategory(Intent.CATEGORY_OPENABLE);
-                startActivityForResult(intent, ACTION_FILE_PATH_CHOOSER);
+                intent.addCategory(Intent.CATEGORY_OPENABLE)
+                startActivityForResult(intent, ACTION_FILE_PATH_CHOOSER)
                 this.fileSelectedInterface = fileSelectedInterface
-                return true;
+                return true
             } catch (ex: java.lang.Exception) {
                 return false
             }
@@ -290,7 +279,7 @@ class ActionPageOnline : AppCompatActivity() {
         }
     }
 
-    var progressPolling: Timer? = null
+    private var progressPolling: Timer? = null
     /**
      * 监视下载进度
      */
@@ -303,13 +292,13 @@ class ActionPageOnline : AppCompatActivity() {
         kr_download_name_copy.setOnClickListener {
             val myClipboard: ClipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val myClip = ClipData.newPlainText("text", kr_download_name.text.toString())
-            myClipboard.setPrimaryClip(myClip)
+            myClipboard.primaryClip = myClip
             Toast.makeText(this@ActionPageOnline, getString(R.string.copy_success), Toast.LENGTH_SHORT).show()
         }
         kr_download_url_copy.setOnClickListener {
             val myClipboard: ClipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val myClip = ClipData.newPlainText("text", kr_download_url.text.toString())
-            myClipboard.setPrimaryClip(myClip)
+            myClipboard.primaryClip = myClip
             Toast.makeText(this@ActionPageOnline, getString(R.string.copy_success), Toast.LENGTH_SHORT).show()
         }
 
@@ -332,10 +321,10 @@ class ActionPageOnline : AppCompatActivity() {
                             val nameColumn = cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_LOCAL_URI)
                             fileName = cursor.getString(nameColumn)
                             absPath = FilePathResolver().getPath(this@ActionPageOnline, Uri.parse(fileName))
-                            if (!absPath.isEmpty()) {
+                            if (absPath.isNotEmpty()) {
                                 fileName = absPath
                             }
-                        } catch (ex: java.lang.Exception) {
+                        } catch (_: java.lang.Exception) {
                         }
                     }
 
