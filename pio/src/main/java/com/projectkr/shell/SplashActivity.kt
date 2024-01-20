@@ -1,6 +1,5 @@
 package com.projectkr.shell
 
-import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -9,15 +8,14 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.core.app.ActivityCompat
-import androidx.core.content.PermissionChecker
 import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
 import com.omarea.common.shell.ShellExecutor
 import com.omarea.krscript.executor.ScriptEnvironmen
 import com.projectkr.shell.permissions.CheckRootStatus
-import kotlinx.android.synthetic.main.activity_splash.*
+import kotlinx.android.synthetic.main.activity_splash.start_logo
+import kotlinx.android.synthetic.main.activity_splash.start_state_text
 import java.io.BufferedReader
 import java.io.DataOutputStream
 
@@ -84,48 +82,7 @@ class SplashActivity : Activity() {
         })
     }
 
-    private fun checkPermission(permission: String): Boolean = PermissionChecker.checkSelfPermission(this.applicationContext, permission) == PermissionChecker.PERMISSION_GRANTED
-
-    /**
-     * 检查权限 主要是文件读写权限
-     */
-    private fun checkFileWrite(next: Runnable) {
-        Thread(Runnable {
-            CheckRootStatus.grantPermission(this)
-            if (!(checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE) && checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE))) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    ActivityCompat.requestPermissions(
-                            this@SplashActivity,
-                            arrayOf(
-                                    Manifest.permission.READ_EXTERNAL_STORAGE,
-                                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                    Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS,
-                                    Manifest.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
-                                    Manifest.permission.WAKE_LOCK
-                            ),
-                            0x11
-                    )
-                } else {
-                    ActivityCompat.requestPermissions(
-                            this@SplashActivity,
-                            arrayOf(
-                                    Manifest.permission.READ_EXTERNAL_STORAGE,
-                                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                    Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS,
-                                    Manifest.permission.WAKE_LOCK
-                            ),
-                            0x11
-                    )
-                }
-            }
-            myHandler.post {
-                next.run()
-            }
-        }).start()
-    }
-
     private var hasRoot = false
-    private var myHandler = Handler()
 
     private fun checkRoot(next: Runnable) {
         CheckRootStatus(this, next).forceGetRoot()

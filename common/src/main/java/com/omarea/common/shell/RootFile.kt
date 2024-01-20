@@ -87,24 +87,4 @@ object RootFile {
         return files
     }
 
-    fun fileInfo(path: String): RootFileInfo? {
-        val absPath = if (path.endsWith("/")) path.subSequence(0, path.length - 1).toString() else path
-        val outputInfo = KeepShellPublic.doCmdSync("busybox ls -1dFs \"$absPath\"")
-        Log.d(">>>> file", outputInfo)
-        if (outputInfo != "error") {
-            val rows = outputInfo.split("\n")
-            for (row in rows) {
-                val file = shellFileInfoRow(row, absPath)
-                if (file != null) {
-                    file.filePath = absPath.substring(absPath.lastIndexOf("/") + 1)
-                    file.parentDir = absPath.substring(0, absPath.lastIndexOf("/"))
-                    return file
-                } else {
-                    Log.e(">>>> Scene", "MapDirError Row -> $row")
-                }
-            }
-        }
-
-        return null
-    }
 }
