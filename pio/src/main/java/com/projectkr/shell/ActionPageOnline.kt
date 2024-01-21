@@ -64,8 +64,7 @@ class ActionPageOnline : AppCompatActivity() {
 
         var flags = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
 
-        if (themeMode.isDarkMode) {
-        } else {
+        if (!themeMode.isDarkMode) {
             window.statusBarColor = Color.WHITE
             window.navigationBarColor = Color.WHITE
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -148,7 +147,7 @@ class ActionPageOnline : AppCompatActivity() {
                 DialogHelper.animDialog(
                         AlertDialog.Builder(this@ActionPageOnline)
                                 .setMessage(message)
-                                .setPositiveButton(R.string.btn_confirm, { _, _ -> })
+                                .setPositiveButton(R.string.btn_confirm) { _, _ -> }
                                 .setOnDismissListener {
                                     result?.confirm()
                                 }

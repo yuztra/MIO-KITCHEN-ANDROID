@@ -96,7 +96,6 @@ open class ProgressBarDialog(private var context: Activity, private var uniqueId
             textView = (dialog.findViewById(R.id.dialog_text) as TextView)
             textView!!.text = text
             alert = DialogHelper.customDialog(context, dialog, false)
-            // AlertDialog.Builder(context).setView(dialog).setCancelable(false).create()
         }
 
         uniqueId?.run {
@@ -104,7 +103,7 @@ open class ProgressBarDialog(private var context: Activity, private var uniqueId
                 dialogs.remove(this)
             }
             if (alert != null) {
-                dialogs.put(this, alert!!)
+                dialogs[this] = alert!!
             }
         }
 

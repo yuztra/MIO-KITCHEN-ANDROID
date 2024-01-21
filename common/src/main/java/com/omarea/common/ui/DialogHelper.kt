@@ -62,10 +62,6 @@ class DialogHelper {
             }
         }
 
-        val isShowing: Boolean
-            get() {
-                return d.isShowing
-            }
     }
 
     companion object {
@@ -76,6 +72,7 @@ class DialogHelper {
             if (dialog != null && !dialog.isShowing) {
                 dialog.window?.run {
                     setWindowAnimations(R.style.windowAnim)
+
                 }
                 dialog.show()
             }
@@ -331,24 +328,6 @@ class DialogHelper {
                     decorView.run {
                         systemUiVisibility = context.window.decorView.systemUiVisibility // View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
                     }
-
-                    /*
-                    // 隐藏状态栏和导航栏
-                    decorView.run {
-                        systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        setOnSystemUiVisibilityChangeListener {
-                            var uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or  //布局位于状态栏下方
-                                    View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or  //全屏
-                                    View.SYSTEM_UI_FLAG_FULLSCREEN or  //隐藏导航栏
-                                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
-                                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            uiOptions = uiOptions or 0x00001000
-                            systemUiVisibility = uiOptions
-                        }
-                    }
-                    */
-
-                    // setWindowAnimations(R.style.windowAnim2)
                 }
             } else {
                 dialog.window?.run {
