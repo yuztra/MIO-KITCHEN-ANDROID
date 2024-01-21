@@ -19,15 +19,15 @@ class PathAnalysis(private var context: Context, private var parentDir: String =
     }
 
     fun parsePath(filePath: String): InputStream? {
-        try {
+        return try {
             if (filePath.startsWith(ASSETS_FILE)) {
                 currentAbsPath = filePath
-                return context.assets.open(filePath.substring(ASSETS_FILE.length))
+                context.assets.open(filePath.substring(ASSETS_FILE.length))
             } else {
-                return getFileByPath(filePath)
+                getFileByPath(filePath)
             }
         } catch (ex: Exception) {
-            return null
+            null
         }
     }
 
@@ -139,17 +139,17 @@ class PathAnalysis(private var context: Context, private var parentDir: String =
             if (filePath.startsWith("/")) {
                 currentAbsPath = filePath
                 val javaFileInfo = File(filePath)
-                if (javaFileInfo.exists() && javaFileInfo.canRead()) {
-                    return javaFileInfo.inputStream()
+                return if (javaFileInfo.exists() && javaFileInfo.canRead()) {
+                    javaFileInfo.inputStream()
                 } else {
-                    return useRootOpenFile(filePath)
+                    useRootOpenFile(filePath)
                 }
             } else {
                 // 如果当前配置文件来源于 assets，则查找依赖资源时也只去assets查找
-                if (parentDir.isNotEmpty() && parentDir.startsWith(ASSETS_FILE)) {
-                    return findAssetsResource(filePath)
+                return if (parentDir.isNotEmpty() && parentDir.startsWith(ASSETS_FILE)) {
+                    findAssetsResource(filePath)
                 } else {
-                    return findDiskResource(filePath)
+                    findDiskResource(filePath)
                 }
             }
         } catch (ex: java.lang.Exception) {

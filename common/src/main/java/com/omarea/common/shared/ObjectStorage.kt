@@ -40,14 +40,14 @@ open class ObjectStorage<T : Serializable>(private val context: Context) {
         if (obj != null) {
             var fileOutputStream: FileOutputStream? = null
             var objectOutputStream: ObjectOutputStream? = null
-            try {
+            return try {
                 fileOutputStream = FileOutputStream(file)
                 objectOutputStream = ObjectOutputStream(fileOutputStream)
                 objectOutputStream.writeObject(obj)
-                return true
+                true
             } catch (ex: Exception) {
                 Toast.makeText(context, "存储配置失败！", Toast.LENGTH_SHORT).show()
-                return false
+                false
             } finally {
                 try {
                     objectOutputStream?.close()

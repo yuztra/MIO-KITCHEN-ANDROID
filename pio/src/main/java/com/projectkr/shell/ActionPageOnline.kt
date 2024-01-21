@@ -187,17 +187,17 @@ class ActionPageOnline : AppCompatActivity() {
             }
 
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
-                try {
+                return try {
                     val requestUrl = request?.url
                     if (requestUrl != null && requestUrl.scheme?.startsWith("http") != true) {
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(requestUrl.toString()))
                         startActivity(intent)
-                        return true
+                        true
                     } else {
-                        return super.shouldOverrideUrlLoading(view, request)
+                        super.shouldOverrideUrlLoading(view, request)
                     }
                 } catch (e: Exception) {
-                    return super.shouldOverrideUrlLoading(view, request)
+                    super.shouldOverrideUrlLoading(view, request)
                 }
             }
         }
@@ -220,15 +220,15 @@ class ActionPageOnline : AppCompatActivity() {
             Toast.makeText(this, getString(R.string.kr_write_external_storage), Toast.LENGTH_LONG).show()
             return false
         } else {
-            try {
+            return try {
                 val intent = Intent(Intent.ACTION_GET_CONTENT)
                 intent.setType("*/*")
                 intent.addCategory(Intent.CATEGORY_OPENABLE)
                 startActivityForResult(intent, ACTION_FILE_PATH_CHOOSER)
                 this.fileSelectedInterface = fileSelectedInterface
-                return true
+                true
             } catch (ex: java.lang.Exception) {
-                return false
+                false
             }
         }
     }
@@ -250,19 +250,19 @@ class ActionPageOnline : AppCompatActivity() {
     }
 
     private fun getPath(uri: Uri): String? {
-        try {
-            return FilePathResolver().getPath(this, uri)
+        return try {
+            FilePathResolver().getPath(this, uri)
         } catch (ex: java.lang.Exception) {
-            return null
+            null
         }
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_BACK && kr_online_webview.canGoBack()) {
+        return if (keyCode == KeyEvent.KEYCODE_BACK && kr_online_webview.canGoBack()) {
             kr_online_webview.goBack()
-            return true
+            true
         } else {
-            return super.onKeyDown(keyCode, event)
+            super.onKeyDown(keyCode, event)
         }
     }
 

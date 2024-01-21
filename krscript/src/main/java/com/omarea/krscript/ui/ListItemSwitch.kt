@@ -8,7 +8,7 @@ import com.omarea.krscript.model.SwitchNode
 
 open class ListItemSwitch(private val context: Context,
                           private val config: SwitchNode) : ListItemClickable(context, R.layout.kr_switch_list_item, config) {
-    protected var switchView = layout.findViewById<Switch?>(R.id.kr_switch)
+    private var switchView = layout.findViewById<Switch?>(R.id.kr_switch)
 
     private var checked: Boolean
         get() {

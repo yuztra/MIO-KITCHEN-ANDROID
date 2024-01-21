@@ -254,7 +254,7 @@ class DialogLogFragment : androidx.fragment.app.DialogFragment() {
     private fun closeView() {
         try {
             dismiss()
-        } catch (ex: java.lang.Exception) {
+        } catch (_: java.lang.Exception) {
         }
     }
 

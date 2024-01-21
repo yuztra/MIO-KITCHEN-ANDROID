@@ -6,6 +6,5 @@ public interface Constants {
     String scaling_min_freq = cpufreq_sys_dir + "scaling_min_freq";
     String scaling_cur_freq = cpufreq_sys_dir + "cpuinfo_cur_freq";
     String scaling_max_freq = cpufreq_sys_dir + "scaling_max_freq";
-    String scaling_governor = cpufreq_sys_dir + "scaling_governor";
 
 }

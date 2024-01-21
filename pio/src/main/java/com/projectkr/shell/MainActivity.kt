@@ -33,7 +33,6 @@ import com.omarea.krscript.model.PageNode
 import com.omarea.krscript.model.RunnableNode
 import com.omarea.krscript.ui.ActionListFragment
 import com.omarea.krscript.ui.ParamsFileChooserRender
-import com.projectkr.shell.FloatMonitor
 import com.projectkr.shell.permissions.CheckRootStatus
 import com.projectkr.shell.ui.TabIconHelper
 import kotlinx.android.synthetic.main.activity_main.main_tabhost
@@ -269,10 +268,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getPath(uri: Uri): String? {
-        try {
-            return FilePathResolver().getPath(this, uri)
+        return try {
+            FilePathResolver().getPath(this, uri)
         } catch (ex: Exception) {
-            return null
+            null
         }
     }
 

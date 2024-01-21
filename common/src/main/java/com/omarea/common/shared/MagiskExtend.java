@@ -52,7 +52,6 @@ public class MagiskExtend {
     /**
      * 是否已安装模块
      *
-     * @return
      */
     public static boolean moduleInstalled() {
 

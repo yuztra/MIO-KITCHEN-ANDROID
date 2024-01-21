@@ -39,10 +39,10 @@ open class DialogFullScreen(private val layout: Int, darkMode: Boolean) : androi
     private lateinit var currentView: View
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            return Dialog(activity!!, if (themeResId != 0) themeResId else R.style.dialog_full_screen_light)
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Dialog(activity!!, if (themeResId != 0) themeResId else R.style.dialog_full_screen_light)
         } else {
-            return Dialog(activity!!, -1)
+            Dialog(activity!!, -1)
         }
     }
 

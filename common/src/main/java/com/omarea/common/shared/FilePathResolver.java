@@ -24,8 +24,6 @@ public class FilePathResolver {
     /**
      * 返回文件本地绝对路径
      *
-     * @param context
-     * @param uri
      * @return path of the selected image file from gallery
      */
     @SuppressLint("NewApi")

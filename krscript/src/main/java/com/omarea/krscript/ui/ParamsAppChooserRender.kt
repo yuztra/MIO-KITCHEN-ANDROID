@@ -86,7 +86,7 @@ class ParamsAppChooserRender(private var actionParamInfo: ActionParamInfo, priva
             currentValue.split(actionParamInfo.separator).run {
                 this.forEach {
                     val value = it
-                    val app = packages.find { it -> it.packageName == value }
+                    val app = packages.find { it.packageName == value }
                     if (app != null) {
                         app.selected = true
                     }

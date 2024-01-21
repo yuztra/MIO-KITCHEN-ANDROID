@@ -78,11 +78,11 @@ class RamChatView : View {
     }
 
     fun setData(total: Float, fee: Float) {
-        if (fee == total && total == 0F) {
-            ratio = 0
+        ratio = if (fee == total && total == 0F) {
+            0
         } else {
             val feeRatio = (fee * 100.0 / total).toInt()
-            ratio = 100 - feeRatio
+            100 - feeRatio
         }
         invalidate()
     }

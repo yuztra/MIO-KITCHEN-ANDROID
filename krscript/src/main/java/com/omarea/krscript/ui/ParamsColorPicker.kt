@@ -46,18 +46,18 @@ class ParamsColorPicker(private val actionParamInfo: ActionParamInfo, private va
     }
 
     private fun updateColorPreview(invalidView: ImageView, preview: View, colorStr: String): Boolean {
-        try {
+        return try {
             val color = Color.parseColor(colorStr)
             // textView.setBackgroundColor(Color.TRANSPARENT)
             invalidView.visibility = View.GONE
             preview.visibility = View.VISIBLE
             preview.background = ColorDrawable(color)
-            return true
+            true
         } catch (ex: Exception) {
             // textView.setBackgroundColor(Color.RED)
             invalidView.visibility = View.VISIBLE
             preview.visibility = View.GONE
-            return false
+            false
         }
     }
 

@@ -3,12 +3,10 @@ package com.projectkr.shell.utils;
 import com.omarea.common.shell.KernelProrp;
 
 public class CpuLoadUtils {
-    private static String lastCpuState = "";
     private static String lastCpuStateSum = "";
 
     public CpuLoadUtils() {
-        lastCpuState = KernelProrp.INSTANCE.getProp("/proc/stat", "^cpu");
-        lastCpuStateSum = lastCpuState;
+        lastCpuStateSum = KernelProrp.INSTANCE.getProp("/proc/stat", "^cpu");
     }
 
     private long cpuTotalTime(String[] cols) {

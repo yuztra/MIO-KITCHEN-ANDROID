@@ -343,16 +343,18 @@ class DialogHelper {
         }
 
         private fun isNightMode(context: Context): Boolean {
-            when (AppCompatDelegate.getDefaultNightMode()) {
+            return when (AppCompatDelegate.getDefaultNightMode()) {
                 AppCompatDelegate.MODE_NIGHT_YES -> {
-                    return true
+                    true
                 }
+
                 AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM, AppCompatDelegate.MODE_NIGHT_UNSPECIFIED -> {
                     val uiModeManager = context.getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
-                    return uiModeManager.nightMode == UiModeManager.MODE_NIGHT_YES
+                    uiModeManager.nightMode == UiModeManager.MODE_NIGHT_YES
                 }
+
                 else -> {
-                    return false
+                    false
                 }
             }
         }

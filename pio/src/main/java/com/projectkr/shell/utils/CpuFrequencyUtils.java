@@ -10,6 +10,7 @@ import java.util.HashMap;
 
 public class CpuFrequencyUtils {
 
+
     private static String lastCpuState = "";
 
     public static String getCurrentMaxFrequency(String core) {

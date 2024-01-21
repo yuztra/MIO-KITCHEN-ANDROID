@@ -185,10 +185,10 @@ class KeepShell(private var rootMode: Boolean = true) {
     // 执行脚本，并对结果进行ResourceID翻译
     fun doCmdSync(shellCommand: String, shellTranslation: ShellTranslation): String {
         val rows = doCmdSync(shellCommand).split("\n")
-        if (rows.isNotEmpty()) {
-            return shellTranslation.resolveRows(rows)
+        return if (rows.isNotEmpty()) {
+            shellTranslation.resolveRows(rows)
         } else {
-            return ""
+            ""
         }
     }
 }

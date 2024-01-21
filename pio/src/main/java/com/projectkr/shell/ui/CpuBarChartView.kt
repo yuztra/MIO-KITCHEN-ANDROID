@@ -59,13 +59,12 @@ class CpuChartBarView : View {
         for ((index, ratio) in loadHisotry.withIndex()) {
             mainPaint!!.alpha = (ratio * 255 / 100)
 
-            var top: Float
-            if (ratio <= 2) {
-                top = mHeight - 10f
+            val top: Float = if (ratio <= 2) {
+                mHeight - 10f
             } else if (ratio >= 98) {
-                top = 0f
+                0f
             } else {
-                top = (100 - ratio) * mHeight / 100
+                (100 - ratio) * mHeight / 100
             }
 
             canvas.drawRoundRect((barWidth) * index, top, (barWidth) * index + (barWidth * 0.9f), mHeight, 5f, 5f, mainPaint!!)

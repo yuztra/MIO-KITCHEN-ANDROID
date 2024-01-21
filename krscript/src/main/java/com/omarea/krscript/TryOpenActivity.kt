@@ -7,7 +7,7 @@ import com.omarea.common.shell.KeepShellPublic
 
 class TryOpenActivity(private val context:  Context, private val activity:String) {
     private fun getIntent(): Intent? {
-        try {
+        return try {
             val intent = if (activity.contains("/")) (Intent(Intent.ACTION_VIEW).apply {
                 val info = activity.split("/")
                 val packageName = info.first()
@@ -17,9 +17,9 @@ class TryOpenActivity(private val context:  Context, private val activity:String
                 Intent(activity)
             }
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            return intent
+            intent
         } catch (ex: java.lang.Exception) {
-            return null
+            null
         }
     }
     fun tryOpen(): Boolean {
@@ -36,11 +36,11 @@ class TryOpenActivity(private val context:  Context, private val activity:String
                 } else {
                     KeepShellPublic.doCmdSync("am start-activity -W -a $activity").contains("ok")
                 }
-                if (success) {
-                    return true
+                return if (success) {
+                    true
                 } else {
                     Toast.makeText(context, context.getString(R.string.kr_slice_activity_fail), Toast.LENGTH_SHORT).show()
-                    return false
+                    false
                 }
             } catch (ex: Exception) {
                 Toast.makeText(context, context.getString(R.string.kr_slice_activity_fail), Toast.LENGTH_SHORT).show()
