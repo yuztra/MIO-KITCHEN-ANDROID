@@ -195,7 +195,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onSubPageClick(pageNode: PageNode) {
-                _openPage(pageNode)
+                openPage(pageNode)
             }
 
             override fun openFileChooser(fileSelectedInterface: ParamsFileChooserRender.FileSelectedInterface): Boolean {
@@ -275,7 +275,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun _openPage(pageNode: PageNode) {
+    fun openPage(pageNode: PageNode) {
         OpenPageHelper(this).openPage(pageNode)
     }
 

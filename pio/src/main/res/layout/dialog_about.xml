@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:text="@string/about_title"
             android:textColor="#aaaaaa"
-            android:textSize="11dp" />
+            android:textSize="11sp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -26,7 +26,7 @@
             android:layout_marginTop="4dp"
             android:text="@string/appliction_desc"
             android:textColor="@color/colorAccent"
-            android:textSize="11dp" />
+            android:textSize="11sp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -35,7 +35,7 @@
             android:text="@string/appliction_name"
             android:textAlignment="center"
             android:textColor="#332200"
-            android:textSize="36dp" />
+            android:textSize="36sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
                     android:text="@string/author_name"
                     android:textAlignment="textEnd"
                     android:textColor="#aaaaaa"
-                    android:textSize="11dp" />
+                    android:textSize="11sp" />
 
                 <TextView
                     android:layout_width="match_parent"

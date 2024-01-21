@@ -42,7 +42,7 @@ class CheckRootStatus(var context: Context, private var next: Runnable? = null) 
                         KeepShellPublic.tryExit()
                         val builder = AlertDialog.Builder(context)
                                 .setTitle(R.string.warn_)
-                                .setIcon(R.drawable.info)
+                                .setIcon(R.drawable.kr_warn)
                                 .setMessage(R.string.error_root)
                                 .setPositiveButton(R.string.btn_retry) { _, _ ->
                                     KeepShellPublic.tryExit()

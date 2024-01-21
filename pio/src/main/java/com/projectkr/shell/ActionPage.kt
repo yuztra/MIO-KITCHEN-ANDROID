@@ -264,11 +264,11 @@ class ActionPage : AppCompatActivity() {
                 finish()
             } else if (menuOption.reloadPage) {
                 recreate()
-            } else if (menuOption.updateBlocks != null) {
-                // TODO rootGroup.triggerUpdateByKey(item.updateBlocks!!)
             }
         }
-
+// Iknow else if (menuOption.updateBlocks != null) {
+//                // TODO rootGroup.triggerUpdateByKey(item.updateBlocks!!)
+//            } is very important ,but it useless now
         val darkMode = ThemeModeState.getThemeMode().isDarkMode
         val dialog = DialogLogFragment.create(
                 menuOption,
@@ -298,7 +298,11 @@ class ActionPage : AppCompatActivity() {
 
             // TODO:文件类型过滤
             override fun mimeType(): String? {
-                return if (menuOption.mime.isEmpty()) null else menuOption.mime
+                return if (menuOption.mime.isEmpty()) {
+                    null
+                } else {
+                    menuOption.mime
+                }
             }
 
             override fun suffix(): String? {
