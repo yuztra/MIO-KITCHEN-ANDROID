@@ -19,14 +19,10 @@ import kotlinx.android.synthetic.main.activity_file_selector.file_selector_list
 import java.io.File
 
 class ActivityFileSelector : AppCompatActivity() {
-    companion object {
-        val MODE_FILE = 0
-        val MODE_FOLDER = 1
-    }
 
     private var adapterFileSelector: AdapterFileSelector? = null
     private var extension = ""
-    private var mode = MODE_FILE
+    private var mode = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // TODO:ThemeSwitch.switchTheme(this)
@@ -47,7 +43,7 @@ class ActivityFileSelector : AppCompatActivity() {
 
         intent.extras?.run {
             if (containsKey("extension")) {
-                extension = "" + intent.extras.getString("extension")
+                extension = "" + intent.extras!!.getString("extension")
                 if (!extension.startsWith(".")) {
                     extension = ".$extension"
                 }
@@ -57,7 +53,7 @@ class ActivityFileSelector : AppCompatActivity() {
             }
             if (containsKey("mode")) {
                 mode = getInt("mode")
-                if (mode == MODE_FOLDER) {
+                if (mode == 1) {
                     title = getString(R.string.title_activity_folder_selector)
                 }
             }
@@ -118,7 +114,7 @@ class ActivityFileSelector : AppCompatActivity() {
                         this.finish()
                     }
                 }
-                adapterFileSelector = if (mode == MODE_FOLDER) {
+                adapterFileSelector = if (mode == 1) {
                     AdapterFileSelector.FolderChooser(sdcard, onSelected, ProgressBarDialog(this))
                 } else {
                     AdapterFileSelector.FileChooser(sdcard, onSelected, ProgressBarDialog(this), extension)

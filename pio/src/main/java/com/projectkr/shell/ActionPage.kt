@@ -166,7 +166,7 @@ class ActionPage : AppCompatActivity() {
         try {
             val intent = Intent(this, ActivityFileSelector::class.java)
             intent.putExtra("extension", extension)
-            intent.putExtra("mode", ActivityFileSelector.MODE_FILE)
+            intent.putExtra("mode", 0)
             startActivityForResult(intent, ACTION_FILE_PATH_CHOOSER_INNER)
         } catch (ex: Exception) {
             Toast.makeText(this, "启动内置文件选择器失败！", Toast.LENGTH_SHORT).show()
@@ -176,7 +176,7 @@ class ActionPage : AppCompatActivity() {
     private fun chooseFolderPath() {
         try {
             val intent = Intent(this, ActivityFileSelector::class.java)
-            intent.putExtra("mode", ActivityFileSelector.MODE_FOLDER)
+            intent.putExtra("mode", 1)
             startActivityForResult(intent, ACTION_FILE_PATH_CHOOSER_INNER)
         } catch (ex: Exception) {
             Toast.makeText(this, "启动内置文件选择器失败！", Toast.LENGTH_SHORT).show()
