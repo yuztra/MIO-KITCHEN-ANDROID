@@ -129,12 +129,10 @@ class ActionPage : AppCompatActivity() {
         }
 
         override fun addToFavorites(clickableNode: ClickableNode, addToFavoritesHandler: KrScriptActionHandler.AddToFavoritesHandler) {
-            val page = if (clickableNode is PageNode) {
-                clickableNode
-            } else if (clickableNode is RunnableNode) {
-                currentPageConfig
-            } else {
-                return
+            val page = when (clickableNode)  {
+                is PageNode -> clickableNode
+                is RunnableNode -> currentPageConfig
+                else -> return
             }
 
             val intent = Intent()
@@ -480,7 +478,7 @@ class ActionPage : AppCompatActivity() {
                         task.setExcludeFromRecents(true)
                     }
                 }
-            } catch (ex: Exception) {
+            } catch (_: Exception) {
             }
         }
     }

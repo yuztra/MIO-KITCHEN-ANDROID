@@ -10,8 +10,6 @@ import android.view.View
 import com.projectkr.shell.R
 
 class RamChatView : View {
-    //-------------必须给的数据相关-------------
-    private val str = arrayOf("已用", "可用")
     private var ratio = 0
     private var ratioState = 0
     //圆的直径

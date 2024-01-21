@@ -1,4 +1,4 @@
-package com.omarea.shell.units
+package com.projectkr.shell.utils
 
 import com.omarea.common.shell.KeepShellPublic
 import com.projectkr.shell.BatteryStatus

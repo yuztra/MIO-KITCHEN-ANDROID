@@ -121,7 +121,6 @@ class FragmentHome : androidx.fragment.app.Fragment() {
                 } catch (_: java.lang.Exception) {
                 }
                 // home_swapstate.text = swapInfo.substring(swapInfo.indexOf(" "), swapInfo.lastIndexOf(" ")).trim()
-            } else {
             }
         } catch (_: Exception) {
         }

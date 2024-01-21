@@ -13,7 +13,7 @@ import android.view.*
 import android.view.WindowManager.LayoutParams
 import android.widget.TextView
 import android.widget.Toast
-import com.omarea.shell.units.BatteryUnit
+import com.projectkr.shell.utils.BatteryUnit
 import com.projectkr.shell.R
 import com.projectkr.shell.ui.FloatMonitorBatteryView
 import com.projectkr.shell.ui.FloatMonitorChartView

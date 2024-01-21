@@ -59,7 +59,7 @@ class CpuChartBarView : View {
         for ((index, ratio) in loadHisotry.withIndex()) {
             mainPaint!!.alpha = (ratio * 255 / 100)
 
-            var top = 0f
+            var top: Float
             if (ratio <= 2) {
                 top = mHeight - 10f
             } else if (ratio >= 98) {

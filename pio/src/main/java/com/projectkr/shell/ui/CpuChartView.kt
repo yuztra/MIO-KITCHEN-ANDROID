@@ -25,9 +25,7 @@ class CpuChartView : View {
     private var textPaint: Paint? = null
     //标注的画笔
     private var labelPaint: Paint? = null
-    //-------------颜色相关-------------
-    //边框颜色和标注颜色
-    private val mColor = intArrayOf(-0xec712a, 0x55888888, -0x1a8c8d, -0xb03c09, -0xe8a, -0x7e387c)
+
     // private int[] mColor = new int[]{0xFFF06292, 0xFF9575CD, 0xFFE57373, 0xFF4FC3F7, 0xFFFFF176, 0xFF81C784};
     //文字颜色
     private val textColor = -0x777778
@@ -88,16 +86,6 @@ class CpuChartView : View {
         initPaint()
         //画圆环
         drawCycle(canvas)
-    }
-
-    fun setData(total: Float, fee: Float) {
-        if (fee == total && total == 0F) {
-            ratio = 0
-        } else {
-            val feeRatio = (fee * 100.0 / total).toInt()
-            ratio = 100 - feeRatio
-        }
-        invalidate()
     }
 
     /**

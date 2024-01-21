@@ -58,7 +58,7 @@ public class KrScriptConfig {
                         configInfo.put(key, value);
                     }
                 }
-            } catch (Exception ex) {
+            } catch (Exception ignored) {
             }
             ScriptEnvironmen.init(context, getExecutorCore(), getToolkitDir());
         }

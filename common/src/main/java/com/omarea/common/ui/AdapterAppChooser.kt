@@ -48,7 +48,7 @@ class AdapterAppChooser(
             if (valueText.contains(keyword)) {
                 return true
             } else {
-                val words = valueText.split(" ".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()
+                val words = valueText.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                 val wordCount = words.size
 
                 // Start at index 0, in case valueText starts with space(s)
