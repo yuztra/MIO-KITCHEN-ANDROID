@@ -132,8 +132,6 @@ public class ScriptEnvironmen {
     /**
      * 写入缓存（脚本代码存入脚本文件）
      *
-     * @param context
-     * @param script
      */
     private static String createShellCache(Context context, String script) {
         String md5 = md5(script);
@@ -242,8 +240,6 @@ public class ScriptEnvironmen {
     /**
      * 获取框架的环境变量
      *
-     * @param context
-     * @return
      */
     private static HashMap<String, String> getEnvironment(Context context) {
         HashMap<String, String> params = new HashMap<>();
@@ -298,7 +294,6 @@ public class ScriptEnvironmen {
     }
 
     /**
-     * @param params
      */
     private static ArrayList<String> getVariables(HashMap<String, String> params) {
         ArrayList<String> envp = new ArrayList<>();
