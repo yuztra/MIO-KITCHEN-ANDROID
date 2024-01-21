@@ -107,7 +107,7 @@ class FragmentHome : androidx.fragment.app.Fragment() {
             if (swapInfo.contains("Swap")) {
                 try {
                     val swapInfos = swapInfo.substring(swapInfo.indexOf(" "), swapInfo.lastIndexOf(" ")).trim()
-                    if (Regex("[\\d]{1,}[\\s]{1,}[\\d]{1,}").matches(swapInfos)) {
+                    if (Regex("\\d+\\s+\\d+").matches(swapInfos)) {
                         val total = swapInfos.substring(0, swapInfos.indexOf(" ")).trim().toInt()
                         val use = swapInfos.substring(swapInfos.indexOf(" ")).trim().toInt()
                         val free = total - use
