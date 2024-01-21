@@ -17,7 +17,7 @@ import com.omarea.common.ui.ProgressBarDialog
 import com.projectkr.shell.ui.AdapterFileSelector
 import kotlinx.android.synthetic.main.activity_file_selector.file_selector_list
 import java.io.File
-
+// FILE_MODE = 0 FOLDER_MODE=1
 class ActivityFileSelector : AppCompatActivity() {
 
     private var adapterFileSelector: AdapterFileSelector? = null

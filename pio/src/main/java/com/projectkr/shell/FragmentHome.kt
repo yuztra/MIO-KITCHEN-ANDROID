@@ -36,7 +36,7 @@ class FragmentHome : androidx.fragment.app.Fragment() {
         home_clear_ram.setOnClickListener {
             home_raminfo_text.text = getString(R.string.please_wait)
             Thread(Runnable {
-                KeepShellPublic.doCmdSync("sync\n" + "echo 3 > /proc/sys/vm/drop_caches\n" + "echo 1 > /proc/sys/vm/compact_memory")
+                KeepShellPublic.doCmdSync("sync\necho 3 > /proc/sys/vm/drop_caches\necho 1 > /proc/sys/vm/compact_memory")
                 myHandler.postDelayed({
                     try {
                         updateRamInfo()

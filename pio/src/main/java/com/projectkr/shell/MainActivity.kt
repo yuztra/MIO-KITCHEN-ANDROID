@@ -33,7 +33,7 @@ import com.omarea.krscript.model.PageNode
 import com.omarea.krscript.model.RunnableNode
 import com.omarea.krscript.ui.ActionListFragment
 import com.omarea.krscript.ui.ParamsFileChooserRender
-import com.omarea.vtools.FloatMonitor
+import com.projectkr.shell.FloatMonitor
 import com.projectkr.shell.permissions.CheckRootStatus
 import com.projectkr.shell.ui.TabIconHelper
 import kotlinx.android.synthetic.main.activity_main.main_tabhost

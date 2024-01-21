@@ -1,4 +1,4 @@
-package com.omarea.vtools
+package com.projectkr.shell
 
 import android.annotation.SuppressLint
 import android.app.ActivityManager
@@ -14,7 +14,6 @@ import android.view.WindowManager.LayoutParams
 import android.widget.TextView
 import android.widget.Toast
 import com.projectkr.shell.utils.BatteryUnit
-import com.projectkr.shell.R
 import com.projectkr.shell.ui.FloatMonitorBatteryView
 import com.projectkr.shell.ui.FloatMonitorChartView
 import com.projectkr.shell.utils.CpuFrequencyUtils
