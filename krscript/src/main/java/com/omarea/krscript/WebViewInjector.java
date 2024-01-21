@@ -215,7 +215,7 @@ public class WebViewInjector {
                                     });
                                 }
                             });
-                        } catch (Exception ex) {
+                        } catch (Exception ignored) {
                         }
                     }
                 });
@@ -248,7 +248,7 @@ public class WebViewInjector {
                                         });
                                     }
                                 });
-                            } catch (Exception ex) {
+                            } catch (Exception ignored) {
                             }
                         }
                     } catch (IOException e) {
@@ -278,7 +278,7 @@ public class WebViewInjector {
                                         });
                                     }
                                 });
-                            } catch (Exception ex) {
+                            } catch (Exception ignored) {
                             }
                         }
                     } catch (IOException e) {
@@ -311,7 +311,7 @@ public class WebViewInjector {
                                     });
                                 }
                             });
-                        } catch (Exception ex) {
+                        } catch (Exception ignored) {
                         }
 
                         if (reader.isAlive()) {

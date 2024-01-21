@@ -6,11 +6,7 @@ public class MagiskExtend {
     // source /data/adb/util_functions.sh
 
     public static String MAGISK_PATH = "/sbin/.core/img/scene_systemless/";
-    private static String MAGISK_PATH_19 = "/data/adb/modules"; //  "/sbin/.magisk/modules";
-    private static String MAGISK_ROOT_PATH1 = "/sbin/.core/img";
-    private static String MAGISK_ROOT_PATH2 = "/sbin/.magisk/img";
 
-    private static String MAGISK_MODULE_NAME = "scene_systemless";
     //magisk 19 /data/adb/modules
     private static int supported = -1;
     private static int MagiskVersion = 0;
@@ -31,7 +27,12 @@ public class MagiskExtend {
                     supported = MagiskVersion >= 17 ? 1 : 0;
 
                     if (supported == 1) {
+                        String MAGISK_MODULE_NAME = "scene_systemless";
+                        String MAGISK_ROOT_PATH1 = "/sbin/.core/img";
+                        String MAGISK_ROOT_PATH2 = "/sbin/.magisk/img";
                         if (MagiskVersion >= 19) {
+                            //  "/sbin/.magisk/modules";
+                            String MAGISK_PATH_19 = "/data/adb/modules";
                             MAGISK_PATH = MAGISK_PATH_19 + "/" + MAGISK_MODULE_NAME + "/";
                         } else if (RootFile.INSTANCE.dirExists(MAGISK_ROOT_PATH1)) {
                             MAGISK_PATH = MAGISK_ROOT_PATH1 + "/" + MAGISK_MODULE_NAME + "/";

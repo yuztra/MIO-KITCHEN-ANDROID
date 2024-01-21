@@ -64,7 +64,8 @@ class AdapterItemChooser2(
                         if (valueText.contains(prefixString)) {
                             newValues.add(value)
                         } else {
-                            val words = valueText.split(" ".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()
+                            val words = valueText.split(" ".toRegex()).dropLastWhile { it.isEmpty() }
+                                .toTypedArray()
                             val wordCount = words.size
 
                             // Start at index 0, in case valueText starts with space(s)
@@ -116,20 +117,6 @@ class AdapterItemChooser2(
         }
         updateRow(position, convertView!!)
         return convertView
-    }
-
-    fun updateRow(position: Int, listView: OverScrollGridView, SelectItem: SelectItem) {
-        try {
-            val visibleFirstPosi = listView.firstVisiblePosition
-            val visibleLastPosi = listView.lastVisiblePosition
-
-            if (position >= visibleFirstPosi && position <= visibleLastPosi) {
-                filterItems[position] = SelectItem
-                val view = listView.getChildAt(position - visibleFirstPosi)
-                updateRow(position, view)
-            }
-        } catch (ex: Exception) {
-        }
     }
 
     private fun updateRow(position: Int, convertView: View) {
