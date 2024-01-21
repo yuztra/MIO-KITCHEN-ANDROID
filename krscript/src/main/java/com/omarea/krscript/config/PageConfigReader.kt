@@ -227,15 +227,15 @@ class PageConfigReader {
             for (i in 0 until parser.attributeCount) {
                 val attrName = parser.getAttributeName(i)
                 val attrValue = parser.getAttributeValue(i)
-                when {
-                    attrName == "name" -> actionParamInfo.name = attrValue
-                    attrName == "label" -> actionParamInfo.label = attrValue
-                    attrName == "placeholder" -> actionParamInfo.placeholder = attrValue
-                    attrName == "title" -> actionParamInfo.title = attrValue
-                    attrName == "desc" -> actionParamInfo.desc = attrValue
-                    attrName == "value" -> actionParamInfo.value = attrValue
-                    attrName == "type" -> actionParamInfo.type = attrValue.toLowerCase().trim { it <= ' ' }
-                    attrName == "suffix" -> {
+                when (attrName) {
+                    "name" -> actionParamInfo.name = attrValue
+                    "label" -> actionParamInfo.label = attrValue
+                    "placeholder" -> actionParamInfo.placeholder = attrValue
+                    "title" -> actionParamInfo.title = attrValue
+                    "desc" -> actionParamInfo.desc = attrValue
+                    "value" -> actionParamInfo.value = attrValue
+                    "type" -> actionParamInfo.type = attrValue.toLowerCase().trim { it <= ' ' }
+                    "suffix" -> {
                         val suffix = attrValue.toLowerCase().trim { it <= ' ' }
 
                         if (actionParamInfo.mime.isEmpty()) {
@@ -244,37 +244,37 @@ class PageConfigReader {
 
                         actionParamInfo.suffix = suffix
                     }
-                    attrName == "mime" -> {
+                    "mime" -> {
                         actionParamInfo.mime = attrValue.toLowerCase()
                     }
-                    attrName == "readonly" -> {
+                    "readonly" -> {
                         val value = attrValue.toLowerCase().trim { it <= ' ' }
                         actionParamInfo.readonly = (value == "readonly" || value == "true" || value == "1")
                     }
-                    attrName == "maxlength" -> actionParamInfo.maxLength = Integer.parseInt(attrValue)
-                    attrName == "min" -> actionParamInfo.min = Integer.parseInt(attrValue)
-                    attrName == "max" -> actionParamInfo.max = Integer.parseInt(attrValue)
-                    attrName == "required" -> actionParamInfo.required = attrValue == "true" || attrValue == "1" || attrValue == "required"
-                    attrName == "value-sh" || attrName == "value-su" -> {
+                    "maxlength" -> actionParamInfo.maxLength = Integer.parseInt(attrValue)
+                    "min" -> actionParamInfo.min = Integer.parseInt(attrValue)
+                    "max" -> actionParamInfo.max = Integer.parseInt(attrValue)
+                    "required" -> actionParamInfo.required = attrValue == "true" || attrValue == "1" || attrValue == "required"
+                    "value-sh", "value-su" -> {
                         actionParamInfo.valueShell = attrValue
                     }
-                    attrName == "options-sh" || attrName == "option-sh" || attrName == "options-su" -> {
+                    "options-sh", "option-sh", "options-su" -> {
                         if (actionParamInfo.options == null)
                             actionParamInfo.options = ArrayList()
                         actionParamInfo.optionsSh = attrValue
                     }
-                    attrName == "support" || attrName == "visible" -> {
+                    "support", "visible" -> {
                         if (executeResultRoot(context, attrValue) != "1") {
                             actionParamInfo.supported = false
                         }
                     }
-                    attrName == "multiple" -> {
+                    "multiple" -> {
                         actionParamInfo.multiple = attrValue == "multiple" || attrValue == "true" || attrValue == "1"
                     }
-                    attrName == "editable" -> {
+                    "editable" -> {
                         actionParamInfo.editable = attrValue == "editable" || attrValue == "true" || attrValue == "1"
                     }
-                    attrName == "separator" -> {
+                    "separator" -> {
                         actionParamInfo.separator = attrValue
                     }
                 }

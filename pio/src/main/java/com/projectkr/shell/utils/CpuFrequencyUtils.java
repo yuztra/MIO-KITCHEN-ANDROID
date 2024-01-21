@@ -6,11 +6,10 @@ import com.omarea.common.shell.KeepShellPublic;
 import com.omarea.common.shell.KernelProrp;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CpuFrequencyUtils {
-    private static ArrayList<String[]> cpuClusterInfo;
+
     private static String lastCpuState = "";
 
     public static String getCurrentMaxFrequency(String core) {
@@ -43,13 +42,6 @@ public class CpuFrequencyUtils {
         return KernelProrp.INSTANCE.getProp(Constants.scaling_min_freq.replace("cpu0", core));
     }
 
-    public static String getCurrentScalingGovernor(Integer cluster) {
-        if (cluster >= getClusterInfo().size()) {
-            return "";
-        }
-        String cpu = "cpu" + getClusterInfo().get(cluster)[0];
-        return KernelProrp.INSTANCE.getProp(Constants.scaling_governor.replace("cpu0", cpu));
-    }
 
     public static int getCoreCount() {
         int cores = 0;
@@ -61,33 +53,6 @@ public class CpuFrequencyUtils {
                 return cores;
             }
         }
-    }
-
-    public static ArrayList<String[]> getClusterInfo() {
-        if (cpuClusterInfo != null) {
-            return cpuClusterInfo;
-        }
-
-        int cores = 0;
-        cpuClusterInfo = new ArrayList<>();
-        ArrayList<String> clusters = new ArrayList<>();
-        while (true) {
-            File file = new File("/sys/devices/system/cpu/cpu0/cpufreq/related_cpus".replace("cpu0", "cpu" + cores));
-            if (file.exists()) {
-                String relatedCpus = KernelProrp.INSTANCE.getProp("/sys/devices/system/cpu/cpu0/cpufreq/related_cpus".replace("cpu0", "cpu" + cores)).trim();
-                if (!clusters.contains(relatedCpus) && !relatedCpus.isEmpty()) {
-                    clusters.add(relatedCpus);
-                }
-            } else {
-                break;
-            }
-            cores++;
-        }
-        for (int i = 0; i < clusters.size(); i++) {
-            cpuClusterInfo.add(clusters.get(i).split(" "));
-        }
-
-        return cpuClusterInfo;
     }
 
 

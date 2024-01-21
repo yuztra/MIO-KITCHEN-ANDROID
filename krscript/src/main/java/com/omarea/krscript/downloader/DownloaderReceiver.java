@@ -51,7 +51,7 @@ public class DownloaderReceiver extends BroadcastReceiver {
                             Toast.makeText(context, context.getString(R.string.kr_download_completed) + "\n" + path, Toast.LENGTH_LONG).show();
                         }
                     }
-                } catch (Exception ex) {
+                } catch (Exception ignored) {
                 }
             }
         }
