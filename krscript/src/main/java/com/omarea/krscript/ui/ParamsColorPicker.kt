@@ -28,7 +28,7 @@ class ParamsColorPicker(private val actionParamInfo: ActionParamInfo, private va
             }
 
             override fun afterTextChanged(s: Editable?) {
-                updateColorPreview(textView, invalidView, preview, s!!.toString())
+                updateColorPreview(invalidView, preview, s!!.toString())
             }
         })
         if (actionParamInfo.valueFromShell != null) {
@@ -37,7 +37,7 @@ class ParamsColorPicker(private val actionParamInfo: ActionParamInfo, private va
             textView.setText(actionParamInfo.value!!)
         }
 
-        updateColorPreview(textView, invalidView, preview, textView.text.toString())
+        updateColorPreview(invalidView, preview, textView.text.toString())
         layout.findViewById<View>(R.id.kr_param_color_picker).setOnClickListener {
             openColorPicker(textView, invalidView, preview)
         }
@@ -45,7 +45,7 @@ class ParamsColorPicker(private val actionParamInfo: ActionParamInfo, private va
         return layout
     }
 
-    private fun updateColorPreview(textView: TextView, invalidView: ImageView, preview: View, colorStr: String): Boolean {
+    private fun updateColorPreview(invalidView: ImageView, preview: View, colorStr: String): Boolean {
         try {
             val color = Color.parseColor(colorStr)
             // textView.setBackgroundColor(Color.TRANSPARENT)
@@ -62,10 +62,10 @@ class ParamsColorPicker(private val actionParamInfo: ActionParamInfo, private va
     }
 
     private fun currentColor(colorStr: CharSequence?): Int {
-        if (colorStr != null && colorStr.isNotEmpty()) {
+        if (!colorStr.isNullOrEmpty()) {
             try {
                 return Color.parseColor(colorStr.toString())
-            } catch (ex: Exception) {
+            } catch (_: Exception) {
             }
         }
         return (0xff000000).toInt()
@@ -114,7 +114,7 @@ class ParamsColorPicker(private val actionParamInfo: ActionParamInfo, private va
                         textView.text = parseHexStr(alphaBar.progress, redBar.progress, greenBar.progress, blueBar.progress)
                         invalidView.visibility = View.GONE
                         preview.background = ColorDrawable(color)
-                    } catch (ex: Exception) {
+                    } catch (_: Exception) {
                     }
                     // Integer.toHexString(color) // "argb(${alphaBar.progress}, ${redBar.progress}, ${greenBar.progress}, ${blueBar.progress}, )"
                 }

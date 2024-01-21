@@ -266,9 +266,9 @@ class ActionListFragment : androidx.fragment.app.Fragment(), PageLayoutRender.On
                             if (item.multiple) {
                                 pickerExecute(item, (selected.map { "" + it.value }).joinToString(item.separator), onCompleted)
                             } else {
-                                if (selected.size > 0) {
+                                if (selected.isNotEmpty()) {
                                     pickerExecute(item, "" + (
-                                            if (selected.size > 0) {
+                                            if (selected.isNotEmpty()) {
                                                 "" + selected[0].value
                                             } else {
                                                 ""
@@ -413,7 +413,7 @@ class ActionListFragment : androidx.fragment.app.Fragment(), PageLayoutRender.On
                             dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
                                 try {
                                     dialog!!.dismiss()
-                                } catch (ex: java.lang.Exception) {
+                                } catch (_: java.lang.Exception) {
                                 }
                             }
                             dialogView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
@@ -441,7 +441,7 @@ class ActionListFragment : androidx.fragment.app.Fragment(), PageLayoutRender.On
     private fun getParamOptions(actionParamInfo: ActionParamInfo, nodeInfoBase: NodeInfoBase): ArrayList<SelectItem>? {
         val options = ArrayList<SelectItem>()
         var shellResult = ""
-        if (!actionParamInfo.optionsSh.isEmpty()) {
+        if (actionParamInfo.optionsSh.isNotEmpty()) {
             shellResult = executeScriptGetResult(actionParamInfo.optionsSh, nodeInfoBase)
         }
 
@@ -451,7 +451,7 @@ class ActionListFragment : androidx.fragment.app.Fragment(), PageLayoutRender.On
                     val itemSplit = item.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                     options.add(SelectItem().apply {
                         var descText = itemSplit[0]
-                        if (itemSplit.size > 0) {
+                        if (itemSplit.isNotEmpty()) {
                             descText = itemSplit[1]
                         }
                         title = descText
@@ -481,7 +481,7 @@ class ActionListFragment : androidx.fragment.app.Fragment(), PageLayoutRender.On
 
 
     // 标识是否有隐藏任务在运行中
-    var hiddenTaskRunning = false
+    private var hiddenTaskRunning = false
     private fun actionExecute(nodeInfo: RunnableNode, script: String, onExit: Runnable, params: HashMap<String, String>?) {
         val context = context!!
 

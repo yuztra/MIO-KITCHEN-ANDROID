@@ -6,11 +6,11 @@ import com.omarea.krscript.R
 import com.omarea.krscript.executor.ScriptEnvironmen
 import com.omarea.krscript.model.SwitchNode
 
-class ListItemSwitch(private val context: Context,
-                     private val config: SwitchNode) : ListItemClickable(context, R.layout.kr_switch_list_item, config) {
+open class ListItemSwitch(private val context: Context,
+                          private val config: SwitchNode) : ListItemClickable(context, R.layout.kr_switch_list_item, config) {
     protected var switchView = layout.findViewById<Switch?>(R.id.kr_switch)
 
-    var checked: Boolean
+    private var checked: Boolean
         get() {
             return if (switchView != null) switchView!!.isChecked else false
         }

@@ -106,13 +106,13 @@ class DialogLogFragment : androidx.fragment.app.DialogFragment() {
             btn_exit?.visibility = View.GONE
         }
 
-        if (!nodeInfo.title.isEmpty()) {
+        if (nodeInfo.title.isNotEmpty()) {
             title.text = nodeInfo.title
         } else {
             title.visibility = View.GONE
         }
 
-        if (!nodeInfo.desc.isEmpty()) {
+        if (nodeInfo.desc.isNotEmpty()) {
             desc.text = nodeInfo.desc
         } else {
             desc.visibility = View.GONE

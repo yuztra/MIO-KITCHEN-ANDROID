@@ -209,7 +209,7 @@ public class ScriptEnvironmen {
         }
 
         stringBuilder.append("\n\n");
-        stringBuilder.append(environmentPath + " \"" + path + "\"");
+        stringBuilder.append(environmentPath).append(" \"").append(path).append("\"");
         if (shellTranslation != null) {
             return shellTranslation.resolveRow(
                 privateShell.doCmdSync(stringBuilder.toString())

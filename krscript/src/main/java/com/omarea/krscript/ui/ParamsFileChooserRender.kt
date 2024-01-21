@@ -28,7 +28,7 @@ class ParamsFileChooserRender(private var actionParamInfo: ActionParamInfo, priv
     }
 
 
-    fun setEditTextReadOnly(view: TextView) {
+    private fun setEditTextReadOnly(view: TextView) {
         // view.setTextColor(R.color.read_only_color) //设置只读时的文字颜色
         if (view is EditText) {
             view.setCursorVisible(false) //设置输入框中的光标不可见

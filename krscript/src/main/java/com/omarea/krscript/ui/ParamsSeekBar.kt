@@ -22,7 +22,7 @@ class ParamsSeekBar(private var actionParamInfo: ActionParamInfo, private var co
                 seekbar.progress = (actionParamInfo.valueFromShell)!!.toInt() - actionParamInfo.min
             else if (actionParamInfo.value != null)
                 seekbar.progress = (actionParamInfo.value)!!.toInt() - actionParamInfo.min
-        } catch (ex: Exception) {
+        } catch (_: Exception) {
         }
 
         seekbar.tag = actionParamInfo.name
