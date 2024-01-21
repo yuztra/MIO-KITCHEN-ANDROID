@@ -8,9 +8,6 @@ import com.omarea.common.shared.RootFileInfo
  */
 
 object RootFile {
-    fun itemExists(path: String): Boolean {
-        return KeepShellPublic.doCmdSync("if [[ -e \"$path\" ]]; then echo 1; fi;") == "1"
-    }
 
     fun fileExists(path: String): Boolean {
         return KeepShellPublic.doCmdSync("if [[ -f \"$path\" ]]; then echo 1; fi;") == "1"

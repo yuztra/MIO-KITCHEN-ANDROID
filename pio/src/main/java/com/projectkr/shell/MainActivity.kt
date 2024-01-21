@@ -10,7 +10,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.provider.Settings
-import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -27,13 +26,20 @@ import com.omarea.common.ui.DialogHelper
 import com.omarea.common.ui.ProgressBarDialog
 import com.omarea.krscript.config.PageConfigReader
 import com.omarea.krscript.config.PageConfigSh
-import com.omarea.krscript.model.*
+import com.omarea.krscript.model.ClickableNode
+import com.omarea.krscript.model.KrScriptActionHandler
+import com.omarea.krscript.model.NodeInfoBase
+import com.omarea.krscript.model.PageNode
+import com.omarea.krscript.model.RunnableNode
 import com.omarea.krscript.ui.ActionListFragment
 import com.omarea.krscript.ui.ParamsFileChooserRender
 import com.omarea.vtools.FloatMonitor
 import com.projectkr.shell.permissions.CheckRootStatus
 import com.projectkr.shell.ui.TabIconHelper
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.main_tabhost
+import kotlinx.android.synthetic.main.activity_main.main_tabhost_2
+import kotlinx.android.synthetic.main.activity_main.main_tabhost_3
+import kotlinx.android.synthetic.main.activity_main.main_tabhost_cpu
 
 class MainActivity : AppCompatActivity() {
     private val progressBarDialog = ProgressBarDialog(this)
@@ -223,7 +229,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             return try {
                 val suffix = fileSelectedInterface.suffix()
-                if (suffix != null && suffix.isNotEmpty()) {
+                if (!suffix.isNullOrEmpty()) {
                     chooseFilePath(suffix)
                 } else {
                     val intent = Intent(Intent.ACTION_GET_CONTENT)
@@ -274,12 +280,6 @@ class MainActivity : AppCompatActivity() {
 
     fun _openPage(pageNode: PageNode) {
         OpenPageHelper(this).openPage(pageNode)
-    }
-
-    private fun getDensity(): Int {
-        val dm = DisplayMetrics()
-        windowManager.defaultDisplay.getMetrics(dm)
-        return dm.densityDpi
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -335,7 +335,7 @@ class MainActivity : AppCompatActivity() {
 
                         try {
                             startActivity(intent)
-                        } catch (ex: Exception) {
+                        } catch (_: Exception) {
                         }
                     }
                 } else {

@@ -32,13 +32,11 @@ public class ShellExecutor {
                         throw new RuntimeException("未能获取到$PATH参数");
                     }
                 } catch (Exception ex) {
-                    defaultEnvPath = "/sbin:/system/sbin:/system/bin:/system/xbin:/odm/bin:/vendor/bin:/vendor/xbin";
+                    defaultEnvPath = "/bin:/sbin:/system/sbin:/system/bin:/system/xbin:/odm/bin:/vendor/bin:/vendor/xbin";
                 }
             }
 
-            String path = defaultEnvPath;
-
-            return ( "PATH=" + path + ":" + extraEnvPath);
+            return ( "PATH=" + defaultEnvPath + ":" + extraEnvPath);
         }
 
         return null;

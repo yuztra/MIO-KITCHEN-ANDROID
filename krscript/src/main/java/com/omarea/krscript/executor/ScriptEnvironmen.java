@@ -71,7 +71,7 @@ public class ScriptEnvironmen {
 
             InputStream inputStream = context.getAssets().open(fileName);
             byte[] bytes = new byte[inputStream.available()];
-            long length = inputStream.read(bytes, 0, bytes.length);
+            inputStream.read(bytes, 0, bytes.length);
             String envShell = new String(bytes, Charset.defaultCharset()).replaceAll("\r", "");
 
             HashMap<String, String> environment = getEnvironment(context);
@@ -291,7 +291,7 @@ public class ScriptEnvironmen {
             } else {
                 params.put("PACKAGE_VERSION_CODE", String.valueOf(packageInfo.versionCode));
             }
-        } catch (Exception ex) {
+        } catch (Exception ignored) {
         }
 
         return params;

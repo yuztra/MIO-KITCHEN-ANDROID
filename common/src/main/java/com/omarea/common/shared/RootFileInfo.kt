@@ -1,6 +1,6 @@
 package com.omarea.common.shared
 
-import com.omarea.common.shell.RootFile
+import com.omarea.common.shell.KeepShellPublic
 
 class RootFileInfo {
 
@@ -8,7 +8,9 @@ class RootFileInfo {
     var filePath: String = ""
     var isDirectory: Boolean = false
     var fileSize: Long = 0
-
+    private fun itemExists(path: String): Boolean {
+        return KeepShellPublic.doCmdSync("if [[ -e \"$path\" ]]; then echo 1; fi;") == "1"
+    }
     private val fileName: String
         get() {
             if (filePath.endsWith("/")) {
@@ -22,7 +24,7 @@ class RootFileInfo {
 
 
     fun exists(): Boolean {
-        return RootFile.itemExists(this.absolutePath)
+        return itemExists(this.absolutePath)
     }
 
     fun length(): Long {
