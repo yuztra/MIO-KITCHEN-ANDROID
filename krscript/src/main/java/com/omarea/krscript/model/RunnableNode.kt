@@ -22,7 +22,7 @@ open class RunnableNode(currentConfigXml: String) : ClickableNode(currentConfigX
 
     companion object {
         const val shellModeDefault = "default"
-        val shellModeBgTask = "bg-task"
+        const val shellModeBgTask = "bg-task"
         const val shellModeHidden = "hidden"
     }
 

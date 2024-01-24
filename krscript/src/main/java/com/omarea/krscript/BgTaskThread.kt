@@ -168,7 +168,7 @@ class BgTaskThread(private var process: Process) : Thread() {
 
     companion object {
         private var channelCreated = false
-        private val channelId = "kr_script_task_notification"
+        private const val channelId = "kr_script_task_notification"
         private var notificationCounter = 34050
 
         fun startTask(context: Context, script: String, params: HashMap<String, String>?, nodeInfo: RunnableNode, onExit: Runnable, onDismiss: Runnable) {
