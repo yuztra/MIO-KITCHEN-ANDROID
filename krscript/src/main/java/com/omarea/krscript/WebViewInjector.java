@@ -41,9 +41,9 @@ import java.util.Iterator;
 import java.util.UUID;
 
 public class WebViewInjector {
-    private WebView webView;
-    private Context context;
-    private ParamsFileChooserRender.FileChooserInterface fileChooser;
+    private final WebView webView;
+    private final Context context;
+    private final ParamsFileChooserRender.FileChooserInterface fileChooser;
 
     @SuppressLint("SetJavaScriptEnabled")
     public WebViewInjector(WebView webView, ParamsFileChooserRender.FileChooserInterface fileChooser) {
