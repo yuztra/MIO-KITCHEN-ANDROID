@@ -10,9 +10,5 @@ object RootFile {
         return KeepShellPublic.doCmdSync("if [[ -f \"$path\" ]]; then echo 1; fi;") == "1"
     }
 
-    fun dirExists(path: String): Boolean {
-        return KeepShellPublic.doCmdSync("if [[ -d \"$path\" ]]; then echo 1; fi;") == "1"
-    }
-
 
 }

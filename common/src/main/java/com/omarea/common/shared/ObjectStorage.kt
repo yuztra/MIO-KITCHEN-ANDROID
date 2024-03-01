@@ -63,7 +63,4 @@ open class ObjectStorage<T : Serializable>(private val context: Context) {
         return true
     }
 
-    open fun exists(configFile: String): Boolean {
-        return File(getSaveDir(configFile)).exists()
-    }
 }
