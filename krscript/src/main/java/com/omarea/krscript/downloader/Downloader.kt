@@ -16,7 +16,7 @@ import java.nio.charset.Charset
 
 class Downloader(private var context: Context) {
     companion object {
-        private val HISTORY_CONFIG = "kr_downloader"
+        private const val HISTORY_CONFIG = "kr_downloader"
     }
 
     fun downloadBySystem(
