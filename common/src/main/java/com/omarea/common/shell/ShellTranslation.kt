@@ -1,9 +1,7 @@
 package com.omarea.common.shell
 
 import android.content.Context
-import java.lang.Exception
-import java.lang.StringBuilder
-import java.util.*
+import java.util.Locale
 
 // 从Resource解析字符串，实现输出内容多语言
 class ShellTranslation(val context: Context) {
@@ -46,17 +44,6 @@ class ShellTranslation(val context: Context) {
         }
 
         return originRow
-    }
-
-    fun resolveRows(rows: List<String>): String {
-        val builder = StringBuilder()
-        for ((rowIndex, row) in rows.withIndex()) {
-            if (rowIndex > 0) {
-                builder.append("\n")
-            }
-            builder.append(resolveRow(row))
-        }
-        return builder.toString()
     }
 
 }

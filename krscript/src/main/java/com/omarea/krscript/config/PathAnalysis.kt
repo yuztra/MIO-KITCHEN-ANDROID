@@ -3,7 +3,6 @@ package com.omarea.krscript.config
 import android.content.Context
 import com.omarea.common.shared.FileWrite
 import com.omarea.common.shell.KeepShellPublic
-import com.omarea.common.shell.RootFile
 import com.omarea.krscript.FileOwner
 import java.io.File
 import java.io.InputStream
@@ -57,7 +56,7 @@ class PathAnalysis(private var context: Context, private var parentDir: String =
     }
 
     private fun useRootOpenFile(filePath: String): InputStream? {
-        if (RootFile.fileExists(filePath)) {
+        if (fileExists(filePath)) {
             val dir = File(FileWrite.getPrivateFilePath(context, "kr-script"))
             if (!dir.exists()) {
                 dir.mkdirs()
@@ -77,7 +76,9 @@ class PathAnalysis(private var context: Context, private var parentDir: String =
         }
         return null
     }
-
+    private fun fileExists(path: String): Boolean {
+        return KeepShellPublic.doCmdSync("if [[ -f \"$path\" ]]; then echo 1; fi;") == "1"
+    }
     // 在assets里查找文件
     private fun findAssetsResource(filePath: String): InputStream? {
         // 解析成绝对路径
