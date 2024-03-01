@@ -1,5 +1,6 @@
 package com.omarea.krscript.executor;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -31,6 +32,7 @@ public class ScriptEnvironmen {
     private static String TOOKIT_DIR = "";
     private static boolean rooted = false;
     private static KeepShell privateShell;
+    @SuppressLint("StaticFieldLeak")
     private static ShellTranslation shellTranslation;
 
     public static boolean isInited() {
