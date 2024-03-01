@@ -38,7 +38,6 @@
 | toolkit_dir | 应用自带工具集在assets中的位置 | `file:///android_asset/`开头的路径 |
 | page_list_config | **全部** 页对应的配置文件 | `file:///android_asset/`开头的路径 |
 | favorite_config | **收藏夹** 页对应的配置文件 | `file:///android_asset/`开头的路径 |
-| allow_home_page | 是否显示应用**首页** | `1` 或 `0` |
 | before_start_sh | 进入功能列表前执行的脚本 | `file:///android_asset/`开头的路径 |
 | page_list_config_sh | 输出 **全部** 页配置路径的脚本 | `file:///android_asset/`开头的路径 |
 | favorite_config_sh | 输出 **收藏夹** 页配置路径的脚本 | `file:///android_asset/`开头的路径 |

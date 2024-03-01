@@ -33,7 +33,6 @@ import com.omarea.krscript.model.PageNode
 import com.omarea.krscript.model.RunnableNode
 import com.omarea.krscript.ui.ActionListFragment
 import com.omarea.krscript.ui.ParamsFileChooserRender
-import com.projectkr.shell.permissions.CheckRootStatus
 import com.projectkr.shell.ui.TabIconHelper
 import kotlinx.android.synthetic.main.activity_main.main_tabhost
 import kotlinx.android.synthetic.main.activity_main.main_tabhost_2
@@ -62,11 +61,8 @@ class MainActivity : AppCompatActivity() {
 
         main_tabhost.setup()
         val tabIconHelper = TabIconHelper(main_tabhost, this)
-        if (CheckRootStatus.lastCheckResult && krScriptConfig.allowHomePage) {
-            tabIconHelper.newTabSpec(getString(R.string.tab_home), getDrawable(R.drawable.tab_home)!!, R.id.main_tabhost_cpu)
-        } else {
-            main_tabhost_cpu.visibility = View.GONE
-        }
+        main_tabhost_cpu.visibility = View.GONE
+
         main_tabhost.setOnTabChangedListener {
             tabIconHelper.updateHighlight()
         }
@@ -97,13 +93,7 @@ class MainActivity : AppCompatActivity() {
             }
         }).start()
 
-        if (CheckRootStatus.lastCheckResult && krScriptConfig.allowHomePage) {
-            val home = FragmentHome()
-            val fragmentManager = supportFragmentManager
-            val transaction = fragmentManager.beginTransaction()
-            transaction.replace(R.id.main_tabhost_cpu, home)
-            transaction.commitAllowingStateLoss()
-        }
+
 
         if (!(checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE) && checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE))) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), 111)
