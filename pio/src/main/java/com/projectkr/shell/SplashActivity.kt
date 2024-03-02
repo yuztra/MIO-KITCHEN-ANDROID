@@ -18,7 +18,6 @@ import kotlinx.android.synthetic.main.activity_splash.start_logo
 import kotlinx.android.synthetic.main.activity_splash.start_state_text
 import java.io.BufferedReader
 import java.io.DataOutputStream
-import java.util.HashMap
 
 class SplashActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
