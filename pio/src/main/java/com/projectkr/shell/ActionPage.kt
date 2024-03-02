@@ -150,7 +150,7 @@ class ActionPage : AppCompatActivity() {
         }
 
         override fun onSubPageClick(pageNode: PageNode) {
-            _openPage(pageNode)
+            openPageKre(pageNode)
         }
 
         override fun openFileChooser(fileSelectedInterface: ParamsFileChooserRender.FileSelectedInterface): Boolean {
@@ -298,11 +298,8 @@ class ActionPage : AppCompatActivity() {
 
             // TODO:文件类型过滤
             override fun mimeType(): String? {
-                return if (menuOption.mime.isEmpty()) {
-                    null
-                } else {
-                    menuOption.mime
-                }
+                return if (menuOption.mime.isEmpty()) null else menuOption.mime
+
             }
 
             override fun suffix(): String? {
@@ -464,7 +461,7 @@ class ActionPage : AppCompatActivity() {
         }).start()
     }
 
-    fun _openPage(pageNode: PageNode) {
+    fun openPageKre(pageNode: PageNode) {
         OpenPageHelper(this).openPage(pageNode)
     }
 
