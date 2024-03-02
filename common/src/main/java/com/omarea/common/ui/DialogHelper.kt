@@ -23,7 +23,7 @@ class DialogHelper {
     class DialogButton(val text: String, val onClick: Runnable? = null, val dismiss: Boolean = true)
 
     class DialogWrap(private val d: AlertDialog) {
-        val context = dialog.context
+        val context: Context = dialog.context
         private var mCancelable = true
         val isCancelable: Boolean
             get () {
