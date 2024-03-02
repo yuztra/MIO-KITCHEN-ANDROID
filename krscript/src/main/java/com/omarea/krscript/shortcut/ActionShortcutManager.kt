@@ -14,7 +14,6 @@ import android.util.Log
 import com.omarea.common.shared.ObjectStorage
 import com.omarea.krscript.model.NodeInfoBase
 import com.omarea.krscript.model.PageNode
-import java.util.*
 
 class ActionShortcutManager(private var context: Context) {
     @TargetApi(Build.VERSION_CODES.O)

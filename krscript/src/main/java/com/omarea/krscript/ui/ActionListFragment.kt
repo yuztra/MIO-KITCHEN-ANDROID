@@ -24,7 +24,17 @@ import com.omarea.krscript.R
 import com.omarea.krscript.TryOpenActivity
 import com.omarea.krscript.config.IconPathAnalysis
 import com.omarea.krscript.executor.ScriptEnvironmen
-import com.omarea.krscript.model.*
+import com.omarea.krscript.model.ActionNode
+import com.omarea.krscript.model.ActionParamInfo
+import com.omarea.krscript.model.AutoRunTask
+import com.omarea.krscript.model.ClickableNode
+import com.omarea.krscript.model.GroupNode
+import com.omarea.krscript.model.KrScriptActionHandler
+import com.omarea.krscript.model.NodeInfoBase
+import com.omarea.krscript.model.PageNode
+import com.omarea.krscript.model.PickerNode
+import com.omarea.krscript.model.RunnableNode
+import com.omarea.krscript.model.SwitchNode
 import com.omarea.krscript.shortcut.ActionShortcutManager
 
 class ActionListFragment : androidx.fragment.app.Fragment(), PageLayoutRender.OnItemClickListener {

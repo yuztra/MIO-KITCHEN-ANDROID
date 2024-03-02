@@ -15,13 +15,17 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import android.view.KeyEvent
 import android.view.View
 import android.view.WindowManager
-import android.webkit.*
+import android.webkit.JsResult
+import android.webkit.WebChromeClient
+import android.webkit.WebResourceRequest
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.omarea.common.shared.FilePathResolver
 import com.omarea.common.ui.DialogHelper
 import com.omarea.common.ui.ProgressBarDialog
@@ -29,8 +33,17 @@ import com.omarea.common.ui.ThemeMode
 import com.omarea.krscript.WebViewInjector
 import com.omarea.krscript.downloader.Downloader
 import com.omarea.krscript.ui.ParamsFileChooserRender
-import kotlinx.android.synthetic.main.activity_action_page_online.*
-import java.util.*
+import kotlinx.android.synthetic.main.activity_action_page_online.kr_download_name
+import kotlinx.android.synthetic.main.activity_action_page_online.kr_download_name_copy
+import kotlinx.android.synthetic.main.activity_action_page_online.kr_download_progress
+import kotlinx.android.synthetic.main.activity_action_page_online.kr_download_state
+import kotlinx.android.synthetic.main.activity_action_page_online.kr_download_url
+import kotlinx.android.synthetic.main.activity_action_page_online.kr_download_url_copy
+import kotlinx.android.synthetic.main.activity_action_page_online.kr_online_root
+import kotlinx.android.synthetic.main.activity_action_page_online.kr_online_webview
+import java.util.Timer
+import java.util.TimerTask
+import java.util.UUID
 
 class ActionPageOnline : AppCompatActivity() {
     private val progressBarDialog = ProgressBarDialog(this)

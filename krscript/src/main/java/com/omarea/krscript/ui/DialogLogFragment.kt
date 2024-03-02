@@ -21,7 +21,13 @@ import com.omarea.krscript.R
 import com.omarea.krscript.executor.ShellExecutor
 import com.omarea.krscript.model.RunnableNode
 import com.omarea.krscript.model.ShellHandlerBase
-import kotlinx.android.synthetic.main.kr_dialog_log.*
+import kotlinx.android.synthetic.main.kr_dialog_log.action_progress
+import kotlinx.android.synthetic.main.kr_dialog_log.btn_copy
+import kotlinx.android.synthetic.main.kr_dialog_log.btn_exit
+import kotlinx.android.synthetic.main.kr_dialog_log.btn_hide
+import kotlinx.android.synthetic.main.kr_dialog_log.desc
+import kotlinx.android.synthetic.main.kr_dialog_log.shell_output
+import kotlinx.android.synthetic.main.kr_dialog_log.title
 
 
 class DialogLogFragment : androidx.fragment.app.DialogFragment() {
