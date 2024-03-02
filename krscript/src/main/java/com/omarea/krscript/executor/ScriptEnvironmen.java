@@ -141,7 +141,7 @@ public class ScriptEnvironmen {
             return outputPath;
         }
 
-        byte[] bytes = ("#!/system/bin/sh\n\n" + script)
+        byte[] bytes = (script.substring(0, 3).equals("#!/") ? "#!/system/bin/sh\n\n" :"" + script)
                 .replaceAll("\r\n", "\n")
                 .replaceAll("\r\t", "\t")
                 .replaceAll("\r", "\n")
