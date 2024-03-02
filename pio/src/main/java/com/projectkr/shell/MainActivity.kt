@@ -36,7 +36,7 @@ import com.projectkr.shell.ui.TabIconHelper
 import kotlinx.android.synthetic.main.activity_main.main_tabhost
 import kotlinx.android.synthetic.main.activity_main.main_tabhost_2
 import kotlinx.android.synthetic.main.activity_main.main_tabhost_3
-import kotlinx.android.synthetic.main.activity_main.main_tabhost_cpu
+
 
 class MainActivity : AppCompatActivity() {
     private val progressBarDialog = ProgressBarDialog(this)
@@ -60,7 +60,6 @@ class MainActivity : AppCompatActivity() {
 
         main_tabhost.setup()
         val tabIconHelper = TabIconHelper(main_tabhost, this)
-        main_tabhost_cpu.visibility = View.GONE
 
         main_tabhost.setOnTabChangedListener {
             tabIconHelper.updateHighlight()
