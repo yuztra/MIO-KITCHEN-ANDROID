@@ -475,9 +475,7 @@ class ActionPage : AppCompatActivity() {
             try {
                 val service = this.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
                 for (task in service.appTasks) {
-                    if (task.taskInfo.id == this.taskId) {
-                        task.setExcludeFromRecents(true)
-                    }
+                    task.setExcludeFromRecents(task.taskInfo.id == this.taskId)
                 }
             } catch (_: Exception) {
             }
