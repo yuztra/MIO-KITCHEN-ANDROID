@@ -89,7 +89,7 @@ class DialogHelper {
             val layoutInflater = LayoutInflater.from(context)
             val dialog = layoutInflater.inflate(R.layout.dialog_help_info, null)
 
-            (dialog.findViewById(R.id.confirm_title) as TextView).run {
+            (dialog.findViewById<TextView>(R.id.confirm_title)!!).run {
                 if (title.isNotEmpty()) {
                     text = title
                     visibility = View.VISIBLE
@@ -98,7 +98,7 @@ class DialogHelper {
                 }
             }
 
-            (dialog.findViewById(R.id.confirm_message) as TextView).run {
+            (dialog.findViewById<TextView>(R.id.confirm_message)!!).run {
                 if (message.isNotEmpty()) {
                     text = message
                     visibility = View.VISIBLE
@@ -108,7 +108,7 @@ class DialogHelper {
             }
 
             val d = customDialog(context, dialog, onDismiss == null)
-            (dialog.findViewById(R.id.btn_confirm) as View).run {
+            (dialog.findViewById<View>(R.id.btn_confirm)!!).run {
                 if (onDismiss != null) {
                     d.setOnDismissListener {
                         onDismiss.run()
