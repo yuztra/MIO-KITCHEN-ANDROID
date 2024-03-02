@@ -46,7 +46,7 @@ class KeepShell(private var rootMode: Boolean = true) {
     private val mLock = ReentrantLock()
     private val LOCK_TIMEOUT = 10000L
     private var enterLockTime = 0L
-    private var checkRootState = "[ su ] || [ sudo ] || [ ls '/*' ] && echo 'success'"
+    private var checkRootState = "[ su ] || [ sudo ] || [ 'cat /system/sh' ] && echo 'success'"
 
     fun checkRoot(): Boolean {
         val r = doCmdSync(checkRootState).toLowerCase(Locale.getDefault())
