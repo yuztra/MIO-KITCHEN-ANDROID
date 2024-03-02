@@ -2,7 +2,12 @@ package com.omarea.common.shared
 
 import android.content.Context
 import android.widget.Toast
-import java.io.*
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
+import java.io.ObjectInputStream
+import java.io.ObjectOutputStream
+import java.io.Serializable
 
 open class ObjectStorage<T : Serializable>(private val context: Context) {
     private val objectStorageDir = "objects/"

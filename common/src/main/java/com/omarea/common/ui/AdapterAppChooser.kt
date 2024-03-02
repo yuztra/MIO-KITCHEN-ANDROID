@@ -5,10 +5,19 @@ import android.graphics.drawable.Drawable
 import android.util.LruCache
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.BaseAdapter
+import android.widget.CompoundButton
+import android.widget.Filter
+import android.widget.Filterable
+import android.widget.ImageView
+import android.widget.TextView
 import com.omarea.common.R
-import kotlinx.coroutines.*
-import java.util.*
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import java.util.Locale
 
 class AdapterAppChooser(
         private val context: Context,
