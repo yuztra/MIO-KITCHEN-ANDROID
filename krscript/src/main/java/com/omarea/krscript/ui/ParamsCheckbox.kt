@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.CheckBox
 import com.omarea.krscript.R
 import com.omarea.krscript.model.ActionParamInfo
+import java.util.Locale
 
 class ParamsCheckbox(private var actionParamInfo: ActionParamInfo, private var context: Context) {
     fun render(): View {
@@ -32,9 +33,10 @@ class ParamsCheckbox(private var actionParamInfo: ActionParamInfo, private var c
      */
     private fun getCheckState(actionParamInfo: ActionParamInfo, defaultValue: Boolean): Boolean {
         if (actionParamInfo.valueFromShell != null) {
-            return actionParamInfo.valueFromShell == "1" || actionParamInfo.valueFromShell!!.toLowerCase() == "true"
+            return actionParamInfo.valueFromShell == "1" || actionParamInfo.valueFromShell!!.toLowerCase(
+                Locale.ROOT) == "true"
         } else if (actionParamInfo.value != null) {
-            return actionParamInfo.value == "1" || actionParamInfo.value!!.toLowerCase() == "true"
+            return actionParamInfo.value == "1" || actionParamInfo.value!!.toLowerCase(Locale.ROOT) == "true"
         }
         return defaultValue
     }
