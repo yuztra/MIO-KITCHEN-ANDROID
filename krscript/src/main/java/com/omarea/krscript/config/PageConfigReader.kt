@@ -25,6 +25,7 @@ import com.omarea.krscript.model.SwitchNode
 import com.omarea.krscript.model.TextNode
 import org.xmlpull.v1.XmlPullParser
 import java.io.InputStream
+import java.util.Locale
 
 /**
  * Created by Hello on 2018/04/01.
@@ -256,9 +257,9 @@ class PageConfigReader {
                     "title" -> actionParamInfo.title = attrValue
                     "desc" -> actionParamInfo.desc = attrValue
                     "value" -> actionParamInfo.value = attrValue
-                    "type" -> actionParamInfo.type = attrValue.toLowerCase().trim { it <= ' ' }
+                    "type" -> actionParamInfo.type = attrValue.toLowerCase(Locale.ROOT).trim { it <= ' ' }
                     "suffix" -> {
-                        val suffix = attrValue.toLowerCase().trim { it <= ' ' }
+                        val suffix = attrValue.toLowerCase(Locale.ROOT).trim { it <= ' ' }
 
                         if (actionParamInfo.mime.isEmpty()) {
                             actionParamInfo.mime = Suffix2Mime().toMime(suffix)
@@ -267,10 +268,10 @@ class PageConfigReader {
                         actionParamInfo.suffix = suffix
                     }
                     "mime" -> {
-                        actionParamInfo.mime = attrValue.toLowerCase()
+                        actionParamInfo.mime = attrValue.toLowerCase(Locale.ROOT)
                     }
                     "readonly" -> {
-                        val value = attrValue.toLowerCase().trim { it <= ' ' }
+                        val value = attrValue.toLowerCase(Locale.ROOT).trim { it <= ' ' }
                         actionParamInfo.readonly = (value == "readonly" || value == "true" || value == "1")
                     }
                     "maxlength" -> actionParamInfo.maxLength = Integer.parseInt(attrValue)
@@ -360,7 +361,7 @@ class PageConfigReader {
                                 option.isFab = parser.getAttributeValue(i) == "fab"
                             }
                             "suffix" -> {
-                                val suffix = parser.getAttributeValue(i).toLowerCase().trim { it <= ' ' }
+                                val suffix = parser.getAttributeValue(i).toLowerCase(Locale.ROOT).trim { it <= ' ' }
 
                                 if (option.mime.isEmpty()) {
                                     option.mime = Suffix2Mime().toMime(suffix)
@@ -369,7 +370,7 @@ class PageConfigReader {
                                 option.suffix = suffix
                             }
                             "mime" -> {
-                                option.mime = parser.getAttributeValue(i).toLowerCase()
+                                option.mime = parser.getAttributeValue(i).toLowerCase(Locale.ROOT)
                             }
                         }
                     }
@@ -586,7 +587,8 @@ class PageConfigReader {
     private fun tagEndInSwitch(switchNode: SwitchNode?) {
         if (switchNode != null) {
             val shellResult = executeResultRoot(context, switchNode.getState)
-            switchNode.checked = shellResult != "error" && (shellResult == "1" || shellResult.toLowerCase() == "true")
+            switchNode.checked = shellResult != "error" && (shellResult == "1" || shellResult.toLowerCase(
+                Locale.ROOT) == "true")
             if (switchNode.setState == null) {
                 switchNode.setState = ""
             }
@@ -616,7 +618,7 @@ class PageConfigReader {
     private fun rowNode(textNode: TextNode, parser: XmlPullParser) {
         val textRow = TextNode.TextRow()
         for (i in 0 until parser.attributeCount) {
-            val attrName = parser.getAttributeName(i).toLowerCase()
+            val attrName = parser.getAttributeName(i).toLowerCase(Locale.ROOT)
             val attrValue = parser.getAttributeValue(i)
             try {
                 when (attrName) {

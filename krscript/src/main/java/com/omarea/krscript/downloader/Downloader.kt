@@ -13,6 +13,7 @@ import com.omarea.krscript.R
 import org.json.JSONObject
 import java.io.File
 import java.nio.charset.Charset
+import java.util.Locale
 
 class Downloader(private var context: Context) {
     companion object {
@@ -99,7 +100,7 @@ class Downloader(private var context: Context) {
         try {
             val file = File(absPath)
             if (file.exists() && file.canRead()) {
-                val md5 = FileMD5().getFileMD5(file).toLowerCase()
+                val md5 = FileMD5().getFileMD5(file).toLowerCase(Locale.ROOT)
                 FileWrite.writePrivateFile(absPath.toByteArray(Charset.defaultCharset()),
                     "downloader/path/$md5", context)
                 taskAliasId?.run {

@@ -93,7 +93,7 @@ open class ProgressBarDialog(private var context: Activity, private var uniqueId
             hideDialog()
             val layoutInflater = LayoutInflater.from(context)
             val dialog = layoutInflater.inflate(R.layout.dialog_loading, null)
-            textView = (dialog.findViewById<TextView>(R.id.dialog_text)!!)
+            textView = (dialog.findViewById(R.id.dialog_text)!!)
             textView!!.text = text
             alert = DialogHelper.customDialog(context, dialog, false)
         }

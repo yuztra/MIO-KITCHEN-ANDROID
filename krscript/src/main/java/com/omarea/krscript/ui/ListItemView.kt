@@ -11,7 +11,7 @@ import com.omarea.krscript.model.NodeInfoBase
 open class ListItemView(private val context: Context,
                         layoutId: Int,
                         private val config: NodeInfoBase) {
-    protected var layout = LayoutInflater.from(context).inflate(layoutId, null)
+    protected var layout: View = LayoutInflater.from(context).inflate(layoutId, null)
 
     private var descView = layout.findViewById<TextView?>(R.id.kr_desc)
     private var summaryView = layout.findViewById<TextView?>(R.id.kr_summary)

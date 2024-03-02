@@ -77,7 +77,7 @@ class AdapterAppChooser(
             if (prefix.isEmpty()) {
                 val list: ArrayList<AppInfo>
                 synchronized(adapter.mLock) {
-                    list = ArrayList<AppInfo>(adapter.apps)
+                    list = ArrayList(adapter.apps)
                 }
                 results.values = list
                 results.count = list.size
@@ -86,7 +86,7 @@ class AdapterAppChooser(
 
                 val values: ArrayList<AppInfo>
                 synchronized(adapter.mLock) {
-                    values = ArrayList<AppInfo>(adapter.apps)
+                    values = ArrayList(adapter.apps)
                 }
                 val selected = adapter.getSelectedItems()
 

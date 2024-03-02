@@ -43,7 +43,7 @@ class AdapterItemChooser2(
             if (prefix.isEmpty()) {
                 val list: ArrayList<SelectItem>
                 synchronized(adapter.mLock) {
-                    list = ArrayList<SelectItem>(adapter.items)
+                    list = ArrayList(adapter.items)
                 }
                 results.values = list
                 results.count = list.size
@@ -52,7 +52,7 @@ class AdapterItemChooser2(
 
                 val values: ArrayList<SelectItem>
                 synchronized(adapter.mLock) {
-                    values = ArrayList<SelectItem>(adapter.items)
+                    values = ArrayList(adapter.items)
                 }
                 val selected = adapter.currentSelected
 
