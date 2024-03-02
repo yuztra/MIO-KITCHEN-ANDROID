@@ -48,6 +48,13 @@
                 android:text="取消">
             </Button>
             <Button
+                android:id="@+id/btn_skip"
+                style="@style/dialogWarnBtn"
+                android:layout_marginEnd="8dp"
+                android:visibility="invisible"
+                android:text="跳过">
+            </Button>
+            <Button
                 android:id="@+id/btn_confirm"
                 style="@style/dialogConfirmBtn"
                 android:text="确定">

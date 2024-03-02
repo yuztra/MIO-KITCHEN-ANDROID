@@ -130,6 +130,7 @@ class DialogHelper {
             return openContinueAlert(context, R.layout.dialog_confirm, title, message, onConfirm, onCancel)
         }
 
+
         fun warning(context: Context,
                     title: String = "",
                     message: String = "",
@@ -233,6 +234,67 @@ class DialogHelper {
                         dialog.dismiss()
                     }
                     onCancel.onClick?.run()
+                } else {
+                    dialog.dismiss()
+                }
+            }
+
+            return dialog
+        }
+
+        fun confirm(context: Context,
+                    title: String = "",
+                    message: String = "",
+                    contentView: View? = null,
+                    onConfirm: DialogButton? = null,
+                    onCancel: DialogButton? = null,
+                    onNormal: DialogButton? = null): DialogWrap {
+            val view = getCustomDialogView(context, R.layout.dialog_confirm, title, message, contentView)
+
+            val dialog = customDialog(context, view)
+
+            val btnConfirm = view.findViewById<TextView?>(R.id.btn_confirm)
+            if (onConfirm != null) {
+                btnConfirm?.text = onConfirm.text
+            }
+            btnConfirm?.setOnClickListener {
+                if (onConfirm != null) {
+                    if (onConfirm.dismiss) {
+                        dialog.dismiss()
+                    }
+                    onConfirm.onClick?.run()
+                } else {
+                    dialog.dismiss()
+                }
+            }
+
+
+            val btnCancel = view.findViewById<TextView?>(R.id.btn_cancel)
+            if (onCancel != null) {
+                btnCancel?.text = onCancel.text
+            }
+            btnCancel.setOnClickListener {
+                if (onCancel != null) {
+                    if (onCancel.dismiss) {
+                        dialog.dismiss()
+                    }
+                    onCancel.onClick?.run()
+                } else {
+                    dialog.dismiss()
+                }
+            }
+
+            val btnNormal = view.findViewById<TextView?>(R.id.btn_skip)
+            btnNormal.visibility = view.visibility
+            if (onNormal != null) {
+                btnNormal?.text = onNormal.text
+            }
+            btnNormal.setOnClickListener {
+                if (onNormal != null) {
+                    if (onNormal.dismiss) {
+                        dialog.dismiss()
+                    }
+                    onNormal.onClick?.run()
                 } else {
                     dialog.dismiss()
                 }

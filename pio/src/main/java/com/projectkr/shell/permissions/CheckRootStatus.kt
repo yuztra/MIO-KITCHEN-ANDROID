@@ -1,6 +1,5 @@
 package com.projectkr.shell.permissions
 
-import android.app.AlertDialog
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
@@ -40,28 +39,23 @@ class CheckRootStatus(var context: Context, private var next: Runnable? = null) 
                 } else {
                     myHandler.post {
                         KeepShellPublic.tryExit()
-                        val builder = AlertDialog.Builder(context)
-                                .setTitle(R.string.warn_)
-                                .setIcon(R.drawable.kr_warn)
-                                .setMessage(R.string.error_root)
-                                .setPositiveButton(R.string.btn_retry) { _, _ ->
-                                    KeepShellPublic.tryExit()
-                                    if (therad != null && therad!!.isAlive && !therad!!.isInterrupted) {
-                                        therad!!.interrupt()
-                                        therad = null
-                                    }
-                                    forceGetRoot()
+                        DialogHelper.confirm(context,  context.getString(R.string.warn_), context.getString(R.string.error_root),null,
+                            DialogHelper.DialogButton(context.getString(R.string.btn_retry), {
+                                KeepShellPublic.tryExit()
+                                if (therad != null && therad!!.isAlive && !therad!!.isInterrupted) {
+                                    therad!!.interrupt()
+                                    therad = null
                                 }
-                                .setNegativeButton(R.string.btn_exit) { _, _ -> exitProcess(0)}
-
-                        if (!context.resources.getBoolean(R.bool.force_root)) {
-                            builder.setNeutralButton(R.string.btn_skip) { _, _ ->
-                                if (next != null) {
+                                forceGetRoot()
+                            }), DialogHelper.DialogButton(context.getString(R.string.btn_exit), {
+                                exitProcess(0)
+                            }),
+                            if (!context.resources.getBoolean(R.bool.force_root)) {
+                                DialogHelper.DialogButton(context.getString(R.string.btn_skip), {if (next != null) {
                                     myHandler.post(next)
-                                }
-                            }
-                        }
-                        DialogHelper.animDialog(builder).setCancelable(false)
+                                }})
+                            } else {null}
+                        )
                     }
                 }
             }

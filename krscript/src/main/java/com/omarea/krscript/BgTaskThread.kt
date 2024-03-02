@@ -142,7 +142,7 @@ class BgTaskThread(private var process: Process) : Thread() {
                 if (msg == 0) {
                     notificationMessageRows.add("\n" + context.getString(R.string.kr_shell_completed))
                 } else {
-                    notificationMessageRows.add("\n" + context.getString(R.string.kr_shell_finish_error) + " " + msg?.toString())
+                    notificationMessageRows.add("\n" + context.getString(R.string.kr_shell_finish_error)  + msg?.toString())
                 }
                 updateNotification()
             }
