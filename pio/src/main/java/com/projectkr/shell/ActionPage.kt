@@ -304,12 +304,12 @@ class ActionPage : AppCompatActivity() {
 
             // TODO:文件类型过滤
             override fun mimeType(): String? {
-                return if (menuOption.mime.isEmpty()) null else menuOption.mime
+                return menuOption.mime.ifEmpty { null }
 
             }
 
             override fun suffix(): String? {
-                return if (menuOption.suffix.isEmpty()) null else menuOption.suffix
+                return menuOption.suffix.ifEmpty { null }
             }
 
             override fun type(): Int {
