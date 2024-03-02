@@ -46,22 +46,7 @@ class KeepShell(private var rootMode: Boolean = true) {
     private val mLock = ReentrantLock()
     private val LOCK_TIMEOUT = 10000L
     private var enterLockTime = 0L
-
-    private var checkRootState =
-            "if [[ \$(id -u 2>&1) == '0' ]] || [[ \$UID == 0 ]] || [[ \$(whoami 2>&1) == 'root' ]] || [[ su ]] || [[ \$(set | grep 'USER_ID=0') == 'USER_ID=0' ]]; then\n" +
-                    "  echo 'success'\n" +
-                    "else\n" +
-                    "if [[ -d /cache ]]; then\n" +
-                    "  echo 1 > /cache/t_root\n" +
-                    "  if [[ -f /cache/t_root ]] && [[ \$(cat /cache/t_root) == '1' ]]; then\n" +
-                    "    echo 'success'\n" +
-                    "    rm -rf /cache/t_root\n" +
-                    "    return\n" +
-                    "  fi\n" +
-                    "fi\n" +
-                    "exit 1\n" +
-                    "exit 1\n" +
-                    "fi\n"
+    private var checkRootState = "[ su ] || [ sudo ] || [ ls '/*' ] && echo 'success'"
 
     fun checkRoot(): Boolean {
         val r = doCmdSync(checkRootState).toLowerCase(Locale.getDefault())
