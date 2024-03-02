@@ -10,6 +10,7 @@ ArrayAdapter(context, R.layout.kr_spinner_default, R.id.text, options).apply {
 
 class SelectItem {
     var title: String? = null
+
     // var desc: String = ""
     var value: String? = null
     var selected: Boolean = false
