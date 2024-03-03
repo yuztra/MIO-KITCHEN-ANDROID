@@ -173,11 +173,7 @@ public class ScriptEnvironmen {
 
         String script2 = script.trim();
         String path;
-        if (script2.startsWith(ASSETS_FILE)) {
-            path = extractScript(context, script2);
-        } else {
-            path = createShellCache(context, script);
-        }
+        path =  (script2.startsWith(ASSETS_FILE)) ? extractScript(context, script2) : createShellCache(context, script);
 
         if (!inited) {
             init(context);
