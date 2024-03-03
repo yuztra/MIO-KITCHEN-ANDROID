@@ -392,10 +392,15 @@ public class ScriptEnvironmen {
             }
         }
         try {
+            String cache = getExecuteScript(context, cmds, tag);
             dataOutputStream.write(envpCmds.toString().getBytes(StandardCharsets.UTF_8));
-            dataOutputStream.write(getExecuteScript(context, cmds, tag).getBytes(StandardCharsets.UTF_8));
+            dataOutputStream.write(cache.getBytes(StandardCharsets.UTF_8));
             dataOutputStream.writeBytes("\n\nexit\nexit\n");
             dataOutputStream.flush();
+            File file = new File(cache);
+            if (file.exists() && file.isFile() && cache.endsWith(".sh")){
+                file.delete();
+            }
         } catch (Exception ignored) {
         }
     }
