@@ -234,14 +234,12 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == ACTION_FILE_PATH_CHOOSER) {
             val result = if (data == null || resultCode != Activity.RESULT_OK) null else data.data
-            if (fileSelectedInterface != null) {
-                if (result != null) {
-                    val absPath = getPath(result)
-                    fileSelectedInterface?.onFileSelected(absPath)
-                } else {
-                    fileSelectedInterface?.onFileSelected(null)
-                }
+            if (fileSelectedInterface != null && result != null) {
+                fileSelectedInterface?.onFileSelected(getPath(result))
+            } else {
+                fileSelectedInterface?.onFileSelected(null)
             }
+
             this.fileSelectedInterface = null
         } else if (requestCode == ACTION_FILE_PATH_CHOOSER_INNER) {
             val absPath = if (data == null || resultCode != Activity.RESULT_OK) null else data.getStringExtra("file")
