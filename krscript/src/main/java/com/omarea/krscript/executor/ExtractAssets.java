@@ -18,61 +18,43 @@ public class ExtractAssets {
     public ExtractAssets(Context context) {
         this.context = context;
     }
-
-    private String extractScript(String fileName) {
+    private String extract(String fileName) {
         if (fileName == null || fileName.isEmpty()) {
             return null;
         }
-
         if (extractHisotry.containsKey(fileName)) {
             return extractHisotry.get(fileName);
         }
-
         if (fileName.startsWith("file:///android_asset/")) {
             fileName = fileName.substring("file:///android_asset/".length());
         }
+        return fileName;
+    }
 
+    private String extractScript(String fileName) {
+        fileName = extract(fileName);
         String filePath = FileWrite.INSTANCE.writePrivateShellFile(fileName, fileName, context);
-
         if (filePath != null) {
             extractHisotry.put(fileName, filePath);
         }
-
         return filePath;
     }
-
     public String extractResource(String fileName) {
-        if (fileName == null || fileName.isEmpty()) {
-            return null;
-        }
-
-        if (extractHisotry.containsKey(fileName)) {
-            return extractHisotry.get(fileName);
-        }
-
         if (fileName.endsWith(".sh")) {
             return extractScript(fileName);
         }
-        if (fileName.startsWith("file:///android_asset/")) {
-            fileName = fileName.substring("file:///android_asset/".length());
-        }
+        fileName = extract(fileName);
+
         String filePath = FileWrite.INSTANCE.writePrivateFile(context.getAssets(), fileName, fileName, context);
 
         if (filePath != null) {
             extractHisotry.put(fileName, filePath);
         }
-
         return filePath;
     }
 
     public String extractResources(String dir) {
-        if (dir == null || dir.isEmpty()) {
-            return null;
-        }
-
-        if (extractHisotry.containsKey(dir)) {
-            return extractHisotry.get(dir);
-        }
+        dir = extract(dir);
 
         if (dir.startsWith("file:///android_asset/")) {
             dir = dir.substring("file:///android_asset/".length());

@@ -13,13 +13,11 @@ public class FileOwner {
     public int getUserId() {
         UserManager um = (UserManager) context.getSystemService(Context.USER_SERVICE);
         android.os.UserHandle userHandle = android.os.Process.myUserHandle();
-
-        int value = 0;
         try {
-            value = (int) um.getSerialNumberForUser(userHandle);
+            return  (int) um.getSerialNumberForUser(userHandle);
         } catch (Exception ignored) {
+            return 0;
         }
-        return value;
     }
 
     public String getFileOwner() {

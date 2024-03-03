@@ -135,13 +135,12 @@ public class ScriptEnvironmen {
      *
      */
     private static String createShellCache(Context context, String script) {
-        String md5 = md5(script);
-        String outputPath = "kr-script/cache/" + md5 + ".sh";
+        String outputPath = "kr-script/cache/" + md5(script) + ".sh";
         if (new File(outputPath).exists()) {
             return outputPath;
         }
 
-        byte[] bytes = (script.startsWith("#!/") ? "#!/system/bin/sh\n\n" : script)
+        byte[] bytes = (script.startsWith("#!/") ? "#!/system/bin/sh\n\n" : "" + script)
                 .replaceAll("\r\n", "\n")
                 .replaceAll("\r\t", "\t")
                 .replaceAll("\r", "\n")
