@@ -56,7 +56,7 @@ class PathAnalysis(private var context: Context, private var parentDir: String =
     }
 
     private fun useRootOpenFile(filePath: String): InputStream? {
-        if (fileExists(filePath)) {
+        if (File(filePath).exists()) {
             val dir = File(FileWrite.getPrivateFilePath(context, "kr-script"))
             if (!dir.exists()) {
                 dir.mkdirs()
@@ -75,9 +75,6 @@ class PathAnalysis(private var context: Context, private var parentDir: String =
             }
         }
         return null
-    }
-    private fun fileExists(path: String): Boolean {
-        return KeepShellPublic.doCmdSync("if [[ -f \"$path\" ]]; then echo 1; fi;") == "1"
     }
     // 在assets里查找文件
     private fun findAssetsResource(filePath: String): InputStream? {

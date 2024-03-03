@@ -387,7 +387,7 @@ public class ScriptEnvironmen {
 
         ArrayList<String> envp = getVariables(params);
         StringBuilder envpCmds = new StringBuilder();
-        if (envp.size() > 0) {
+        if (!envp.isEmpty()) {
             for (String param : envp) {
                 envpCmds.append("export ").append(param).append("\n");
             }
