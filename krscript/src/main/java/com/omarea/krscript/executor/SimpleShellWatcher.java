@@ -1,6 +1,7 @@
 package com.omarea.krscript.executor;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.omarea.common.shell.ShellTranslation;
 import com.omarea.krscript.model.ShellHandlerBase;
@@ -61,7 +62,7 @@ public class SimpleShellWatcher {
                 try {
                     status = processFinal.waitFor();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    Log.e("KR", "run: ",e );
                 } finally {
                     shellHandlerBase.sendMessage(shellHandlerBase.obtainMessage(ShellHandlerBase.EVENT_EXIT, status));
                     if (reader.isAlive()) {
