@@ -132,7 +132,6 @@ public class ScriptEnvironmen {
 
     /**
      * 写入缓存（脚本代码存入脚本文件）
-     *
      */
     private static String createShellCache(Context context, String script) {
         String outputPath = "kr-script/cache/" + md5(script) + ".sh";
@@ -153,7 +152,6 @@ public class ScriptEnvironmen {
 
     /**
      * 执行脚本
-     *
      */
     private static String extractScript(Context context, String fileName) {
         if (fileName.startsWith(ASSETS_FILE)) {
@@ -172,7 +170,7 @@ public class ScriptEnvironmen {
         }
 
         String script2 = script.trim();
-        String path =  script2.startsWith(ASSETS_FILE) ? extractScript(context, script2) : createShellCache(context, script);
+        String path = script2.startsWith(ASSETS_FILE) ? extractScript(context, script2) : createShellCache(context, script);
 
         if (!inited) {
             init(context);
@@ -202,7 +200,7 @@ public class ScriptEnvironmen {
         }
         stringBuilder.append("\n\n");
         stringBuilder.append(environmentPath).append(" \"").append(path).append("\"");
-        return  (shellTranslation != null) ? shellTranslation.resolveRow(privateShell.doCmdSync(stringBuilder.toString())):privateShell.doCmdSync(stringBuilder.toString());
+        return (shellTranslation != null) ? shellTranslation.resolveRow(privateShell.doCmdSync(stringBuilder.toString())) : privateShell.doCmdSync(stringBuilder.toString());
     }
 
     private static String getStartPath(Context context) {
@@ -227,7 +225,6 @@ public class ScriptEnvironmen {
 
     /**
      * 获取框架的环境变量
-     *
      */
     private static HashMap<String, String> getEnvironment(Context context) {
         HashMap<String, String> params = new HashMap<>();
@@ -277,6 +274,7 @@ public class ScriptEnvironmen {
     }
 
     /**
+     *
      */
     private static ArrayList<String> getVariables(HashMap<String, String> params) {
         ArrayList<String> envp = new ArrayList<>();
@@ -317,16 +315,12 @@ public class ScriptEnvironmen {
         }
 
 
-        return environmentPath + " \"" + cachePath + "\" \"" + tag +  "\"";
+        return environmentPath + " \"" + cachePath + "\" \"" + tag + "\"";
     }
 
     static Process getRuntime() {
         try {
-            if (rooted) {
-                return Runtime.getRuntime().exec("su");
-            } else {
-                return Runtime.getRuntime().exec("sh");
-            }
+            return Runtime.getRuntime().exec(rooted ? "su" : "sh");
         } catch (Exception ex) {
             return null;
         }
@@ -386,7 +380,7 @@ public class ScriptEnvironmen {
             dataOutputStream.writeBytes("\n\nexit\nexit\n");
             dataOutputStream.flush();
             File file = new File(cache);
-            if (file.exists() && file.isFile() && cache.endsWith(".sh")){
+            if (file.exists() && file.isFile() && cache.endsWith(".sh")) {
                 file.delete();
             }
         } catch (Exception ignored) {
