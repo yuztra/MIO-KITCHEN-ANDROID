@@ -39,11 +39,8 @@ class TabIconHelper(private var tabHost: TabHost, private var activity: Activity
     fun updateHighlight() {
         for (i in 0 until tabHost.tabWidget.tabCount) {
             val tab = tabHost.tabWidget.getChildAt(i)
-            if (i == tabHost.currentTab) {
-                tab.alpha = 1f
-            } else {
-                tab.alpha = 0.3f
-            }
+            if (i == tabHost.currentTab) tab.alpha = 1f else tab.alpha = 0.3f
+
         }
     }
 }

@@ -139,11 +139,7 @@ class BgTaskThread(private var process: Process) : Thread() {
             isFinished = true
             notificationMShortMsg = context.getString(R.string.kr_script_task_finished)
             synchronized(notificationMessageRows) {
-                if (msg == 0) {
-                    notificationMessageRows.add("\n" + context.getString(R.string.kr_shell_completed))
-                } else {
-                    notificationMessageRows.add("\n" + context.getString(R.string.kr_shell_finish_error)  + msg?.toString())
-                }
+                if (msg == 0) notificationMessageRows.add("\n" + context.getString(R.string.kr_shell_completed)) else notificationMessageRows.add("\n" + context.getString(R.string.kr_shell_finish_error)  + msg?.toString())
                 updateNotification()
             }
         }

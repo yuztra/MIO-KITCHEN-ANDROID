@@ -25,11 +25,7 @@ class ActionShortcutManager(private var context: Context) {
             intent.removeExtra("page")
         }
 
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            createShortcutOreo(intent, drawable, config)
-        } else {
-            addShortcutNougat(intent, drawable, config)
-        }
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) createShortcutOreo(intent, drawable, config) else addShortcutNougat(intent, drawable, config)
     }
 
     private fun addShortcutNougat(intent: Intent, drawable: Drawable, config: NodeInfoBase): Boolean {
