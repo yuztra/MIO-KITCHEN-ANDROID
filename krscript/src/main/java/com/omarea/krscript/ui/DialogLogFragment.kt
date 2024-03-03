@@ -240,6 +240,7 @@ class DialogLogFragment : androidx.fragment.app.DialogFragment() {
         }
 
         override fun onExit(msg: Any?) {
+            updateLog("\n\n", endColor)
             updateLog(context.getString(R.string.kr_shell_completed), endColor)
             actionEventHandler.onCompleted()
             if (!hasError) {
