@@ -124,8 +124,7 @@ class MainActivity : AppCompatActivity() {
     private fun reloadFavoritesTab() {
         Thread(Runnable {
             val favoritesConfig = krScriptConfig.favoriteConfig
-            val favorites = getItems(favoritesConfig)
-            favorites?.run {
+            getItems(favoritesConfig)?.run {
                 handler.post {
                     updateFavoritesTab(this, favoritesConfig)
                 }
@@ -136,9 +135,8 @@ class MainActivity : AppCompatActivity() {
     private fun reloadMoreTab() {
         Thread(Runnable {
             val page2Config = krScriptConfig.pageListConfig
-            val pages = getItems(page2Config)
 
-            pages?.run {
+            getItems(page2Config)?.run {
                 handler.post {
                     updateMoreTab(this, page2Config)
                 }
@@ -153,11 +151,7 @@ class MainActivity : AppCompatActivity() {
                     finishAndRemoveTask()
                 } else if (runnableNode.reloadPage) {
                     // TODO:多线程优化
-                    if (isFavoritesTab) {
-                        reloadFavoritesTab()
-                    } else {
-                        reloadMoreTab()
-                    }
+                    if (isFavoritesTab) reloadFavoritesTab() else reloadMoreTab()
                 }
             }
 
