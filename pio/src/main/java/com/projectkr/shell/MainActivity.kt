@@ -218,12 +218,8 @@ class MainActivity : AppCompatActivity() {
                     chooseFilePath(suffix)
                 } else {
                     val intent = Intent(Intent.ACTION_GET_CONTENT)
-                    val mimeType = fileSelectedInterface.mimeType()
-                    if (mimeType != null) {
-                        intent.type = mimeType
-                    } else {
-                        intent.type = "*/*"
-                    }
+                    intent.type = fileSelectedInterface.mimeType()
+                    if (intent.type == null) {intent.type = "*/*"}
                     intent.addCategory(Intent.CATEGORY_OPENABLE)
                     startActivityForResult(intent, ACTION_FILE_PATH_CHOOSER)
                 }
