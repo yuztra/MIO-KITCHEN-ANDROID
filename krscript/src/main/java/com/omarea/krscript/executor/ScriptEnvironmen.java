@@ -205,22 +205,9 @@ public class ScriptEnvironmen {
             stringBuilder.append("export PAGE_WORK_DIR=''\n");
             stringBuilder.append("export PAGE_WORK_DIR=''\n");
         }
-
         stringBuilder.append("\n\n");
         stringBuilder.append(environmentPath).append(" \"").append(path).append("\"");
-        String result;
-        if (shellTranslation != null) {
-             result =  shellTranslation.resolveRow(
-                privateShell.doCmdSync(stringBuilder.toString())
-            );
-        } else {
-            result = privateShell.doCmdSync(stringBuilder.toString());
-        }
-        File file = new File(path);
-        if (file.exists() && file.isFile() && path.endsWith(".sh")){
-            file.delete();
-        }
-        return result;
+        return  (shellTranslation != null) ? shellTranslation.resolveRow(privateShell.doCmdSync(stringBuilder.toString())):privateShell.doCmdSync(stringBuilder.toString());
     }
 
     private static String getStartPath(Context context) {
