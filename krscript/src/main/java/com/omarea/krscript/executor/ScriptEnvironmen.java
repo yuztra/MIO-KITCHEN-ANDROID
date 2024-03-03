@@ -208,13 +208,19 @@ public class ScriptEnvironmen {
 
         stringBuilder.append("\n\n");
         stringBuilder.append(environmentPath).append(" \"").append(path).append("\"");
+        String result;
         if (shellTranslation != null) {
-            return shellTranslation.resolveRow(
+             result =  shellTranslation.resolveRow(
                 privateShell.doCmdSync(stringBuilder.toString())
             );
         } else {
-            return privateShell.doCmdSync(stringBuilder.toString());
+            result = privateShell.doCmdSync(stringBuilder.toString());
         }
+        File file = new File(path);
+        if (file.exists() && file.isFile() && path.endsWith(".sh")){
+            file.delete();
+        }
+        return result;
     }
 
     private static String getStartPath(Context context) {
