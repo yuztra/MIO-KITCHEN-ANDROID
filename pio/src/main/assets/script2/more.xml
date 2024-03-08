@@ -31,7 +31,6 @@
      </group>
 <group title="关于工具">
         <page title="特别鸣谢" config="file:///android_asset/script2/thank.xml" />
-       <page html="file:///android_asset/htmls/index.html" title="交流反馈"/>
        </group>
        <group> 
         <text>
