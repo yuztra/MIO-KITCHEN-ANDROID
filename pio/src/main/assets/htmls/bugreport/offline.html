@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>网络错误</title>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<script src="http://xzz.web3v.vip/bugreport/book/test.asp?action=state"></script>
+<div align="center">
+<img src="offline.jpg" width="200" height="200"></img>
+<h1 id="state"></h1>
+<button onclick="pd()">重试</button>
+</div>
+			<script>
+ if(window.state=="true"){
+       document.getElementById("state").innerHTML="网络似乎已经恢复，请点击重试按钮";
+     }else{
+     	if(window.state=="notice"){
+     		document.getElementById("state").innerHTML=window.notice;
+     	}else{
+     		document.getElementById("state").innerHTML="无法链接服务器";
+     	}
+     }
+			</script>
+<script>
+function pd() {window.location.href="index.html";}
+</script>
+</html>
