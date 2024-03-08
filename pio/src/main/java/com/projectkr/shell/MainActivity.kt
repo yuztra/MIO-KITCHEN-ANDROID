@@ -272,6 +272,17 @@ class MainActivity : AppCompatActivity() {
             false
         }
     }
+    fun juanzen(): Boolean {
+        val intent = Intent()
+        intent.setData(Uri.parse("wxp://f2f0aLQl5w5FtoV2_xBiJKG8oZsXqsCFIn1HUaYTW2PNpPDZBD13d_09gfCY1HtsAVah"))
+        return try {
+            startActivity(intent)
+            true
+        } catch (e: java.lang.Exception) {
+            // 未安装手Q或安装的版本不支持
+            false
+        }
+    }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.option_menu_info -> {
@@ -280,6 +291,10 @@ class MainActivity : AppCompatActivity() {
                 val transparentUi = layout.findViewById<CompoundButton>(R.id.transparent_ui)
                 val themeConfig = ThemeConfig(this)
                 val add = layout.findViewById<Button>(R.id.button_add_qq)
+                val wxpay = layout.findViewById<Button>(R.id.button_juanzeng)
+                wxpay.setOnClickListener{
+                    Toast.makeText(this@MainActivity, if (juanzen()) {"感谢捐赠！"} else {"未安装微信或安装的版本不支持"}, Toast.LENGTH_LONG).show()
+                }
                 add.setOnClickListener{
                     Toast.makeText(this@MainActivity, if (joinQQGroup()) {"已进入QQ"} else {"未安装手Q或安装的版本不支持"}, Toast.LENGTH_LONG).show()
                 }
