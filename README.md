@@ -1,5 +1,4 @@
 # MIO-KITCHEN-SOURCE-ANDROID #
-![Banner](https://github.com/ColdWindScholar/MIO-KITCHEN-SOURCE/blob/a9bcfdf613ad28e82f7899e3d420d76ecfea174c/splash.png)
 #### MIO-KITCHEN Android Version
 > [!CAUTION]
 > Unauthorized prohibition of commercial use
@@ -8,6 +7,8 @@
 ## Features
 * Unpack boot, dtbo, ext4, erofs, payload, logo and so on
 * Pack boot, dtbo, ext4, erofs, payload, logo and so on
+***
+## Powered by [Mio Android Kitchen](https://github.com/ColdWindScholar/MIO-KITCHEN-SOURCE) && [Kr-Scripts](https://github.com/ColdWindScholar/kr-scripts)
 ***
 ## Advantages
 * Automatically repair CONTEXT
@@ -28,13 +29,6 @@
 ***
 # Contributors:
 ***
-### macOS partial binary compiler: [sk](https://github.com/sekaiacg)
-### Some code provider: [Affggh](https://github.com/affggh)
-### Partial logo designer: [Shaaim](https://github.com/786-shaaim)
-### Japanese translator: [reindex-ot](https://github.com/reindex-ot)
-### Portuguese (Brazil) translator: [igor](https://github.com/igormiguell)
-### German translator: [keldrion](https://github.com/keldrion)
-### And MORE...
 ### Thanks for your help!!
 ***
 # About
