@@ -1,9 +1,6 @@
 #新建项目
 [ -e ${XBJ} ] && xm=`cat ${XBJ}`
 [ ! -d $mdir/$xm ]&&mkdir -p $mdir/$xm
-yy (){
-echo "长风破浪会有时，直挂云帆济沧海"
-}
 packzip(){
 echo "开始打包ROM:${name}.zip"
 [ -z $lj ]&&error "请输入路径，打包"

@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource dir="file:///android_asset/script" /> 
 <items>
-<group>
-        <text 
-            desc-sh="script/tool.sh yy" />
-</group>
     <group title="项目选择">
      <action reload="true" auto-off="true"> 
      <title>项目列表</title>
