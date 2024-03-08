@@ -27,7 +27,7 @@ if [ -e $zml/$xm/super.img ];then
 utils lpdump $zml/$xm/super.img
 fi
 if [ -e $zml/$xm/payload.bin ];then
-payload -l $zml/$xm/payload.bin
+utils payload_dump $zml/$xm/payload.bin
 fi
 }
 extract_part(){
@@ -98,7 +98,7 @@ fi
 fi
 if [ "$tqjx" = "payload.bin" ];then
 echo "正在解包[payload]:payload.bin"
-payload -o $zml/$xm/ $zml/$xm/payload.bin
+utils payload_all $zml/$xm/payload.bin $zml/$xm/
 if [ $? = 0 ] && [ $del = 1 ];then
 rm -rf $zml/$xm/$tqjx
 fi
@@ -109,7 +109,7 @@ for i in ${jxs}
 do
 echo "正在提取$i"
 [ "$tqjx" = "super.img" ]&&utils lpunpack $zml/$xm/super.img $zml/$xm/ ${i} 1
-[ "$tqjx" = "payload.bin" ]&&payload -output $zml/$xm/ -partitions $i $zml/$xm/payload.bin
+[ "$tqjx" = "payload.bin" ]&&utils payload $zml/$xm/payload.bin $zml/$xm/ $i
 done
 [ $del = 1 ]&&rm -rf $zml/$xm/$tqjx
 for i in $(ls *_a.img)
