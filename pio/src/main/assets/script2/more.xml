@@ -28,9 +28,6 @@
         <param name="IMG" title="请选择分区支持多选：" multiple="true" options-sh="script/tool.sh parts" required="true"/>
     </action>
      </group>
-<group title="关于工具">
-        <page title="特别鸣谢" config="file:///android_asset/script2/thank.xml" />
-       </group>
        <group> 
         <text>
         <slices>
