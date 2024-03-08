@@ -350,9 +350,7 @@ mv "$1"_sparse $1
 }
 str (){
 echo "[sparse]到[raw]：$(basename $1)"
-simg2img "$1" "$1"_raw
-[ -e "$1"_raw ] && rm -rf $1
-mv "$1"_raw $1
+utils simg2img "$1"
 }
 mn () {
 if [ -d $zml/"$xmmc" -o -d $mdir/"$xmmc" ]; then
