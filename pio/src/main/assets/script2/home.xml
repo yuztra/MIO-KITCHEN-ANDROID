@@ -8,7 +8,7 @@
     <group title="项目选择">
      <action reload="true" auto-off="true"> 
      <title>项目列表</title>
-     <param name="xm" options-sh="script/tool.sh check"></param>
+     <param name="xm" options-sh="script/tool.sh check"/>
      <set>echo "$xm" > ${XBJ}</set>
      <summary sh="script/tool.sh zy" />
      </action>
@@ -32,7 +32,7 @@
      
      <action reload="true" auto-off="true"> 
      <title>删除项目</title>
-     <param multiple="true" name="xms" options-sh="script/tool.sh check"></param>
+     <param multiple="true" name="xms" options-sh="script/tool.sh check"/>
      <set>script/tool.sh del</set>
      </action>
      
