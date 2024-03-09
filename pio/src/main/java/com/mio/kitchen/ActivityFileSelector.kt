@@ -13,11 +13,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.PermissionChecker
-import com.omarea.common.ui.ProgressBarDialog
-import com.mio.kitchen.R
 import com.mio.kitchen.ui.AdapterFileSelector
+import com.omarea.common.ui.ProgressBarDialog
 import kotlinx.android.synthetic.main.activity_file_selector.file_selector_list
 import java.io.File
+
 // FILE_MODE = 0 FOLDER_MODE=1
 class ActivityFileSelector : AppCompatActivity() {
 
