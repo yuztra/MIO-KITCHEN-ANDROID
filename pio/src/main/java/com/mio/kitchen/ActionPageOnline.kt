@@ -3,10 +3,6 @@ package com.mio.kitchen
 import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
-import android.app.DownloadManager
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -14,7 +10,6 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.view.KeyEvent
 import android.view.View
 import android.view.WindowManager
@@ -31,19 +26,10 @@ import com.omarea.common.ui.DialogHelper
 import com.omarea.common.ui.ProgressBarDialog
 import com.omarea.common.ui.ThemeMode
 import com.omarea.krscript.WebViewInjector
-import com.omarea.krscript.downloader.Downloader
 import com.omarea.krscript.ui.ParamsFileChooserRender
-import kotlinx.android.synthetic.main.activity_action_page_online.kr_download_name
-import kotlinx.android.synthetic.main.activity_action_page_online.kr_download_name_copy
-import kotlinx.android.synthetic.main.activity_action_page_online.kr_download_progress
-import kotlinx.android.synthetic.main.activity_action_page_online.kr_download_state
-import kotlinx.android.synthetic.main.activity_action_page_online.kr_download_url
-import kotlinx.android.synthetic.main.activity_action_page_online.kr_download_url_copy
 import kotlinx.android.synthetic.main.activity_action_page_online.kr_online_root
 import kotlinx.android.synthetic.main.activity_action_page_online.kr_online_webview
 import java.util.Timer
-import java.util.TimerTask
-import java.util.UUID
 
 class ActionPageOnline : AppCompatActivity() {
     private val progressBarDialog = ProgressBarDialog(this)
@@ -126,29 +112,7 @@ class ActionPageOnline : AppCompatActivity() {
                     extras.containsKey("url") -> initWebview(extras.getString("url"))
                 }
 
-                if (extras.containsKey("downloadUrl")) {
-                    val downloader = Downloader(this)
-                    val url = extras.getString("downloadUrl")!!
-                    val taskAliasId = if (extras.containsKey("taskId")) extras.getString("taskId") else UUID.randomUUID().toString()
 
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                        downloader.saveTaskStatus(taskAliasId, 0)
-
-                        requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), 2)
-                        DialogHelper.helpInfo(this, "", getString(R.string.kr_write_external_storage))
-                    } else {
-                        val downloadId = downloader.downloadBySystem(url, null, null, taskAliasId)
-                        if (downloadId != null) {
-                            kr_download_url.text = url
-                            val autoClose = extras.containsKey("autoClose") && extras.getBoolean("autoClose")
-
-                            downloader.saveTaskStatus(taskAliasId, 0)
-                            watchDownloadProgress(downloadId, autoClose, taskAliasId)
-                        } else {
-                            downloader.saveTaskStatus(taskAliasId, -1)
-                        }
-                    }
-                }
             }
         }
     }
@@ -292,82 +256,4 @@ class ActionPageOnline : AppCompatActivity() {
     }
 
     private var progressPolling: Timer? = null
-    /**
-     * 监视下载进度
-     */
-    private fun watchDownloadProgress(downloadId: Long, autoClose: Boolean, taskAliasId: String) {
-        kr_download_state.visibility = View.VISIBLE
-
-        val downloadManager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-        val query = DownloadManager.Query().setFilterById(downloadId)
-
-        kr_download_name_copy.setOnClickListener {
-            val myClipboard: ClipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val myClip = ClipData.newPlainText("text", kr_download_name.text.toString())
-            myClipboard.primaryClip = myClip
-            Toast.makeText(this@ActionPageOnline, getString(R.string.copy_success), Toast.LENGTH_SHORT).show()
-        }
-        kr_download_url_copy.setOnClickListener {
-            val myClipboard: ClipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val myClip = ClipData.newPlainText("text", kr_download_url.text.toString())
-            myClipboard.primaryClip = myClip
-            Toast.makeText(this@ActionPageOnline, getString(R.string.copy_success), Toast.LENGTH_SHORT).show()
-        }
-
-        val handler = Handler()
-        val downloader = Downloader(this)
-        progressPolling = Timer()
-        progressPolling?.schedule(object : TimerTask() {
-            override fun run() {
-                val cursor = downloadManager.query(query)
-                var fileName = ""
-                var absPath = ""
-                if (cursor.moveToFirst()) {
-                    val downloadBytesIdx = cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR)
-                    val totalBytesIdx = cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_TOTAL_SIZE_BYTES)
-                    val totalBytes = cursor.getLong(totalBytesIdx)
-                    val downloadBytes = cursor.getLong(downloadBytesIdx)
-                    val ratio = (downloadBytes * 100 / totalBytes).toInt()
-                    if (fileName.isEmpty()) {
-                        try {
-                            val nameColumn = cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_LOCAL_URI)
-                            fileName = cursor.getString(nameColumn)
-                            absPath = FilePathResolver().getPath(this@ActionPageOnline, Uri.parse(fileName))
-                            if (absPath.isNotEmpty()) {
-                                fileName = absPath
-                            }
-                        } catch (_: java.lang.Exception) {
-                        }
-                    }
-
-                    handler.post {
-                        kr_download_name.text = fileName
-                        kr_download_progress.progress = ratio
-                        kr_download_progress.isIndeterminate = false
-                        setTitle(R.string.kr_download_downloading)
-                        downloader.saveTaskStatus(taskAliasId, ratio)
-                    }
-
-                    if (ratio >= 100) {
-                        // 保存下载成功后的路径
-                        downloader.saveTaskCompleted(downloadId, absPath)
-
-                        handler.post {
-                            setTitle(R.string.kr_download_completed)
-                            kr_download_progress.visibility = View.GONE
-                            stopWatchDownloadProgress()
-
-                            val result = Intent()
-                            result.putExtra("absPath", absPath)
-                            setResult(0, result)
-
-                            if (autoClose) {
-                                finish()
-                            }
-                        }
-                    }
-                }
-            }
-        }, 200, 500)
-    }
 }

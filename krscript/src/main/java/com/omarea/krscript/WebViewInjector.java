@@ -3,9 +3,7 @@ package com.omarea.krscript;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.webkit.DownloadListener;
@@ -17,8 +15,6 @@ import android.widget.Toast;
 
 import com.omarea.common.shell.KeepShellPublic;
 import com.omarea.common.shell.ShellExecutor;
-import com.omarea.common.ui.DialogHelper;
-import com.omarea.krscript.downloader.Downloader;
 import com.omarea.krscript.executor.ExtractAssets;
 import com.omarea.krscript.executor.ScriptEnvironmen;
 import com.omarea.krscript.model.NodeInfoBase;
@@ -38,7 +34,6 @@ import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.UUID;
 
 public class WebViewInjector {
     private final WebView webView;
@@ -76,21 +71,6 @@ public class WebViewInjector {
                                     context.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                         activity.requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
                         Toast.makeText(context, R.string.kr_write_external_storage, Toast.LENGTH_LONG).show();
-                    } else {
-                        DialogHelper.Companion.animDialog(new AlertDialog.Builder(context)
-                                .setTitle(R.string.kr_download_confirm)
-                                .setMessage(url + "\n\n" + mimetype + "\n" + contentLength + "Bytes")
-                                .setPositiveButton(R.string.btn_confirm, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                    new Downloader(context).downloadBySystem(url, contentDisposition, mimetype, UUID.randomUUID().toString(), null);
-                                    }
-                                })
-                                .setNegativeButton(R.string.btn_cancel, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                    }
-                                })).setCancelable(false);
                     }
                 }
             });
