@@ -53,8 +53,7 @@ class ActivityFileSelector : AppCompatActivity() {
                 }
             }
             if (containsKey("mode")) {
-                mode = getInt("mode")
-                if (mode == 1) {
+                if (getInt("mode") == 1) {
                     title = getString(R.string.title_activity_folder_selector)
                 }
             }
