@@ -173,35 +173,6 @@ class DialogHelper {
                     title: String = "",
                     message: String = "",
                     contentView: View? = null,
-                    onConfirm: Runnable? = null,
-                    onCancel: Runnable? = null): DialogWrap {
-            val view = getCustomDialogView(context, R.layout.dialog_confirm, title, message, contentView)
-
-            val dialog = customDialog(context, view)
-            view.findViewById<View>(R.id.btn_cancel).setOnClickListener {
-                dialog.dismiss()
-                onCancel?.run()
-            }
-            view.findViewById<View>(R.id.btn_confirm).setOnClickListener {
-                dialog.dismiss()
-                onConfirm?.run()
-            }
-
-            return dialog
-        }
-
-        fun confirm(context: Context,
-                    title: String = "",
-                    message: String = "",
-                    onConfirm: DialogButton? = null,
-                    onCancel: DialogButton? = null): DialogWrap {
-            return confirm(context, title, message, null, onConfirm, onCancel)
-        }
-
-        fun confirm(context: Context,
-                    title: String = "",
-                    message: String = "",
-                    contentView: View? = null,
                     onConfirm: DialogButton? = null,
                     onCancel: DialogButton? = null): DialogWrap {
             val view = getCustomDialogView(context, R.layout.dialog_confirm, title, message, contentView)
@@ -303,10 +274,6 @@ class DialogHelper {
             return dialog
         }
 
-        fun confirm(context: Context, contentView: View? = null, onConfirm: DialogButton? = null, onCancel: DialogButton? = null): DialogWrap {
-            return this.confirm(context, "", "", contentView, onConfirm, onCancel)
-        }
-
         private fun getWindowBackground(context: Context, defaultColor: Int = Color.TRANSPARENT): Int {
             // val attrsArray = intArrayOf(android.R.attr.windowBackground)
             val attrsArray = intArrayOf(android.R.attr.background)
@@ -362,13 +329,6 @@ class DialogHelper {
             }
 
             return dialog
-        }
-
-        fun alert(context: Context,
-                  title: String = "",
-                  message: String = "",
-                  onConfirm: Runnable? = null): DialogWrap {
-            return openContinueAlert(context, R.layout.dialog_alert, title, message, onConfirm, null)
         }
 
         fun customDialog(context: Context, view: View, cancelable: Boolean = true): DialogWrap {

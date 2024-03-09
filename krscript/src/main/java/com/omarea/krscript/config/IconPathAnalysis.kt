@@ -11,10 +11,6 @@ import com.omarea.krscript.model.ClickableNode
 
 
 class IconPathAnalysis {
-    // 获取快捷方式的图标
-    fun loadLogo(context: Context, clickableNode: ClickableNode): Drawable {
-        return loadLogo(context, clickableNode, true)!!
-    }
 
     // 获取快捷方式的图标
     @SuppressLint("UseCompatLoadingForDrawables")
