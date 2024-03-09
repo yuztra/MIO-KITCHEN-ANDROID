@@ -32,7 +32,7 @@ import com.omarea.krscript.model.NodeInfoBase
 import com.omarea.krscript.model.PageMenuOption
 import com.omarea.krscript.model.PageNode
 import com.omarea.krscript.model.RunnableNode
-import com.omarea.krscript.shortcut.ActionShortcutManager
+
 import com.omarea.krscript.ui.ActionListFragment
 import com.omarea.krscript.ui.DialogLogFragment
 import com.omarea.krscript.ui.PageMenuLoader
@@ -85,7 +85,7 @@ class ActionPage : AppCompatActivity() {
                 val page = if (extras.containsKey("page")) {
                     extras.getSerializable("page") as PageNode?
                 } else {
-                    ActionShortcutManager(this@ActionPage).getShortcutTarget("" + extras.getString("shortcutId"))
+                    null
                 }
 
                 if (page != null) {

@@ -18,11 +18,8 @@ import com.omarea.common.ui.DialogHelper
 import com.omarea.common.ui.DialogItemChooser
 import com.omarea.common.ui.ProgressBarDialog
 import com.omarea.common.ui.ThemeMode
-import com.omarea.krscript.BgTaskThread
-import com.omarea.krscript.HiddenTaskThread
 import com.omarea.krscript.R
 import com.omarea.krscript.TryOpenActivity
-import com.omarea.krscript.config.IconPathAnalysis
 import com.omarea.krscript.executor.ScriptEnvironmen
 import com.omarea.krscript.model.ActionNode
 import com.omarea.krscript.model.ActionParamInfo
@@ -35,7 +32,6 @@ import com.omarea.krscript.model.PageNode
 import com.omarea.krscript.model.PickerNode
 import com.omarea.krscript.model.RunnableNode
 import com.omarea.krscript.model.SwitchNode
-import com.omarea.krscript.shortcut.ActionShortcutManager
 
 class ActionListFragment : androidx.fragment.app.Fragment(), PageLayoutRender.OnItemClickListener {
     companion object {
@@ -193,32 +189,7 @@ class ActionListFragment : androidx.fragment.app.Fragment(), PageLayoutRender.On
 
     // 长按 添加收藏
     override fun onItemLongClick(clickableNode: ClickableNode) {
-        if (clickableNode.key.isEmpty()) {
-            DialogHelper.alert(
-                    this.activity!!,
-                    getString(R.string.kr_shortcut_create_fail),
-                    getString(R.string.kr_ushortcut_nsupported)
-            )
-        } else {
-            krScriptActionHandler?.addToFavorites(clickableNode, object : KrScriptActionHandler.AddToFavoritesHandler {
-                override fun onAddToFavorites(clickableNode: ClickableNode, intent: Intent?) {
-                    if (intent != null) {
-                        DialogHelper.confirm(activity!!,
-                                getString(R.string.kr_shortcut_create),
-                                String.format(getString(R.string.kr_shortcut_create_desc), clickableNode.title),
-                                {
-                                    val result = ActionShortcutManager(context!!)
-                                            .addShortcut(intent, IconPathAnalysis().loadLogo(context!!, clickableNode), clickableNode)
-                                    if (!result) {
-                                        Toast.makeText(context, R.string.kr_shortcut_create_fail, Toast.LENGTH_SHORT).show()
-                                    } else {
-                                        Toast.makeText(context, getString(R.string.kr_shortcut_create_success), Toast.LENGTH_SHORT).show()
-                                    }
-                                })
-                    }
-                }
-            })
-        }
+
     }
 
     /**
@@ -493,21 +464,11 @@ class ActionListFragment : androidx.fragment.app.Fragment(), PageLayoutRender.On
     private fun actionExecute(nodeInfo: RunnableNode, script: String, onExit: Runnable, params: HashMap<String, String>?) {
         val context = context!!
 
-        if (nodeInfo.shell == RunnableNode.shellModeBgTask) {
-            val onDismiss = Runnable {
-                krScriptActionHandler?.onActionCompleted(nodeInfo)
-            }
-            BgTaskThread.startTask(context, script, params, nodeInfo, onExit, onDismiss)
-        } else if (nodeInfo.shell == RunnableNode.shellModeHidden) {
+         if (nodeInfo.shell == RunnableNode.shellModeHidden) {
             if (hiddenTaskRunning) {
                 Toast.makeText(context, getString(R.string.kr_hidden_task_running), Toast.LENGTH_SHORT).show()
             } else {
                 hiddenTaskRunning = true
-                val onDismiss = Runnable {
-                    hiddenTaskRunning = false
-                    krScriptActionHandler?.onActionCompleted(nodeInfo)
-                }
-                HiddenTaskThread.startTask(context, script, params, nodeInfo, onExit, onDismiss)
             }
         } else {
             val onDismiss = Runnable {
