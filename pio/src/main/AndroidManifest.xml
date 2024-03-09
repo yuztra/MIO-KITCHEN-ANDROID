@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.projectkr.shell">
+    package="com.mio.kitchen">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -11,7 +11,7 @@
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
     <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
     <application
-        android:name=".PIO"
+        android:name="com.projectkr.shell.PIO"
         android:allowBackup="true"
         android:usesCleartextTraffic="true"
         android:icon="@mipmap/logo"
@@ -26,7 +26,7 @@
             android:value="2.8" />
 
         <activity
-            android:name=".ActionPage"
+            android:name="com.projectkr.shell.ActionPage"
             android:label="@string/title_activity_action_page"
             android:configChanges="keyboardHidden|orientation|uiMode|layoutDirection|screenLayout|colorMode|fontScale|smallestScreenSize|density|keyboard|screenSize|touchscreen"
             android:screenOrientation="fullSensor"
@@ -37,7 +37,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActionPageOnline"
+            android:name="com.projectkr.shell.ActionPageOnline"
             android:label="@string/title_activity_action_page"
             android:configChanges="keyboardHidden|orientation|uiMode|layoutDirection|screenLayout|colorMode|fontScale|smallestScreenSize|density|keyboard|screenSize|touchscreen"
             android:screenOrientation="fullSensor"
@@ -48,7 +48,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.projectkr.shell.MainActivity"
             android:configChanges="keyboardHidden|orientation|uiMode|layoutDirection|screenLayout|colorMode|fontScale|smallestScreenSize|density|keyboard|screenSize|touchscreen"
             android:screenOrientation="fullSensor"
             android:exported="true">
@@ -58,7 +58,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SplashActivity"
+            android:name="com.projectkr.shell.SplashActivity"
             android:configChanges="keyboardHidden|orientation|uiMode|layoutDirection|screenLayout|colorMode|fontScale|smallestScreenSize|density|keyboard|screenSize|touchscreen"
             android:screenOrientation="fullSensor"
             android:exported="true">
@@ -68,7 +68,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivityFileSelector"
+            android:name="com.projectkr.shell.ActivityFileSelector"
             android:excludeFromRecents="true"
             android:label="@string/title_activity_file_selector"
             android:configChanges="keyboardHidden|orientation|uiMode|layoutDirection|screenLayout|colorMode|fontScale|smallestScreenSize|density|keyboard|screenSize|touchscreen"
