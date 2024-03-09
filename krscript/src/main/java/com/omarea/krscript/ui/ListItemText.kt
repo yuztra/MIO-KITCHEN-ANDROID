@@ -21,7 +21,6 @@ import android.widget.TextView
 import android.widget.Toast
 import com.omarea.common.ui.DialogHelper
 import com.omarea.krscript.R
-import com.omarea.krscript.TryOpenActivity
 import com.omarea.krscript.executor.ScriptEnvironmen
 import com.omarea.krscript.model.TextNode
 
@@ -75,7 +74,7 @@ class ListItemText(private val context: Context,
                 if (row.activity.isNotEmpty()) {
                     spannableString.setSpan(object : ClickableSpan() {
                         override fun onClick(widget: View) {
-                            TryOpenActivity(context, row.activity).tryOpen()
+
                         }
 
                         override fun updateDrawState(ds: TextPaint) {

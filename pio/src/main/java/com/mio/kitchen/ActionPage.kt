@@ -20,7 +20,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import com.omarea.common.shared.FilePathResolver
 import com.omarea.common.ui.ProgressBarDialog
-import com.omarea.krscript.TryOpenActivity
 import com.omarea.krscript.config.IconPathAnalysis
 import com.omarea.krscript.config.PageConfigReader
 import com.omarea.krscript.config.PageConfigSh
@@ -92,10 +91,7 @@ class ActionPage : AppCompatActivity() {
                     autoRunItemId = if (extras.containsKey("autoRunItemId")) ("" + extras.getString("autoRunItemId")) else ""
 
                     if (page.activity.isNotEmpty()) {
-                        if (TryOpenActivity(this, page.activity).tryOpen()) {
-                            finish()
-                            return
-                        }
+                        return
                     }
 
 
