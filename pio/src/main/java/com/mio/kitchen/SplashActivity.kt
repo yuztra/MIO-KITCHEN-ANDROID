@@ -11,7 +11,6 @@ import android.os.Looper
 import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
-import com.mio.kitchen.R
 import com.mio.kitchen.permissions.CheckRootStatus
 import com.omarea.common.shell.ShellExecutor
 import com.omarea.krscript.executor.ScriptEnvironmen

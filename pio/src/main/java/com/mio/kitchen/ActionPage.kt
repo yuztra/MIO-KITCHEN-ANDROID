@@ -37,7 +37,6 @@ import com.omarea.krscript.ui.ActionListFragment
 import com.omarea.krscript.ui.DialogLogFragment
 import com.omarea.krscript.ui.PageMenuLoader
 import com.omarea.krscript.ui.ParamsFileChooserRender
-import com.mio.kitchen.R
 import kotlinx.android.synthetic.main.activity_action_page.action_page_fab
 
 
