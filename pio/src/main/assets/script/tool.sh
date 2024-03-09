@@ -27,7 +27,10 @@ if [ -e $zml/$xm/super.img ];then
 utils lpdump $zml/$xm/super.img
 fi
 if [ -e $zml/$xm/payload.bin ];then
-utils payload_dump $zml/$xm/payload.bin
+for i in $(utils payload_dump $zml/$xm/payload.bin)
+do
+  echo "$i"
+done
 fi
 }
 extract_part(){
