@@ -1,4 +1,4 @@
-package com.projectkr.shell
+package com.mio.kitchen
 
 import android.Manifest
 import android.app.Activity
@@ -10,6 +10,7 @@ import android.view.View
 import android.view.WindowManager
 import androidx.core.content.PermissionChecker
 import com.omarea.common.ui.ThemeMode
+import com.mio.kitchen.R
 
 object ThemeModeState {
     private var themeMode: ThemeMode = ThemeMode()

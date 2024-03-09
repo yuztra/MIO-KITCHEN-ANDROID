@@ -1,4 +1,4 @@
-package com.projectkr.shell
+package com.mio.kitchen
 
 import android.app.Activity
 import android.content.Context

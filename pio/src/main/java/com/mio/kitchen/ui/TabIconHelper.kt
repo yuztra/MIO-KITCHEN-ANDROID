@@ -1,4 +1,4 @@
-package com.projectkr.shell.ui
+package com.mio.kitchen.ui
 
 import android.app.Activity
 import android.graphics.drawable.Drawable
@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TabHost
 import android.widget.TextView
-import com.projectkr.shell.R
+import com.mio.kitchen.R
 
 class TabIconHelper(private var tabHost: TabHost, private var activity: Activity) {
     private var views = ArrayList<View>()

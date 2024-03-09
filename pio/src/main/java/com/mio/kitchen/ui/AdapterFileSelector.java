@@ -1,4 +1,4 @@
-package com.projectkr.shell.ui;
+package com.mio.kitchen.ui;
 
 import android.os.Handler;
 import android.view.View;
@@ -10,7 +10,7 @@ import android.widget.Toast;
 import com.google.android.material.snackbar.Snackbar;
 import com.omarea.common.ui.DialogHelper;
 import com.omarea.common.ui.ProgressBarDialog;
-import com.projectkr.shell.R;
+import com.mio.kitchen.R;
 
 import java.io.File;
 import java.io.FileFilter;

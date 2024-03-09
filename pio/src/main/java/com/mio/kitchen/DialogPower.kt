@@ -1,9 +1,10 @@
-package com.projectkr.shell
+package com.mio.kitchen
 
 import android.app.Activity
 import android.view.View
 import com.omarea.common.shell.KeepShellPublic
 import com.omarea.common.ui.DialogHelper
+import com.mio.kitchen.R
 
 class DialogPower(var context: Activity) {
     fun showPowerMenu() {

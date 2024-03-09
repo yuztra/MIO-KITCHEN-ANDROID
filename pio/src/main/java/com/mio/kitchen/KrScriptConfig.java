@@ -1,10 +1,10 @@
-package com.projectkr.shell;
+package com.mio.kitchen;
 
 import android.content.Context;
 
 import com.omarea.krscript.executor.ScriptEnvironmen;
 import com.omarea.krscript.model.PageNode;
-
+import com.mio.kitchen.R;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.HashMap;

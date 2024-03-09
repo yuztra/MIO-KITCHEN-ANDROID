@@ -1,11 +1,11 @@
-package com.projectkr.shell.permissions
+package com.mio.kitchen.permissions
 
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import com.omarea.common.shell.KeepShellPublic
 import com.omarea.common.ui.DialogHelper
-import com.projectkr.shell.R
+import com.mio.kitchen.R
 import kotlin.system.exitProcess
 
 /**

@@ -1,4 +1,4 @@
-package com.projectkr.shell
+package com.mio.kitchen
 
 import android.Manifest
 import android.app.Activity
@@ -33,7 +33,8 @@ import com.omarea.krscript.model.PageNode
 import com.omarea.krscript.model.RunnableNode
 import com.omarea.krscript.ui.ActionListFragment
 import com.omarea.krscript.ui.ParamsFileChooserRender
-import com.projectkr.shell.ui.TabIconHelper
+import com.mio.kitchen.R
+import com.mio.kitchen.ui.TabIconHelper
 import kotlinx.android.synthetic.main.activity_main.main_tabhost
 import kotlinx.android.synthetic.main.activity_main.main_tabhost_2
 import kotlinx.android.synthetic.main.activity_main.main_tabhost_3
@@ -78,14 +79,20 @@ class MainActivity : AppCompatActivity() {
 
                 if (favorites != null && favorites.size > 0) {
                     updateFavoritesTab(favorites, favoritesConfig)
-                    tabIconHelper.newTabSpec(getString(R.string.tab_favorites), ContextCompat.getDrawable(this, R.drawable.tab_favorites)!!, R.id.main_tabhost_2)
+                    tabIconHelper.newTabSpec(getString(R.string.tab_favorites), ContextCompat.getDrawable(this,
+                        R.drawable.tab_favorites
+                    )!!, R.id.main_tabhost_2
+                    )
                 } else {
                     main_tabhost_2.visibility = View.GONE
                 }
 
                 if (pages != null && pages.size > 0) {
                     updateMoreTab(pages, page2Config)
-                    tabIconHelper.newTabSpec(getString(R.string.tab_pages), ContextCompat.getDrawable(this, R.drawable.tab_pages)!!, R.id.main_tabhost_3)
+                    tabIconHelper.newTabSpec(getString(R.string.tab_pages), ContextCompat.getDrawable(this,
+                        R.drawable.tab_pages
+                    )!!, R.id.main_tabhost_3
+                    )
                 } else {
                     main_tabhost_3.visibility = View.GONE
                 }
@@ -113,12 +120,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateFavoritesTab(items: ArrayList<NodeInfoBase>, pageNode: PageNode) {
-        val favoritesFragment = ActionListFragment.create(items, getKrScriptActionHandler(pageNode, true), null, ThemeModeState.getThemeMode())
+        val favoritesFragment = ActionListFragment.create(items, getKrScriptActionHandler(pageNode, true), null,
+            ThemeModeState.getThemeMode()
+        )
         supportFragmentManager.beginTransaction().replace(R.id.list_favorites, favoritesFragment).commitAllowingStateLoss()
     }
 
     private fun updateMoreTab(items: ArrayList<NodeInfoBase>, pageNode: PageNode) {
-        val allItemFragment = ActionListFragment.create(items, getKrScriptActionHandler(pageNode, false), null, ThemeModeState.getThemeMode())
+        val allItemFragment = ActionListFragment.create(items, getKrScriptActionHandler(pageNode, false), null,
+            ThemeModeState.getThemeMode()
+        )
         supportFragmentManager.beginTransaction().replace(R.id.list_pages, allItemFragment).commitAllowingStateLoss()
     }
 

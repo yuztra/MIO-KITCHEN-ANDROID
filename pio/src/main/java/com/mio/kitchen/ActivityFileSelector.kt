@@ -1,4 +1,4 @@
-package com.projectkr.shell
+package com.mio.kitchen
 
 import android.Manifest
 import android.app.Activity
@@ -14,7 +14,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.PermissionChecker
 import com.omarea.common.ui.ProgressBarDialog
-import com.projectkr.shell.ui.AdapterFileSelector
+import com.mio.kitchen.R
+import com.mio.kitchen.ui.AdapterFileSelector
 import kotlinx.android.synthetic.main.activity_file_selector.file_selector_list
 import java.io.File
 // FILE_MODE = 0 FOLDER_MODE=1

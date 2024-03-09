@@ -1,4 +1,4 @@
-package com.projectkr.shell
+package com.mio.kitchen
 
 import android.app.Activity
 import android.content.Context
@@ -11,9 +11,10 @@ import android.os.Looper
 import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
+import com.mio.kitchen.R
+import com.mio.kitchen.permissions.CheckRootStatus
 import com.omarea.common.shell.ShellExecutor
 import com.omarea.krscript.executor.ScriptEnvironmen
-import com.projectkr.shell.permissions.CheckRootStatus
 import kotlinx.android.synthetic.main.activity_splash.start_logo
 import kotlinx.android.synthetic.main.activity_splash.start_state_text
 import java.io.BufferedReader

@@ -1,4 +1,4 @@
-package com.projectkr.shell
+package com.mio.kitchen
 
 import android.Manifest
 import android.app.Activity
@@ -33,6 +33,7 @@ import com.omarea.common.ui.ThemeMode
 import com.omarea.krscript.WebViewInjector
 import com.omarea.krscript.downloader.Downloader
 import com.omarea.krscript.ui.ParamsFileChooserRender
+import com.mio.kitchen.R
 import kotlinx.android.synthetic.main.activity_action_page_online.kr_download_name
 import kotlinx.android.synthetic.main.activity_action_page_online.kr_download_name_copy
 import kotlinx.android.synthetic.main.activity_action_page_online.kr_download_progress

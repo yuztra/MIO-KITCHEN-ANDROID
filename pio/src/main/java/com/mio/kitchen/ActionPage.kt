@@ -1,4 +1,4 @@
-package com.projectkr.shell
+package com.mio.kitchen
 
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.app.Activity
@@ -37,6 +37,7 @@ import com.omarea.krscript.ui.ActionListFragment
 import com.omarea.krscript.ui.DialogLogFragment
 import com.omarea.krscript.ui.PageMenuLoader
 import com.omarea.krscript.ui.ParamsFileChooserRender
+import com.mio.kitchen.R
 import kotlinx.android.synthetic.main.activity_action_page.action_page_fab
 
 
@@ -445,7 +446,9 @@ class ActionPage : AppCompatActivity() {
                             }
                         }
 
-                        val fragment = ActionListFragment.create(items, actionShortClickHandler, autoRunTask, ThemeModeState.getThemeMode())
+                        val fragment = ActionListFragment.create(items, actionShortClickHandler, autoRunTask,
+                            ThemeModeState.getThemeMode()
+                        )
                         supportFragmentManager.beginTransaction().replace(R.id.main_list, fragment).commitAllowingStateLoss()
                         hideDialog()
                         actionsLoaded = true
