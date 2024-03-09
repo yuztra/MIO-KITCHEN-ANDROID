@@ -82,14 +82,7 @@ class PageLayoutRender(private val mContext: Context,
         }
     }
 
-    private val onItemLongClickListener = object : ListItemClickable.OnLongClickListener {
-        override fun onLongClick(listItemView: ListItemClickable) {
-            val item = findItemByDynamicIndex(listItemView.index, itemConfigList)
-            if (item is ClickableNode) {
-                clickListener.onItemLongClick(item)
-            }
-        }
-    }
+
 
     private fun mapConfigList(parent: ListItemGroup, actionInfos: ArrayList<NodeInfoBase>) {
         for (index in 0 until actionInfos.size) {
@@ -117,7 +110,6 @@ class PageLayoutRender(private val mContext: Context,
                 if (uiRender != null) {
                     if (uiRender is ListItemClickable) {
                         uiRender.setOnClickListener(this.onItemClickListener)
-                        uiRender.setOnLongClickListener(this.onItemLongClickListener)
                     }
                     parent.addView(uiRender)
                 }

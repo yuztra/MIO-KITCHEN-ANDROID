@@ -5,7 +5,7 @@ import android.view.View
 import com.omarea.common.shell.KeepShellPublic
 import com.omarea.common.ui.DialogHelper
 
-class DialogPower(var context: Activity) {
+class DialogPower(private var context: Activity) {
     fun showPowerMenu() {
         val view = context.layoutInflater.inflate(R.layout.dialog_power_operation, null)
         val dialog = DialogHelper.customDialog(context, view)
