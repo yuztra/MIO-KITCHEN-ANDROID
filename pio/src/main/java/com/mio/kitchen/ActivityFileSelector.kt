@@ -1,6 +1,6 @@
 package com.mio.kitchen
 
-import android.Manifest
+·import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -53,7 +53,8 @@ class ActivityFileSelector : AppCompatActivity() {
                 }
             }
             if (containsKey("mode")) {
-                if (getInt("mode") == 1) {
+                mode = getInt("mode")
+                if (mode == 1) {
                     title = getString(R.string.title_activity_folder_selector)
                 }
             }
