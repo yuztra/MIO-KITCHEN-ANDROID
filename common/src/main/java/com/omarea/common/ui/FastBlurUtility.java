@@ -94,7 +94,7 @@ public class FastBlurUtility {
         if (bkg == null) {
             return null;
         }
-        float radius = 8; //模糊程度
+        float radius = 3; //模糊程度
 
         Bitmap overlay = fastBlur(small(bkg), (int) radius);
         return big(getDimmedBitmap(overlay));
