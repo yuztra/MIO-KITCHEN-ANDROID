@@ -18,7 +18,4 @@ public class OverScrollView extends OverScrollScrollView {
         super(context, attrs, defStyle);
     }
 
-    public OverScrollView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-    }
 }
