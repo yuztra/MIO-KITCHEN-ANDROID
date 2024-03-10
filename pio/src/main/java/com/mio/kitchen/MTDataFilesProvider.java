@@ -14,6 +14,7 @@ import android.provider.DocumentsProvider;
 import android.system.ErrnoException;
 import android.system.Os;
 import android.system.StructStat;
+import android.util.Log;
 import android.webkit.MimeTypeMap;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -178,7 +179,7 @@ public class MTDataFilesProvider extends DocumentsProvider {
                     return str;
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.e("mt_!", e.toString());
             }
         }
         try {
@@ -251,7 +252,7 @@ public class MTDataFilesProvider extends DocumentsProvider {
                 }
                 newRow2.add("mt_extras", sb.toString());
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.e("mt_!", e.toString());
             }
         }
     }
