@@ -6,7 +6,7 @@ echo "开始打包ROM:${name}.zip"
 [ -z $lj ]&&error "请输入路径，打包"
 [ -x $name ]&&error "请输入名称，打包"
 if [ "$kxyt" == "1" ] && [ ! -z "$code" ]; then
-utils kxyt ${lj}/ $bin/extra_flash.zip $code
+utils kxyt $zml/$xm/ $bin/extra_flash.zip $code
 else
 [ -z "$code" ] && warn "请输入机型代号"
 fi
