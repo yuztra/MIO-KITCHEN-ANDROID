@@ -59,11 +59,7 @@ class ParamsFileChooserRender(private var actionParamInfo: ActionParamInfo, priv
             fileChooser?.openFileChooser(object : FileSelectedInterface {
                 override fun onFileSelected(path: String?) {
                     if (path.isNullOrEmpty()) {
-                        if (type() == FileSelectedInterface.TYPE_FOLDER) {
-                            textView.text = context.getString(R.string.kr_please_choose_folder)
-                        } else {
-                            textView.text = context.getString(R.string.kr_please_choose_file)
-                        }
+                        textView.text = if (type() == FileSelectedInterface.TYPE_FOLDER) { context.getString(R.string.kr_please_choose_folder) } else { context.getString(R.string.kr_please_choose_file) }
                         pathView.setText("")
                     } else {
                         textView.text = path
