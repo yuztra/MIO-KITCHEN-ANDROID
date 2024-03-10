@@ -68,7 +68,7 @@ class DialogHelper {
         // 是否禁用模糊背景
         private var disableBlurBg = false
 
-        fun animDialog(dialog: AlertDialog?): DialogWrap? {
+        private fun animDialog(dialog: AlertDialog?): DialogWrap? {
             if (dialog != null && !dialog.isShowing) {
                 dialog.window?.run {
                     setWindowAnimations(R.style.windowAnim)

@@ -98,13 +98,6 @@ class DialogItemChooser2(
         }
     }
 
-    fun setTitle(title: String): DialogItemChooser2 {
-        this.title = title
-        updateTitle()
-
-        return this
-    }
-
     private fun setup(gridView: AbsListView) {
         gridView.adapter = AdapterItemChooser2(gridView.context, items, selectedItems, multiple)
     }
