@@ -139,7 +139,7 @@ class PageConfigReader {
                         } else if (group != null) {
                             when (parser.name) {
                                 "page" -> {
-                                    tagEndInPage()
+
                                     if (page != null) {
                                         group.children.add(page)
                                     }
@@ -167,7 +167,7 @@ class PageConfigReader {
                                     picker = null
                                 }
                                 "text" -> {
-                                    tagEndInText()
+
                                     if (text != null) {
                                         group.children.add(text)
                                     }
@@ -177,7 +177,7 @@ class PageConfigReader {
                         } else {
                             when (parser.name) {
                                 "page" -> {
-                                    tagEndInPage()
+
                                     if (page != null) {
                                         mainList.add(page)
                                     }
@@ -205,7 +205,7 @@ class PageConfigReader {
                                     picker = null
                                 }
                                 "text" -> {
-                                    tagEndInText()
+
                                     if (text != null) {
                                         mainList.add(text)
                                     }
@@ -326,8 +326,7 @@ class PageConfigReader {
         }
     }
 
-    private fun tagEndInPage() {
-    }
+
 
     private fun tagEndInAction(action: ActionNode?) {
         if (action != null) {
@@ -713,8 +712,7 @@ class PageConfigReader {
         }
     }
 
-    private fun tagEndInText() {
-    }
+
 
     private var vitualRootNode: NodeInfoBase? = null
     private fun executeResultRoot(context: Context, scriptIn: String): String {

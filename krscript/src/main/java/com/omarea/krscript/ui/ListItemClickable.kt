@@ -21,12 +21,6 @@ open class ListItemClickable(context: Context,
         return this
     }
 
-    fun setOnLongClickListener(onLongClickListener: OnLongClickListener): ListItemClickable {
-        this.mOnLongClickListener = onLongClickListener
-
-        return this
-    }
-
     fun triggerAction() {
         this.mOnClickListener?.onClick(this)
     }
