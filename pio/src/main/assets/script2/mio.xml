@@ -56,8 +56,8 @@
              <option value="rw">读写</option>
         </param>
         <param name="psize" label="打包大小" desc="注：仅打包ext4时生效" >
-             <option value="auto" >自动计算大小</option>
-             <option value="orig" >原img大小</option>
+             <option value="auto" >自动计算</option>
+             <option value="orig" >原大小</option>
         </param>
         <param name="img_type" label="打包格式" desc="注：仅打包ext4,erofs时生效" >
              <option value="raw" >raw</option>
