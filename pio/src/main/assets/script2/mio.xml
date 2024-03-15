@@ -15,13 +15,13 @@
     <action>
         <title>分解br</title>
         <set>script/tool.sh zdyfj</set>
-        <param name="zdy" title="请选择文件支持多选：" options-sh="script/tool.sh new.dat.br" desc="自动识别" required="true" multiple="true"/>
+        <param name="zdy" title="请选择文件：" options-sh="script/tool.sh new.dat.br" desc="自动识别" required="true" multiple="true"/>
     </action>
 
     <action>
         <title>分解dat</title>
         <set>script/tool.sh zdyfj</set>
-        <param name="zdy" title="请选择DAT文件支持多选：" options-sh="script/tool.sh new.dat" desc="识别/sdcard/MIO工程路径下的文件" required="true" multiple="true"/>
+        <param name="zdy" title="请选择DAT文件：" options-sh="script/tool.sh new.dat" desc="识别/sdcard/MIO工程路径下的文件" required="true" multiple="true"/>
     </action>
     
       <action>
@@ -43,14 +43,14 @@
     <action>
         <title>打包镜像</title>
         <set>script/tool.sh pack</set>
-        <param name="UIMGS" options-sh="script/tool.sh lsmdir" desc="支持多个打包，工具自动识别镜像格式打包" required="true" multiple="true"/>
+        <param name="UIMGS" options-sh="script/tool.sh lsmdir" desc="自动识别镜像格式打包" required="true" multiple="true"/>
         <param name="dbfs" label="打包方式" desc="注：仅打包ext4时生效"  >
              <option value="mkeimg">mke2fs+e2fsdroid</option>
              <option value="make_ext4">make_ext4fs</option>
         </param>
         <param name="jxys" label="镜像压缩" type="switch" />
         <param name="del" label="删除源文件" type="switch" />
-         <param name="zhua" label="Erofs-Ext转化打包" type="switch" />
+         <param name="zhua" label="Erofs-Ext转化" type="switch" />
         <param name="Reading" label="分区读写" desc="注：仅打包ext4时生效"  >
              <option value="ro">只读</option>
              <option value="rw">读写</option>
