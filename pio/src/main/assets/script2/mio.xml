@@ -35,7 +35,7 @@
     <action>
         <title>分解img</title>
         <set>script/tool.sh zdyfj</set>
-        <param name="zdy" title="请选择IMG文件支持多选：" options-sh="script/tool.sh img" desc="识别/sdcard/MIO工程路径下的文件，工具自动识别img格式进行提取" required="true" multiple="true"/>
+        <param name="zdy" title="请选择IMG：" options-sh="script/tool.sh img" desc="识别/sdcard/MIO工程路径下的文件，工具自动识别img格式进行提取" required="true" multiple="true"/>
     </action>
 </group>
 
@@ -65,9 +65,9 @@
         </param>
         <param name="fze" label="erofs压缩等级" value="8" desc="注：仅打包erofs时生效" />
         <param name="type" label="erofs压缩方式" desc="注：仅打包erofs时生效" >
-             <option value="lz4hc" >lz4hc</option>
-             <option value="lz4" >lz4</option>
-             <option value="lzma" >lzma</option>
+            <option value="lz4hc" >lz4hc</option>
+            <option value="lz4" >lz4</option>
+            <option value="lzma" >lzma</option>
             <option value="deflate" >deflate</option>
         </param>
        
