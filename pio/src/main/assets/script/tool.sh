@@ -87,27 +87,6 @@ tqdgjx(){
 if [ -f $zml/$xm/super.img ];then
 [ "$(utils utils gettype $zml/$xm/super.img)" = "sparse" ]&&str $zml/$xm/super.img
 fi
-
-if [ $qptq = 1 ];then
-if [ "$tqjx" = "super.img" ];then
-echo "正在提取[super]:super.img"
-utils lpunpack $zml/$xm/super.img $zml/$xm/
-errorlevel=$?
-if [ $? = 0 ] && [ $del = 1 ];then
-rm -rf $zml/$xm/super.img
-else
-[ $errorlevel = 1 ]&&warn "解包super时异常"
-fi
-fi
-if [ "$tqjx" = "payload.bin" ];then
-echo "正在解包[payload]:payload.bin"
-utils payload_all $zml/$xm/payload.bin $zml/$xm/
-if [ $? = 0 ] && [ $del = 1 ];then
-rm -rf $zml/$xm/$tqjx
-fi
-fi
-exit 0
-fi
 for i in ${jxs}
 do
 echo "正在提取$i"

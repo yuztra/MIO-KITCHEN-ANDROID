@@ -27,7 +27,6 @@
       <action>
         <title>提取单个镜像</title>
         <set>script/tool.sh tqdgjx</set>
-         <param name="qptq" label="全盘提取" type="switch" />
          <param name="del" label="删除源文件" type="switch" />
         <param name="tqjx" title="请选择要提取镜像" options-sh="script/tool.sh dg" desc="自动" required="true" multiple="true"/>
         <param name="jxs" title="请选择要提取的分区" options-sh="script/tool.sh readdt" desc="自动" required="true" multiple="true"/>
