@@ -15,7 +15,7 @@ export ROOT_PERMISSION=$({ROOT_PERMISSION})
 export TMPDIR="$TEMP_DIR"
 export XBJ="$TEMP_DIR/.xm"
 # 语言
-export TEXT_LANG=zh
+export TEXT_LANG=ja
 # toolkit工具目录
 export bin="$({TOOLKIT})"
 export TOOLKIT="$({TOOLKIT})"
@@ -50,5 +50,5 @@ if [[ -f "$script_path" ]]; then
     chmod 755 "$script_path"
     source "$script_path"
 else
-    echo "${script_path} 已丢失" 1>&2
+    echo "${script_path} が見つかりませんでした" 1>&2
 fi

@@ -19,7 +19,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             style="@style/textDefault"
-            android:text="选择操作"
+            android:text="@string/select_action"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -31,7 +31,7 @@
 
             <LinearLayout
                 android:layout_weight="1"
-                android:layout_height="65dp"
+                android:layout_height="75dp"
                 android:background="@drawable/krscript_item_ripple"
                 android:id="@+id/power_shutdown"
                 style="@style/ListCardItemSmall"
@@ -60,20 +60,20 @@
                         android:layout_marginBottom="4dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="关机" />
+                        android:text="@string/power_off" />
 
                     <TextView
                         style="@style/textSmall"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="正常关机" />
+                        android:text="@string/desc_power_off" />
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_weight="1"
-                android:layout_height="65dp"
+                android:layout_height="75dp"
                 android:background="@drawable/krscript_item_ripple"
                 android:id="@+id/power_reboot"
                 style="@style/ListCardItemSmall"
@@ -103,13 +103,13 @@
                         android:layout_marginBottom="4dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="重启" />
+                        android:text="@string/reboot_system" />
 
                     <TextView
                         style="@style/textSmall"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="正常重启" />
+                        android:text="@string/desc_reboot_system" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -117,7 +117,7 @@
 
         <LinearLayout
             android:layout_weight="1"
-            android:layout_height="65dp"
+            android:layout_height="75dp"
             android:background="@drawable/krscript_item_ripple"
             android:id="@+id/power_hot_reboot"
             style="@style/ListCardItemSmall"
@@ -147,20 +147,20 @@
                     android:layout_marginBottom="4dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="热重启" />
+                    android:text="@string/restart_system_ui" />
 
                 <TextView
                     style="@style/textSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="只重启系界面而不重新引导系统（可能引发Bug）" />
+                    android:text="@string/desc_restart_system_ui" />
             </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_weight="1"
-            android:layout_height="65dp"
+            android:layout_height="75dp"
             android:background="@drawable/krscript_item_ripple"
             android:id="@+id/power_recovery"
             style="@style/ListCardItemSmall"
@@ -190,20 +190,20 @@
                     android:layout_marginBottom="4dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Recovery" />
+                    android:text="@string/reboot_recovery" />
 
                 <TextView
                     style="@style/textSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="重启到Recovery模式（俗称卡刷模式）" />
+                    android:text="@string/desc_reboot_recovery" />
             </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_weight="1"
-            android:layout_height="65dp"
+            android:layout_height="75dp"
             android:background="@drawable/krscript_item_ripple"
             android:id="@+id/power_fastboot"
             style="@style/ListCardItemSmall"
@@ -233,20 +233,20 @@
                     android:layout_marginBottom="4dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Fastboot" />
+                    android:text="@string/reboot_fastboot" />
 
                 <TextView
                     style="@style/textSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="重启到Fastboot模式（俗称USB线刷模式）" />
+                    android:text="@string/desc_reboot_fastboot" />
             </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_weight="1"
-            android:layout_height="65dp"
+            android:layout_height="75dp"
             android:background="@drawable/krscript_item_ripple"
             android:id="@+id/power_emergency"
             style="@style/ListCardItemSmall"
@@ -277,13 +277,13 @@
                     android:layout_marginBottom="4dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="9008(EDL)" />
+                    android:text="@string/reboot_edl" />
 
                 <TextView
                     style="@style/textSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="重启到9008模式，*此模式仅限部分骁龙设备可用" />
+                    android:text="@string/desc_reboot_edl" />
             </LinearLayout>
 
         </LinearLayout>

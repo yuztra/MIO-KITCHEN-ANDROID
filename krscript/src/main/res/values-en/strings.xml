@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="btn_confirm">OK</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_skip">Skip</string>
+    <string name="onloading">Loading...</string>
+    <string name="kr_shell_completed">Script execution completed</string>
+    <string name="btn_copy_output">Copy</string>
+    <string name="do_not_empty">" an value is required for this field"</string>
+    <string name="kr_param_options_load">"Loading list items of "</string>
+    <string name="kr_please_choose_file">Choose a file</string>
+    <string name="kr_please_select">Select</string>
+    <string name="kr_page_load_fail">Unable to load the page</string>
+    <string name="xml_config_parse_failed">Failed to parse config XML</string>
+    <string name="kr_please_choose_folder">Please select a directory</string>
+    <string name="kr_page_loading">Parsing config XML</string>
+    <string name="kr_lock_message">A mutex is accquired for this feature</string>
+</resources>

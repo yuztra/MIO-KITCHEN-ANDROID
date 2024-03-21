@@ -10,6 +10,7 @@ import android.util.Log
 import android.util.Xml
 import android.widget.Toast
 import com.omarea.common.model.SelectItem
+import com.omarea.krscript.R
 import com.omarea.krscript.executor.ExtractAssets
 import com.omarea.krscript.executor.ScriptEnvironmen
 import com.omarea.krscript.model.ActionNode
@@ -63,7 +64,8 @@ class PageConfigReader {
                 }
             } catch (ex: Exception) {
                 Handler(Looper.getMainLooper()).post {
-                    Toast.makeText(context, "解析配置文件失败\n" + ex.message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(context,
+                        context.getString(R.string.xml_config_parse_failed) + "\n" + ex.message,  Toast.LENGTH_LONG).show()
                 }
                 Log.e("KrConfig Fail！", "" + ex.message)
             }
@@ -220,7 +222,8 @@ class PageConfigReader {
             return mainList
         } catch (ex: Exception) {
             Handler(Looper.getMainLooper()).post {
-                Toast.makeText(context, "解析配置文件失败\n" + ex.message, Toast.LENGTH_LONG).show()
+                Toast.makeText(context,
+                    context.getString(R.string.xml_config_parse_failed) + "\n" + ex.message, Toast.LENGTH_LONG).show()
             }
             Log.e("KrConfig Fail！", "" + ex.message)
         }

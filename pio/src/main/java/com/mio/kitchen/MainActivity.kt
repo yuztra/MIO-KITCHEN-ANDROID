@@ -303,10 +303,14 @@ class MainActivity : AppCompatActivity() {
                 val add = layout.findViewById<Button>(R.id.button_add_qq)
                 val wxpay = layout.findViewById<Button>(R.id.button_juanzeng)
                 wxpay.setOnClickListener{
-                    Toast.makeText(this@MainActivity, if (juanzen()) {"感谢捐赠！"} else {"未安装微信或安装的版本不支持"}, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@MainActivity, if (juanzen()) {
+                        getString(R.string.thanks_for_your_support)} else {
+                        getString(R.string.wechat_is_not_installed)}, Toast.LENGTH_LONG).show()
                 }
                 add.setOnClickListener{
-                    Toast.makeText(this@MainActivity, if (joinQQGroup()) {"已进入QQ"} else {"未安装手Q或安装的版本不支持"}, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@MainActivity, if (joinQQGroup()) {
+                        getString(R.string.redirected_to_qq)} else {
+                        getString(R.string.qq_is_not_installed)}, Toast.LENGTH_LONG).show()
                 }
                 transparentUi.setOnClickListener {
                     val isChecked = (it as CompoundButton).isChecked

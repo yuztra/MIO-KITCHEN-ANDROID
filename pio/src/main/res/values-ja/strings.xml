@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MIO-KITCHEN</string>
+    <string name="btn_exit">閉じる</string>
+    <string name="about_title">MIO-KITCHEN について</string>
+    <string name="kr_script_config">kr-script-ja.conf</string>
+    <string name="please_wait">読み込み中</string>
+    <string name="appliction_author">提供：ColdWindScholar</string>
+    <string name="tab_favorites">お気になり</string>
+    <string name="tab_pages">すべて</string>
+    <string name="pop_started">完了！</string>
+    <string name="btn_retry">再試行</string>
+    <string name="pio_starting">起動中</string>
+    <string name="pop_before_start">起動前の準備…</string>
+    <string name="warn_">注意</string>
+    <string name="join_qq_group">QQ グループ</string>
+    <string name="support_us">寄付</string>
+    <string name="power_off">電源を切る</string>
+    <string name="desc_power_off">電源を正常に切る</string>
+    <string name="reboot_system">再起動</string>
+    <string name="desc_reboot_system">正常に再起動</string>
+    <string name="restart_system_ui">SystemUI を再起動</string>
+    <string name="desc_restart_system_ui">SystemUI だけを再起動（バグを起こす可能性があります）</string>
+    <string name="reboot_recovery">Recovery に再起動</string>
+    <string name="desc_reboot_recovery">Recovery モードに再起動（例：TWRP）</string>
+    <string name="reboot_fastboot">Fastboot モードに再起動</string>
+    <string name="select_action">操作を選択</string>
+    <string name="wechat_is_not_installed">WeChat はインストールしていません</string>
+    <string name="copy_success">コピーをした</string>
+    <string name="title_activity_file_selector">ファイルを選択</string>
+    <string name="title_activity_folder_selector">長押しでフォルダを選択</string>
+    <string name="appliction_desc">永久無料のAndroid ROMツール</string>
+    <string name="engine_version_name">[Kr-Script4.0.3]を搭載して動きます</string>
+    <string name="error_root">このデバイスはまだROOT化されていません。お使いのデバイスがすでにROOT化されたの場合は、ポップアップダイアログでこのアプリにROOT権限を許可してください。</string>
+    <string name="transparent_ui">背景を透明にする</string>
+    <string name="desc_reboot_fastboot">Fastboot モードに再起動（いわゆる Bootloader）</string>
+    <string name="reboot_edl">EDL モードに再起動</string>
+    <string name="desc_reboot_edl">ダウンロードモードに再起動（*一部のQualcomm製の端末のみ）</string>
+    <string name="thanks_for_your_support">ご支援いただきありがとうございます！</string>
+    <string name="redirected_to_qq">QQ に移動しました</string>
+    <string name="qq_is_not_installed">QQ はインストールしていません</string>
+    <string name="confirm_file_selection">選択したのファイルを確認してください</string>
+    <string name="selected_file_gone">選択してのファイルがなくなったみたいなので、もう一度選択してください！</string>
+    <string name="now_loading">読み込み中…</string>
+    <string name="directory_is_empty">このフォルダは空です！</string>
+    <string name="confirm_select_directory">選択したのフォルダを確認してください</string>
+</resources>
