@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resource dir="file:///android_asset/script" /> 
+<items>
+    <group title="Project selection">
+     <action reload="true" auto-off="true"> 
+     <title>Switch Project</title>
+     <param name="xm" options-sh="script/tool.sh check"/>
+     <set>echo "$xm" > ${XBJ}</set>
+     <summary sh="script/tool.sh zy" />
+     </action>
+    </group>
+
+    <group title="Tool Menu">
+        <action reload="true" auto-off="true">
+            <title>Download ROM</title>
+            <param name="jb" label="Extract the downloaded archive" type="switch" />
+            <param name="del" label="Remove the archive after extraction" type="switch" />
+            <param name="romdz" label="URL" title="Download from" placeholder="Enter the link...." type="text" />
+            <script>script/tool.sh download</script>
+        </action>
+        
+         <action reload="true" auto-off="true"> 
+     <title>Select ROM</title>
+ <set>script/tool.sh UZ</set>
+ <param name="del" label="Remove the source file after extraction" type="switch" />
+<param name="xzrom" label="ROM file" type="file" suffix="zip" />
+     </action>
+     
+     <action reload="true" auto-off="true"> 
+     <title>Delete Project</title>
+     <param multiple="true" name="xms" options-sh="script/tool.sh check"/>
+     <set>script/tool.sh del</set>
+     </action>
+     
+     <action reload="true" auto-off="true"> 
+     <title>New Project</title>
+     <param name="xmmc" label="Name" title="Project Name"  type="text" />
+     <set>script/tool.sh mn</set>
+     </action>  
+          
+    <page title="Project Menu" config="file:///android_asset/script2/mio_en.xml">
+    <lock>script/tool.sh unlock</lock>
+    </page>
+    </group>
+</items>

@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 style="@style/dialogLargeBtn"
-                android:text="加入QQ群" />
+                android:text="@string/join_qq_group" />
 
             <Button
                 android:id="@+id/button_juanzeng"
@@ -65,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="捐赠我们" />
+                android:text="@string/support_us" />
         </LinearLayout>
 
         <LinearLayout

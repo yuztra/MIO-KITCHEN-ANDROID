@@ -15,7 +15,7 @@
         <param name="CQ" label="刷入成功自动重启系统" type="checkbox" />
         <param name="CQ1" label="刷入成功自动重启至Recovery（恢复模式）" type="checkbox" />
         <param name="IMG" title="注：要刷入的镜像大小不能大于显示的大小，否则会刷入不了" options-sh="script/tool.sh parts" required="true"/>
-        <param name="Brush_in" type="file" suffix="img" editable="true" required="true" title="可输入img文件绝对路径，也可以使用文件选择器选择文件" desc="路径最好不要带空格"/>
+        <param name="Image_to_flash" type="file" suffix="img" editable="true" required="true" title="可输入img文件绝对路径，也可以使用文件选择器选择文件" desc="路径最好不要带空格"/>
     </action>
     <action>
         <title>提取镜像文件</title>

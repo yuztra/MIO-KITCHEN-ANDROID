@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="btn_confirm">OK</string>
+    <string name="item_chooser_search_hint">Search for item</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_skip">Skip</string>
+</resources>

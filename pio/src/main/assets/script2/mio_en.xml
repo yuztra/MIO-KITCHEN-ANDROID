@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resource dir="file:///android_asset/script" />
+<group title="Run plugins">
+    <page reload="true" config-sh="script/tool.sh module" title="Plugins" desc="Support .mpk plugins">
+        <option type="file" style="fab" suffix="mpk" auto-off="true" reload="true"/>
+    <handler>script/tool.sh install_module</handler>
+    </page>
+</group>
+
+<group title="Unpack Menu">
+ <action>
+        <title>Unpack ROM</title>
+        <set>script/tool.sh UN</set>
+    </action>
+    <action>
+        <title>Unpack br</title>
+        <set>script/tool.sh zdyfj</set>
+        <param name="zdy" title="Select file(s):" options-sh="script/tool.sh new.dat.br" desc="Automatically detected" required="true" multiple="true"/>
+    </action>
+
+    <action>
+        <title>Unpack dat</title>
+        <set>script/tool.sh zdyfj</set>
+        <param name="zdy" title="Select DAT file:" options-sh="script/tool.sh new.dat" desc="Automatically detected from your project files under /sdcard/MIO" required="true" multiple="true"/>
+    </action>
+    
+      <action>
+        <title>Unpack Single Partition(s)</title>
+        <set>script/tool.sh tqdgjx</set>
+         <param name="del" label="Remove the source file on finish" type="switch" />
+        <param name="tqjx" title="Please select the source image(s): " options-sh="script/tool.sh dg" desc="Automatically detected" required="true" multiple="true"/>
+        <param name="jxs" title="Please select the partition(s) to unpack: " options-sh="script/tool.sh readdt" desc="Automatically detected" required="true" multiple="true"/>
+    </action>
+    
+    <action>
+        <title>Unpack img</title>
+        <set>script/tool.sh zdyfj</set>
+        <param name="zdy" title="Select Image File:" options-sh="script/tool.sh img" desc="Automatically detected from your project files under /sdcard/MIO, img format will be determined automatically by the tool for unpacking" required="true" multiple="true"/>
+    </action>
+</group>
+
+<group title="Repack Menu">
+    <action>
+        <title>Pack IMG</title>
+        <set>script/tool.sh pack</set>
+        <param name="UIMGS" options-sh="script/tool.sh lsmdir" desc="Automatically detected from repackable images" required="true" multiple="true"/>
+        <param name="dbfs" label="Pack with" desc="Note: only for packing ext4"  >
+             <option value="mkeimg">mke2fs+e2fsdroid</option>
+             <option value="make_ext4">make_ext4fs</option>
+        </param>
+        <param name="jxys" label="Resize image to optimal" type="switch" />
+        <param name="del" label="Delete source file on finish" type="switch" />
+         <param name="zhua" label="Erofs＜＝＞Ext" type="switch" />
+        <param name="Reading" label="Support mounting as" desc="Note: only for packing ext4"  >
+             <option value="ro">Read-Only</option>
+             <option value="rw">Writable</option>
+        </param>
+        <param name="psize" label="Image Size" desc="Note: only for packing ext4" >
+             <option value="auto" >Auto</option>
+             <option value="orig" >Same as original</option>
+        </param>
+        <param name="img_type" label="Output Format" desc="Note: only for packing ext4, erofs" >
+             <option value="raw" >raw</option>
+             <option value="sparse" >sparse</option>
+        </param>
+        <param name="fze" label="erofs compression level" value="8" desc="Note: only for packing erofs" />
+        <param name="type" label="erofs compression level" desc="Note: only for packing erofs" >
+            <option value="lz4hc" >lz4hc</option>
+            <option value="lz4" >lz4</option>
+            <option value="lzma" >lzma</option>
+            <option value="deflate" >deflate</option>
+        </param>
+       
+    </action>
+    <action>
+        <title>Pack super.img</title>
+        <set>script/tool.sh packsuper</set>
+        <param name="type" label="Partition Layout" >
+             <option value="A">a_only</option>
+             <option value="AB">ab</option>
+             <option value="VAB">virtual_ab</option>
+        </param>
+        <param name="from" label="Output Format" >
+             <option value="sparse">sparse</option>
+             <option value="raw">raw</option>
+        </param>
+        <param name="super_size" required="true" value="12884901888" label="super.img partition size" desc="default: 12884901888 (in bytes)" />
+        <param name="super_group" required="true" value="main" label="Group name" desc="Please choose a suitable one" />
+        <param name="simg" title="Select the included image(s):" options-sh="script/tool.sh img" desc="Do not select images of non-dynamic partitions" required="true" multiple="true"/>
+    </action>
+    <action title="Create ZIP">
+    <set>script/tool.sh packzip</set>
+    <param name="kxyt" label="Include flashing tools for using on a PC" type="switch" />
+        <param name="code" placeholder="Device codename to assert" value="" requiret="true" />
+    <param name="name" placeholder="Name your ROM" value="" requiret="true" />
+    <param name="lj" label="Output Path" type="folder" />
+    </action>
+    </group>
+<group title="Format conversion">
+    <action>
+        <title>Convert Image</title>
+        <set>script/tool.sh gszh</set>
+        <param name="del" label="Remove the source file on finish" type="switch" />
+        <param name="gs" label="Output Format" desc="erofs is not supported atm" >
+             <option value="dat" >DAT</option>
+             <option value="br" >BR</option>
+             <option value="sparse" >sparse</option>
+             <option value="raw" >raw</option>
+        </param>
+                <param name="brlv" required="true" value="3" label="Brotli Level" type="seekbar" min="0" max="9" desc="Note: higher value will take more time to compress."/>
+        <param name="IMG" title="Select image file(s):" options-sh="script/tool.sh img" desc="Automatically detected from your project files under /sdcard/MIO" required="true" multiple="true"/>
+    </action>
+</group>

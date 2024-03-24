@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MIO-KITCHEN</string>
+    <string name="about_title">About - MIO-KITCHEN</string>
+    <string name="kr_script_config">kr-script-en.conf</string>
+    <string name="btn_exit">Dismiss</string>
+    <string name="please_wait">Just a second</string>
+    <string name="appliction_desc">The Free-forever Android ROM tool</string>
+    <string name="appliction_author">is brought you by: ColdWindScholar</string>
+    <string name="engine_version_name">Based on [Kr-Script4.0.3]</string>
+    <string name="tab_favorites">Favorites</string>
+    <string name="tab_pages">All</string>
+    <string name="pop_started">Done!</string>
+    <string name="error_root">Your device is not ROOTED. If your device is already ROOTED, make sure you have granted SuperUser access to this app in the pop-up dialog.</string>
+    <string name="warn_">Warning</string>
+    <string name="transparent_ui">Transparent background</string>
+    <string name="btn_retry">Retry</string>
+    <string name="pio_starting">Starting up</string>
+    <string name="pop_before_start">APP is starting soon...</string>
+    <string name="join_qq_group">QQ group</string>
+    <string name="support_us">Support Us</string>
+    <string name="power_off">Power Off</string>
+    <string name="desc_power_off">Shutdown normally</string>
+    <string name="reboot_system">Reboot</string>
+    <string name="desc_reboot_system">Restart normally</string>
+    <string name="restart_system_ui">Restart SystemUI</string>
+    <string name="desc_restart_system_ui">Only restart SystemUI, faster (Might cause issues)</string>
+    <string name="reboot_recovery">Reboot to Recovery</string>
+    <string name="desc_reboot_recovery">Restart to Recovery mode (e.g TWRP, etc.)</string>
+    <string name="reboot_fastboot">Reboot to Fastboot</string>
+    <string name="desc_reboot_fastboot">Restart to Fastboot mode (aka the Bootloader)</string>
+    <string name="reboot_edl">Reboot to EDL</string>
+    <string name="desc_reboot_edl">Restart to Download mode (*This only works on some Qualcomm devices)</string>
+    <string name="select_action">Select an Action</string>
+    <string name="thanks_for_your_support">Thanks for your support!</string>
+    <string name="wechat_is_not_installed">WeChat is not installed</string>
+    <string name="redirected_to_qq">Redirected to QQ</string>
+    <string name="copy_success">Copied</string>
+    <string name="title_activity_file_selector">Choose a file</string>
+    <string name="title_activity_folder_selector">Hold to select directory</string>
+    <string name="qq_is_not_installed">QQ is not installed</string>
+    <string name="confirm_file_selection">The following file will be selected:</string>
+    <string name="selected_file_gone">The selected file is moved or deleted, please select again!</string>
+    <string name="now_loading">Now loading...</string>
+    <string name="directory_is_empty">This directory is empty!</string>
+    <string name="confirm_select_directory">The following directory will be selected:</string>
+</resources>

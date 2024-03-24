@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<page>
+    <group title="Script runner">
+    <action>
+        <title>Execute Command</title>
+        <summary>Custom command</summary>
+        <set>$TO</set>
+        <param name="TO" placeholder="Command" value="" requiret="true" />
+    </action>
+     </group>
+     <group>
+     <action>
+        <title>Flash an Image</title>
+        <set>script/tool.sh flash_img</set>
+        <param name="CQ" label="Reboot after this" type="checkbox" />
+        <param name="CQ1" label="Reboot to recovery after this" type="checkbox" />
+        <param name="IMG" title="Note: Do not flash images bigger than the partition size that is displayed" options-sh="script/tool.sh parts" required="true"/>
+        <param name="Image_to_flash" type="file" suffix="img" editable="true" required="true" title="Support absolute path or choose from file" desc="Recommended to avoid whitespaces in the path"/>
+    </action>
+    <action>
+        <title>Backup Partition</title>
+        <set>script/tool.sh extract_part</set>
+        <param name="IMG" title="Select partition(s):" multiple="true" options-sh="script/tool.sh parts" required="true"/>
+    </action>
+     </group>
+       <group> 
+        <text>
+        <slices>
+ <slice size="18" align="center" color="black">Disclaimers</slice>
+ <slice break="true"/>
+ <slice color="red" align="center" size="15">Use these functions at your own risk</slice><slice break="true"/></slices></text>
+</group>
+</page>
