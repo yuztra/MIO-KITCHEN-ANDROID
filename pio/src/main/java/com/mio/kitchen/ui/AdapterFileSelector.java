@@ -157,7 +157,7 @@ public class AdapterFileSelector extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, final ViewGroup parent) {
         final View view;
         if (hasParent && position == 0) {
             view = View.inflate(parent.getContext(), R.layout.list_item_dir, null);
