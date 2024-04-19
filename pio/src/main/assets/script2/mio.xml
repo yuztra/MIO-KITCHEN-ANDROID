@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource dir="file:///android_asset/script" />
 <group title="模块功能">
-    <page reload="true" config-sh="script/tool.sh module" title="模块" desc="可安装mpks模块"/>
+    <page reload="true" config-sh="script/tool.sh module" title="模块" desc="可安装mpk模块"/>
 </group>
 
 <group title="提取菜单">
