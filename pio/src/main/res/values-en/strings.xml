@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">MIO-KITCHEN</string>
     <string name="about_title">About - MIO-KITCHEN</string>
-    <string name="kr_script_config">kr-script-en.conf</string>
     <string name="btn_exit">Dismiss</string>
     <string name="please_wait">Just a second</string>
     <string name="appliction_desc">The Free-forever Android ROM tool</string>

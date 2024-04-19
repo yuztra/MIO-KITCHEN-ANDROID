@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource dir="file:///android_asset/script" /> 
 <items>
-    <group title="项目选择">
+    <group title="概览">
      <action reload="true" auto-off="true"> 
      <title>项目列表</title>
      <param name="xm" options-sh="script/tool.sh check"/>
@@ -34,11 +34,12 @@
      
      <action reload="true" auto-off="true"> 
      <title>新建项目</title>
-     <param name="xmmc" label="项目名称" title="输入项目名称"  type="text" />
+     <param name="xmmc" label="项目名称" title="输入项目名称" placeholder="请输入项目名称(不要带中文)" type="text" />
      <set>script/tool.sh mn</set>
      </action>  
           
     <page title="工程菜单" config="file:///android_asset/script2/mio.xml">
+    <set>cd $SH_DIR</set>
     <lock>script/tool.sh unlock</lock>
     </page>
     </group>
