@@ -484,7 +484,7 @@ cat <<Mod
     <action reload="true" auto-off="true">
         <title>安装模块</title>
         <set>script/tool.sh install_module</set>
-        <param name="file" title="请选择模块支持多选：" options-sh="script/tool.sh mpks" desc="识别MIO-Ultra项目下的文件" required="true" multiple="true"/>
+        <param name="file" title="请选择模块支持多选：" options-sh="script/tool.sh mpk" desc="识别MIO-Ultra项目下的文件" required="true" multiple="true"/>
     </action>
     <action reload="true" auto-off="true">
         <title>删除模块</title>
