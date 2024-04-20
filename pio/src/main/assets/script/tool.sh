@@ -86,7 +86,6 @@ tqdgjx() {
   if [ -f $zml/$xm/super.img ]; then
     [ "$(utils utils gettype $zml/$xm/super.img)" = "sparse" ] && str $zml/$xm/super.img
   fi
-
   if [ $qptq = 1 ]; then
     if [ "$tqjx" = "super.img" ]; then
       echo "- 正在提取:super.img"
@@ -240,7 +239,7 @@ make_ext4() {
   make_ext4fs -J -T 1 $argv -S $con -l $size -C $fs -L $1 -a $1 $zml/$xm/$1.img $mdir/$xm/$1
   [ $? = 1 ] && error "打包"
   if [ $jxys = 1 ]; then
-    if [ ${i}mg_type = raw ]; then
+    if [ ${img_type} = raw ]; then
       resize2fs -M $zml/$xm/$1.img
     else
       warn "您已打包为sparse，无法压缩"
@@ -257,7 +256,7 @@ mkeimg() {
     rm -rf $zml/$xm/$1.img
   fi
   [ $jxys = 1 ] && resize2fs -M $zml/$xm/$1.img
-  [ ${i}mg_type = sparse ] && rts $zml/$xm/$1.img
+  [ ${img_type} = sparse ] && rts $zml/$xm/$1.img
 }
 packsuper() {
   if [ "$type" = "A" ]; then
