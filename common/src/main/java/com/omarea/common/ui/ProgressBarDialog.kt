@@ -2,14 +2,9 @@ package com.omarea.common.ui
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.os.Handler
-import android.os.Looper
-import android.os.Message
 import android.view.LayoutInflater
 import android.widget.TextView
-import android.widget.Toast
 import com.omarea.common.R
-import com.omarea.common.shell.AsynSuShellUnit
 
 open class ProgressBarDialog(private var context: Activity, private var uniqueId: String? = null) {
     private var alert: DialogHelper.DialogWrap? = null
