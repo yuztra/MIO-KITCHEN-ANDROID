@@ -223,9 +223,9 @@ class PageConfigReader {
         } catch (ex: Exception) {
             Handler(Looper.getMainLooper()).post {
                 Toast.makeText(context,
-                    context.getString(R.string.xml_config_parse_failed) + "\n" + ex.message, Toast.LENGTH_LONG).show()
+                    context.getString(R.string.xml_config_parse_failed) + ex.message, Toast.LENGTH_LONG).show()
             }
-            Log.e("KrConfig Fail！", "" + ex.message)
+            Log.e("KrConfig Fail！", ex.message)
         }
 
         return null
