@@ -18,8 +18,7 @@ public class FastBlurUtility {
      * @return 模糊化的背景图片
      */
     public static Bitmap getBlurBackgroundDrawer(Activity activity) {
-        Bitmap bmp = takeScreenShot(activity);
-        return startBlurBackground(bmp);
+        return startBlurBackground(takeScreenShot(activity));
 
         /*
         Long startTime = System.currentTimeMillis();
@@ -50,11 +49,8 @@ public class FastBlurUtility {
 
         if (b1 != null) {
             // 获取屏幕长和高
-            int width = activity.getResources().getDisplayMetrics().widthPixels;
-            int height = activity.getResources().getDisplayMetrics().heightPixels;
-
             try {
-                Bitmap bmp = Bitmap.createBitmap(b1, 0, 0, width, height);
+                Bitmap bmp = Bitmap.createBitmap(b1, 0, 0, activity.getResources().getDisplayMetrics().widthPixels, activity.getResources().getDisplayMetrics().heightPixels);
                 view.destroyDrawingCache();
                 return bmp;
             } catch (Exception ignored) {
@@ -69,10 +65,7 @@ public class FastBlurUtility {
             return null;
         }
 
-        int width, height;
-        height = bitmap.getHeight();
-        width = bitmap.getWidth();
-        Bitmap bmpGrayscale = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Bitmap bmpGrayscale = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(bmpGrayscale);
         Paint paint = new Paint();
         paint.setAntiAlias(true);
@@ -84,8 +77,7 @@ public class FastBlurUtility {
                 0, contrast, 0, 0, 0,
                 0, 0, contrast, 0, 0,
                 0, 0, 0, 1, 0});
-        ColorMatrixColorFilter f = new ColorMatrixColorFilter(cm);
-        paint.setColorFilter(f);
+        paint.setColorFilter(new ColorMatrixColorFilter(cm));
         c.drawBitmap(bitmap, 0, 0, paint);
         return bmpGrayscale;
     }
@@ -94,10 +86,7 @@ public class FastBlurUtility {
         if (bkg == null) {
             return null;
         }
-        float radius = 3; //模糊程度
-
-        Bitmap overlay = fastBlur(small(bkg), (int) radius);
-        return big(getDimmedBitmap(overlay));
+        return big(getDimmedBitmap(fastBlur(small(bkg),  3)));
     }
 
     /**
@@ -135,7 +124,7 @@ public class FastBlurUtility {
         Bitmap bitmap = sentBitmap.copy(sentBitmap.getConfig(), true);
 
         if (radius < 1) {
-            return (null);
+            return null;
         }
 
         int w = bitmap.getWidth();
