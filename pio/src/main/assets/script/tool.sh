@@ -585,7 +585,7 @@ rboot() {
       if [ $? != 0 ]; then
         echo "重新打包ramdisk失败..."
         rm -f ramdisk-new.cpio
-        continue
+        break
       fi
     fi
   fi
