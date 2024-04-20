@@ -238,12 +238,12 @@ error() {
 make_ext4() {
   [ ${img_type} = sparse ] && argv=-s
   make_ext4fs -J -T 1 $argv -S $con -l $size -C $fs -L $1 -a $1 $zml/$xm/$1.img $mdir/$xm/$1
-  [ $? = 1 ] && error 打包
+  [ $? = 1 ] && error "打包"
   if [ $jxys = 1 ]; then
     if [ ${i}mg_type = raw ]; then
       resize2fs -M $zml/$xm/$1.img
     else
-      warn 您已打包为sparse，无法压缩
+      warn "您已打包为sparse，无法压缩"
     fi
   fi
 }
