@@ -9,10 +9,7 @@ import java.util.HashMap;
 
 public class KrScriptConfig {
 
-
     private final static String TOOLKIT_DIR = "toolkit_dir";
-    private final static String TOOLKIT_DIR_DEFAULT = "file:///android_asset/kr-script/toolkit";
-
 
     private final static String PAGE_LIST_CONFIG_SH = "page_list_config_sh";
 
@@ -49,7 +46,7 @@ public class KrScriptConfig {
         if (configInfo != null && configInfo.containsKey(TOOLKIT_DIR)) {
             return configInfo.get(TOOLKIT_DIR);
         }
-        return TOOLKIT_DIR_DEFAULT;
+        return "file:///android_asset/bin";
     }
 
     public PageNode getPageListConfig() {
@@ -79,7 +76,6 @@ public class KrScriptConfig {
         }
         return null;
     }
-
 
     public String getBeforeStartSh() {
         if (configInfo != null && configInfo.containsKey("before_start_sh")) {
