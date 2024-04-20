@@ -27,7 +27,6 @@ public class KrScriptConfig {
             configInfo.put("toolkit_dir", "file:///android_asset/bin");
             ScriptEnvironmen.init(context, getExecutorCore(), getToolkitDir());
         }
-
         return this;
     }
 
