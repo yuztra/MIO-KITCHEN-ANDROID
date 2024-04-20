@@ -18,7 +18,7 @@ import java.io.FileFilter;
 
 public class AdapterFileSelector extends BaseAdapter {
 
-    private Context context;
+    private final Context context;
     private File[] fileArray;
     private Runnable fileSelected;
     private File currentDir;
