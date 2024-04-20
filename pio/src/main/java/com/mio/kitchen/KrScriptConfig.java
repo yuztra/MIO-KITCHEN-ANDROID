@@ -5,12 +5,10 @@ import android.content.Context;
 import com.omarea.krscript.executor.ScriptEnvironmen;
 import com.omarea.krscript.model.PageNode;
 
-import java.io.InputStream;
-import java.nio.charset.Charset;
 import java.util.HashMap;
 
 public class KrScriptConfig {
-    private static final String ASSETS_FILE = "file:///android_asset/";
+
 
     private final static String TOOLKIT_DIR = "toolkit_dir";
     private final static String TOOLKIT_DIR_DEFAULT = "file:///android_asset/kr-script/toolkit";
