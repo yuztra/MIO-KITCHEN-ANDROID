@@ -42,6 +42,6 @@ class IconPathAnalysis {
 
     // Bitmap转换成Drawable
     private fun bitmap2Drawable(bitmap: Bitmap): Drawable {
-        return BitmapDrawable(bitmap)
+        return BitmapDrawable(null, bitmap);
     }
 }
