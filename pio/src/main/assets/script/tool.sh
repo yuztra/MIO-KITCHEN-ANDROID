@@ -367,7 +367,7 @@ pd() {
 }
 install_module() {
   [ ! -d $START_DIR/module ] && mkdir -p $START_DIR/module
-  7z x -y $zml/$xm/$file.mpk -o$START_DIR/module
+  utils zip_extract $zml/$xm/$file.mpk $START_DIR/module
   chmod -R 777 $START_DIR/module/
   for var in $(find $START_DIR/module/ -name install.sh); do
     source $var
@@ -424,7 +424,7 @@ UZ() {
     mkdir -p $mdir/$name
   fi
   echo "- 开始解包$xzrom"
-  7z x "$xzrom" -o$zml/$name
+  utils zip_extract "$xzrom" $zml/$name
   echo "- 完成"
   echo $name >${XBJ}
   [ $del = 1 ] && rm -rf "$xzrom"
