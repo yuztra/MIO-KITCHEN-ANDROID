@@ -367,7 +367,7 @@ pd() {
 }
 install_module() {
   [ ! -d $START_DIR/module ] && mkdir -p $START_DIR/module
-  7z x -y $zml/$xm/$file.mpks -o$START_DIR/module
+  7z x -y $zml/$xm/$file.mpk -o$START_DIR/module
   chmod -R 777 $START_DIR/module/
   for var in $(find $START_DIR/module/ -name install.sh); do
     source $var
