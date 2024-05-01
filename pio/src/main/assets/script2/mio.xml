@@ -92,13 +92,6 @@
         <param name="super_group" required="true" value="main" label="动态分区簇名" desc="适当大小" />
         <param name="simg" title="请选择要打包的IMG文件：" options-sh="script/tool.sh img" desc="请勿选择不支持的镜像" required="true" multiple="true"/>
     </action>
-    <action title="打包刷机包">
-    <set>script/tool.sh packzip</set>
-    <param name="kxyt" label="卡线一体" type="switch" />
-        <param name="code" placeholder="限制机型代号" value="" requiret="true" />
-    <param name="name" placeholder="ROM名称" value="" requiret="true" />
-    <param name="lj" label="输出路径" type="folder" />
-    </action>
     </group>
 <group title="格式转换">
     <action>
