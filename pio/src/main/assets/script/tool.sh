@@ -1,23 +1,6 @@
 #新建项目
 [ -e ${XBJ} ] && xm=$(cat ${XBJ})
 [ ! -d $mdir/$xm ] && mkdir -p $mdir/$xm
-packzip() {
-  echo "开始打包ROM:${name}.zip"
-  [ -z $lj ] && error "请输入路径，打包"
-  [ -x $name ] && error "请输入名称，打包"
-  if [ "$kxyt" == "1" ] && [ ! -z "$code" ]; then
-    utils kxyt ${lj}/ $bin/extra_flash.zip $code
-  else
-    [ -z "$code" ] && warn "请输入机型代号"
-  fi
-  7z a -tzip ${lj}/${name}.zip $zml/$xm/*
-  if [ $? = 0 ]; then
-    echo "打包完成，输出${lj}/${name}.zip"
-  else
-    warn "打包失败"
-    [ -f ${lj}/${name}.zip ] && rm -rf ${lj}/${name}.zip
-  fi
-}
 dg() {
   [ -f $zml/$xm/super.img ] && echo "super.img"
   [ -f $zml/$xm/payload.bin ] && echo "payload.bin"
