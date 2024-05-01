@@ -250,7 +250,11 @@ packsuper() {
     if [ "$(utils gettype $zml/$xm/${i}.img)" = "erofs" ] || [ "$(utils gettype $zml/$xm/${i}.img)" = "ext" ]; then
       [ "$type" = "A" ] && command+="--partition ${i}:readonly:$(wc -c <$zml/$xm/${i}.img):${super_group} --image ${i}=$zml/$xm/${i}.img "
       if [ "$type" = "AB" ] || [ "$type" = "VAB" ]; then
-        ml1+="--partition ${i}_a:readonly:$(wc -c <$zml/$xm/${i}.img):${super_group}_a --image ${i}_a=$zml/$xm/${i}.img "
+        if [ ! -z $(echo ${i} | grep _a) ]; then
+          ml1+="--partition ${i}_a:readonly:$(wc -c <$zml/$xm/${i}.img):${super_group} --image ${i}=$zml/$xm/${i}.img "
+        else
+          ml1+="--partition ${i}_a:readonly:$(wc -c <$zml/$xm/${i}.img):${super_group}_a --image ${i}_a=$zml/$xm/${i}.img "
+        fi
         ml2+="--partition ${i}_b:readonly:0:${super_group}_b "
       fi
     fi
