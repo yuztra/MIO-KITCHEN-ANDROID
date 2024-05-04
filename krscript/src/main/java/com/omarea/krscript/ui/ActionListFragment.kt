@@ -165,9 +165,7 @@ class ActionListFragment : androidx.fragment.app.Fragment(), PageLayoutRender.On
     }
 
     // 长按 添加收藏
-    override fun onItemLongClick(clickableNode: ClickableNode) {
 
-    }
 
     /**
      * Picker点击
@@ -186,6 +184,9 @@ class ActionListFragment : androidx.fragment.app.Fragment(), PageLayoutRender.On
                 pickerExecute(item, onCompleted)
             }
         }
+    }
+
+    override fun onItemLongClick(clickableNode: ClickableNode) {
     }
 
     private fun pickerExecute(item: PickerNode, onCompleted: Runnable) {
