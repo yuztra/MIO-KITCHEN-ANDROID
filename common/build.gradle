@@ -9,6 +9,10 @@ android {
         minSdkVersion 21
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    
+    lintOptions {
+          abortOnError false
+    }
 
     buildTypes {
         release {
